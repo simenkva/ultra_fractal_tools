@@ -366,6 +366,8 @@ Warnings:
 
 ## M4 - VS Code diagnostics and navigation
 
+**Status:** Complete (2026-07-19)
+
 ### Objective
 
 Expose the analyzer through responsive VS Code features.
@@ -389,6 +391,32 @@ Expose the analyzer through responsive VS Code features.
 - Missing-import warnings update when search-path settings change.
 - Extension failures are contained and do not interrupt normal editing.
 - Linting can be disabled independently of syntax highlighting.
+
+### Completion evidence
+
+- A VS Code diagnostics controller validates supported documents on open,
+  debounced changes, save, configuration changes, and workspace/import changes;
+  close handling cancels pending work, clears diagnostics, and releases its
+  per-document state.
+- Generation, document-version, timer, and cancellation checks prevent an
+  obsolete edit from publishing. A real Extension Host test confirms three
+  rapid edits coalesce into at most one analysis run and publish only the final
+  version.
+- Settings provide independent lint enablement, a bounded debounce interval,
+  a diagnostic limit, stable per-rule severity or suppression overrides, and
+  formula search paths. Configuration changes revalidate open files.
+- Imports resolve against the document directory, workspace folders, and
+  configured absolute or workspace-relative directories. Resolved imports are
+  clickable and support **Go to Definition**; exhaustive misses produce
+  `UF2003`.
+- The **Ultra Fractal: Validate Current File** command validates immediately,
+  while the **Ultra Fractal** output channel records validation status and
+  contains unexpected analyzer failures.
+- Four focused M4 unit tests bring the full unit suite to 35 passing tests. A
+  VS Code 1.129.1 Extension Host run covers open/change/save/close behavior,
+  correction clearing, rapid edits, lint toggling, severity overrides,
+  diagnostic limits, live search-path updates, import navigation, and failure
+  containment.
 
 ## M5 - Corpus validation and hardening
 

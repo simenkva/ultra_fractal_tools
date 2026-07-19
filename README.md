@@ -23,10 +23,35 @@ An editor-independent structural analyzer now tokenizes and parses incomplete
 source and produces stable, conservative diagnostic rules. It checks strings,
 delimiters, language blocks, compiler directives, duplicate definitions,
 sections, parameters, imports when resolution is exhaustive, and optional
-legacy warnings. Live display of these diagnostics in VS Code is planned for
-M4; Ultra Fractal remains the authority on compilation. See
+legacy warnings. VS Code displays these diagnostics on open, edit, and save;
+Ultra Fractal remains the authority on compilation. See
 [the diagnostic rule reference](docs/diagnostics.md) and `PLAN.md` for the
 roadmap.
+
+## Diagnostics and imports
+
+Run **Ultra Fractal: Validate Current File** from the Command Palette to
+validate immediately. Normal edit validation is debounced, and diagnostics are
+removed when a document closes. The **Ultra Fractal** output channel records
+validation status and unexpected analyzer failures.
+
+These settings control the integration:
+
+- `ultraFractal.lint.enabled` enables diagnostics without affecting syntax
+  highlighting or other editor features.
+- `ultraFractal.lint.debounceMilliseconds` sets the edit delay from 0 to 5000
+  milliseconds.
+- `ultraFractal.lint.maxDiagnostics` limits displayed diagnostics to between 1
+  and 1000 per file.
+- `ultraFractal.lint.severityOverrides` maps stable rule IDs to `error`,
+  `warning`, `information`, `hint`, or `off`.
+- `ultraFractal.formulaSearchPaths` lists directories containing imported
+  formula files. Relative paths are resolved from workspace folders.
+
+Imports are searched in the current document directory, workspace folders,
+and configured formula directories. A resolvable quoted import is a document
+link and supports **Go to Definition**. Search-path changes immediately refresh
+missing-import diagnostics.
 
 ## Snippets
 

@@ -1,7 +1,12 @@
 import assert from "node:assert/strict";
+import { mkdtemp, rm, writeFile } from "node:fs/promises";
+import os from "node:os";
 import path from "node:path";
 
 import * as vscode from "vscode";
+
+import { UltraFractalDiagnosticsController } from "../../editor/diagnostics";
+import { getDiagnosticsController } from "../../extension";
 
 const languageId = "ultra-fractal";
 
@@ -13,10 +18,66 @@ async function showUntitled(
     content,
   });
   const editor = await vscode.window.showTextDocument(document);
+  await vscode.commands.executeCommand("workbench.action.focusActiveEditorGroup");
+  await waitFor(
+    () => vscode.window.activeTextEditor?.document === document,
+    "the requested untitled document did not become active",
+  );
   return { document, editor };
 }
 
 const lineIndent = (line: string): number => /^\s*/u.exec(line)?.[0].length ?? 0;
+
+const waitFor = async (
+  predicate: () => boolean,
+  message: string,
+  timeoutMilliseconds = 5_000,
+): Promise<void> => {
+  const deadline = Date.now() + timeoutMilliseconds;
+  while (Date.now() < deadline) {
+    if (predicate()) {
+      return;
+    }
+    await new Promise<void>((resolve) => setTimeout(resolve, 25));
+  }
+  assert.fail(message);
+};
+
+const replaceDocument = async (
+  document: vscode.TextDocument,
+  text: string,
+): Promise<void> => {
+  const edit = new vscode.WorkspaceEdit();
+  edit.replace(
+    document.uri,
+    new vscode.Range(
+      new vscode.Position(0, 0),
+      document.positionAt(document.getText().length),
+    ),
+    text,
+  );
+  assert.equal(await vscode.workspace.applyEdit(edit), true);
+};
+
+const diagnosticCode = (diagnostic: vscode.Diagnostic): string =>
+  typeof diagnostic.code === "object"
+    ? String(diagnostic.code.value)
+    : String(diagnostic.code);
+
+const diagnosticsFor = (uri: vscode.Uri): readonly vscode.Diagnostic[] =>
+  vscode.languages.getDiagnostics(uri);
+
+const closeDocumentTab = async (document: vscode.TextDocument): Promise<void> => {
+  const tab = vscode.window.tabGroups.all
+    .flatMap(({ tabs }) => tabs)
+    .find(
+      ({ input }) =>
+        input instanceof vscode.TabInputText &&
+        input.uri.toString() === document.uri.toString(),
+  );
+  assert.ok(tab, `no editor tab found for ${document.uri.toString()}`);
+  assert.equal(await vscode.window.tabGroups.close(tab), true);
+};
 
 export async function run(): Promise<void> {
   const projectRoot = path.resolve(__dirname, "../../..");
@@ -187,4 +248,290 @@ export async function run(): Promise<void> {
   assert.match(snippetDocument.document.getText(), /bailout:[\s\S]*default:/u);
   assert.ok(snippetDocument.editor.selections.length >= 1);
   console.log("PASS: contributed formula snippet inserts a tab-stopped skeleton");
+
+  const diagnosticsController = getDiagnosticsController();
+  assert.ok(diagnosticsController, "M4 diagnostics controller must be active");
+
+  const configurationKeys = [
+    "lint.enabled",
+    "lint.debounceMilliseconds",
+    "lint.maxDiagnostics",
+    "lint.severityOverrides",
+    "formulaSearchPaths",
+  ] as const;
+  const originalConfiguration = new Map(
+    configurationKeys.map((key) => [
+      key,
+      vscode.workspace
+        .getConfiguration("ultraFractal")
+        .inspect(key)?.globalValue,
+    ]),
+  );
+  const updateConfiguration = async (
+    key: (typeof configurationKeys)[number],
+    value: unknown,
+  ): Promise<void> => {
+    await vscode.workspace
+      .getConfiguration("ultraFractal")
+      .update(key, value, vscode.ConfigurationTarget.Global);
+  };
+  const temporaryRoot = await mkdtemp(path.join(os.tmpdir(), "uf-vscode-"));
+  const validSource = `Mandelbrot {
+init:
+  z = 0
+loop:
+  z = sqr(z) + #pixel
+bailout:
+  |z| < 4
+default:
+  title = "Mandelbrot"
+}
+`;
+  const invalidSource = `Broken {
+default:
+  title = "unterminated
+}
+`;
+
+  try {
+    await updateConfiguration("lint.enabled", true);
+    await updateConfiguration("lint.debounceMilliseconds", 100);
+    await updateConfiguration("lint.maxDiagnostics", 100);
+    await updateConfiguration("lint.severityOverrides", {});
+    await updateConfiguration("formulaSearchPaths", []);
+
+    const openFile = vscode.Uri.file(path.join(temporaryRoot, "open.ufm"));
+    await writeFile(openFile.fsPath, invalidSource, "utf8");
+    const openDocument = await vscode.workspace.openTextDocument(openFile);
+    await vscode.window.showTextDocument(openDocument);
+    await vscode.commands.executeCommand("workbench.action.focusActiveEditorGroup");
+    await waitFor(
+      () => vscode.window.activeTextEditor?.document === openDocument,
+      "the open-lifecycle test document did not become active",
+    );
+    await waitFor(
+      () => diagnosticsFor(openFile).some((item) => diagnosticCode(item) === "UF1001"),
+      "opening an invalid formula did not publish UF1001",
+    );
+    const manualCount = await vscode.commands.executeCommand<number>(
+      "ultraFractal.validateCurrentFile",
+    );
+    assert.equal(manualCount, 1);
+    await closeDocumentTab(openDocument);
+    diagnosticsController.handleDocumentClosed(openDocument);
+    await waitFor(
+      () => diagnosticsFor(openFile).length === 0,
+      "closing a formula did not clear its diagnostics",
+    );
+    console.log("PASS: open, manual validation, and close diagnostics lifecycle works");
+
+    await updateConfiguration("lint.debounceMilliseconds", 1_000);
+    const saveFile = vscode.Uri.file(path.join(temporaryRoot, "save.ufm"));
+    await writeFile(saveFile.fsPath, validSource, "utf8");
+    const saveDocument = await vscode.workspace.openTextDocument(saveFile);
+    await vscode.window.showTextDocument(saveDocument);
+    await vscode.commands.executeCommand("workbench.action.focusActiveEditorGroup");
+    await waitFor(
+      () => vscode.window.activeTextEditor?.document === saveDocument,
+      "the save-lifecycle test document did not become active",
+    );
+    await replaceDocument(saveDocument, invalidSource);
+    assert.equal(await saveDocument.save(), true);
+    await waitFor(
+      () => diagnosticsFor(saveFile).some((item) => diagnosticCode(item) === "UF1001"),
+      "saving an invalid formula did not validate immediately",
+    );
+    await replaceDocument(saveDocument, validSource);
+    assert.equal(await saveDocument.save(), true);
+    await waitFor(
+      () => diagnosticsFor(saveFile).length === 0,
+      "saving a corrected formula did not clear diagnostics",
+    );
+    await closeDocumentTab(saveDocument);
+    console.log("PASS: save bypasses the debounce and corrections clear diagnostics");
+
+    await updateConfiguration("lint.debounceMilliseconds", 100);
+    const changeDocument = (await showUntitled(invalidSource)).document;
+    await waitFor(
+      () => diagnosticsFor(changeDocument.uri).length === 1,
+      "an edited untitled formula did not receive diagnostics",
+    );
+    await replaceDocument(changeDocument, validSource);
+    await waitFor(
+      () => diagnosticsFor(changeDocument.uri).length === 0,
+      "correcting an edited formula did not clear diagnostics",
+    );
+    console.log("PASS: debounced change diagnostics clear after correction");
+
+    await updateConfiguration("lint.debounceMilliseconds", 400);
+    await waitFor(
+      () => !diagnosticsController.getValidationState(changeDocument.uri).pending,
+      "configuration-triggered validation did not settle",
+    );
+    const runsBefore = diagnosticsController.getValidationState(
+      changeDocument.uri,
+    ).startedRuns;
+    await replaceDocument(changeDocument, invalidSource);
+    await replaceDocument(changeDocument, `${invalidSource}\n; newer edit\n`);
+    await replaceDocument(changeDocument, validSource);
+    await waitFor(() => {
+      const state = diagnosticsController.getValidationState(changeDocument.uri);
+      return !state.pending && state.publishedVersion === changeDocument.version;
+    }, "rapid edits did not publish the latest document version");
+    const runsAfter = diagnosticsController.getValidationState(
+      changeDocument.uri,
+    ).startedRuns;
+    assert.ok(runsAfter - runsBefore <= 1);
+    assert.equal(diagnosticsFor(changeDocument.uri).length, 0);
+    console.log("PASS: rapid edits coalesce without publishing stale diagnostics");
+
+    await replaceDocument(changeDocument, invalidSource);
+    await diagnosticsController.validateNow(changeDocument, "lint toggle setup");
+    assert.equal(diagnosticsFor(changeDocument.uri).length, 1);
+    await updateConfiguration("lint.enabled", false);
+    await waitFor(
+      () => diagnosticsFor(changeDocument.uri).length === 0,
+      "disabling lint did not clear diagnostics",
+    );
+    assert.equal(changeDocument.languageId, languageId);
+    assert.equal(
+      await vscode.commands.executeCommand<number>(
+        "ultraFractal.validateCurrentFile",
+      ),
+      0,
+    );
+    await updateConfiguration("lint.enabled", true);
+    await waitFor(
+      () => diagnosticsFor(changeDocument.uri).length === 1,
+      "re-enabling lint did not restore diagnostics",
+    );
+    console.log("PASS: lint can be disabled independently of language support");
+
+    await updateConfiguration("lint.severityOverrides", { UF1001: "hint" });
+    await waitFor(
+      () => diagnosticsFor(changeDocument.uri)[0]?.severity === vscode.DiagnosticSeverity.Hint,
+      "severity override was not applied",
+    );
+    await updateConfiguration("lint.severityOverrides", { UF1001: "off" });
+    await waitFor(
+      () => diagnosticsFor(changeDocument.uri).length === 0,
+      "disabled diagnostic rule remained visible",
+    );
+    await updateConfiguration("lint.severityOverrides", {});
+
+    const manyDiagnosticsSource = `Broken {
+loop:
+  float param Limit
+  endparam
+init:
+  float param @limit
+  endparam
+  title = "unterminated
+}
+`;
+    await updateConfiguration("lint.maxDiagnostics", 1);
+    await replaceDocument(changeDocument, manyDiagnosticsSource);
+    await waitFor(
+      () => diagnosticsFor(changeDocument.uri).length === 1,
+      "diagnostic maximum was not applied",
+    );
+    await updateConfiguration("lint.maxDiagnostics", 100);
+    console.log("PASS: severity overrides, rule disabling, and limits apply live");
+
+    const importDocument = (
+      await showUntitled(`Imports {
+global:
+  import "minimal.ulb"
+}
+`)
+    ).document;
+    await updateConfiguration("formulaSearchPaths", [
+      path.join(projectRoot, "test/analyzer"),
+    ]);
+    await waitFor(
+      () => diagnosticsFor(importDocument.uri).some((item) => diagnosticCode(item) === "UF2003"),
+      "a missing import did not produce UF2003",
+    );
+    const importedFile = path.join(projectRoot, "test/fixtures/minimal.ulb");
+    await updateConfiguration("formulaSearchPaths", [
+      path.join(projectRoot, "test/fixtures"),
+    ]);
+    await waitFor(
+      () => !diagnosticsFor(importDocument.uri).some((item) => diagnosticCode(item) === "UF2003"),
+      "updating formula search paths did not resolve the import",
+    );
+    const links = await vscode.commands.executeCommand<vscode.DocumentLink[]>(
+      "vscode.executeLinkProvider",
+      importDocument.uri,
+    );
+    assert.equal(links.length, 1);
+    assert.equal(links[0]?.target?.fsPath, importedFile);
+    const definitions = await vscode.commands.executeCommand<
+      (vscode.Location | vscode.LocationLink)[]
+    >(
+      "vscode.executeDefinitionProvider",
+      importDocument.uri,
+      new vscode.Position(2, 12),
+    );
+    assert.equal(definitions.length, 1);
+    const definition = definitions[0];
+    assert.ok(definition instanceof vscode.Location);
+    assert.equal(definition.uri.fsPath, importedFile);
+    console.log("PASS: search-path changes update diagnostics and import navigation");
+
+    const failureDiagnostics = new Map<string, readonly vscode.Diagnostic[]>();
+    const failureCollection = {
+      delete: (uri: vscode.Uri): void => {
+        failureDiagnostics.delete(uri.toString());
+      },
+      set: (uri: vscode.Uri, diagnostics: readonly vscode.Diagnostic[]): void => {
+        failureDiagnostics.set(uri.toString(), diagnostics);
+      },
+    } as vscode.DiagnosticCollection;
+    const failureOutputLines: string[] = [];
+    const failureOutput = {
+      appendLine: (line: string): void => {
+        failureOutputLines.push(line);
+      },
+    } as vscode.OutputChannel;
+    const failureController = new UltraFractalDiagnosticsController(
+      failureCollection,
+      failureOutput,
+      {
+        analyzeSource: () => {
+          throw new Error("expected test analyzer failure");
+        },
+      },
+    );
+    try {
+      await assert.doesNotReject(async () => {
+        assert.equal(
+          await failureController.validateNow(importDocument, "failure test"),
+          undefined,
+        );
+      });
+      assert.equal(failureDiagnostics.get(importDocument.uri.toString())?.length ?? 0, 0);
+      assert.ok(
+        failureOutputLines.some((line) => line.includes("expected test analyzer failure")),
+      );
+    } finally {
+      failureController.dispose();
+    }
+    console.log("PASS: analyzer failures are logged and contained");
+  } finally {
+    for (const key of configurationKeys) {
+      await updateConfiguration(key, originalConfiguration.get(key));
+    }
+    await waitFor(
+      () =>
+        vscode.workspace.textDocuments
+          .filter((document) => document.languageId === languageId)
+          .every(
+            ({ uri }) =>
+              !diagnosticsController.getValidationState(uri).pending,
+          ),
+      "restored-configuration validation did not settle",
+    );
+    await rm(temporaryRoot, { recursive: true, force: true });
+  }
 }

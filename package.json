@@ -20,13 +20,18 @@
   ],
   "main": "./out/extension.js",
   "activationEvents": [
-    "onLanguage:ultra-fractal"
+    "onLanguage:ultra-fractal",
+    "onCommand:ultraFractal.validateCurrentFile"
   ],
   "files": [
     "out/extension.js",
     "out/editor/indentation.js",
+    "out/editor/diagnostics.js",
+    "out/editor/imports.js",
+    "out/editor/navigation.js",
     "out/editor/providers.js",
     "out/editor/structure.js",
+    "out/editor/validation.js",
     "out/analyzer/diagnostics.js",
     "out/analyzer/index.js",
     "out/analyzer/lexer.js",
@@ -70,6 +75,61 @@
         "path": "./snippets/ultra-fractal.code-snippets"
       }
     ],
+    "commands": [
+      {
+        "command": "ultraFractal.validateCurrentFile",
+        "title": "Validate Current File",
+        "category": "Ultra Fractal"
+      }
+    ],
+    "configuration": {
+      "title": "Ultra Fractal",
+      "properties": {
+        "ultraFractal.lint.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable structural diagnostics. Syntax highlighting and other language features remain active when disabled."
+        },
+        "ultraFractal.lint.debounceMilliseconds": {
+          "type": "number",
+          "default": 300,
+          "minimum": 0,
+          "maximum": 5000,
+          "description": "Delay before validating a file after an edit, in milliseconds."
+        },
+        "ultraFractal.lint.maxDiagnostics": {
+          "type": "integer",
+          "default": 100,
+          "minimum": 1,
+          "maximum": 1000,
+          "description": "Maximum structural diagnostics shown per document."
+        },
+        "ultraFractal.lint.severityOverrides": {
+          "type": "object",
+          "default": {},
+          "additionalProperties": {
+            "type": "string",
+            "enum": [
+              "error",
+              "warning",
+              "information",
+              "hint",
+              "off"
+            ]
+          },
+          "description": "Override a diagnostic rule by stable ID, for example { \"UF2004\": \"off\" }."
+        },
+        "ultraFractal.formulaSearchPaths": {
+          "type": "array",
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true,
+          "description": "Directories searched for imported formula files. Relative paths are resolved from each workspace folder."
+        }
+      }
+    },
     "configurationDefaults": {
       "[ultra-fractal]": {
         "editor.formatOnType": true
@@ -81,7 +141,7 @@
     "watch": "tsc -watch -p .",
     "check": "tsc -p . --noEmit",
     "lint": "eslint .",
-    "test:unit": "node --test out/test/analyzer.test.js out/test/catalog.test.js out/test/editor.test.js out/test/foundation.test.js out/test/grammar.test.js",
+    "test:unit": "node --test out/test/analyzer.test.js out/test/catalog.test.js out/test/editor.test.js out/test/foundation.test.js out/test/grammar.test.js out/test/m4.test.js",
     "benchmark:grammar": "node out/test/grammar-benchmark.js",
     "test:integration": "node out/test/runTest.js",
     "test": "npm run compile && npm run lint && npm run test:unit",

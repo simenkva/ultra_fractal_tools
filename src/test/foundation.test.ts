@@ -40,7 +40,10 @@ void test("extension manifest claims exactly the supported formula extensions", 
   assert.equal(language.id, "ultra-fractal");
   assert.deepEqual(language.extensions, [".ufm", ".ucl", ".uxf", ".ulb"]);
   assert.equal(language.configuration, "./language-configuration.json");
-  assert.deepEqual(manifest.activationEvents, ["onLanguage:ultra-fractal"]);
+  assert.deepEqual(manifest.activationEvents, [
+    "onLanguage:ultra-fractal",
+    "onCommand:ultraFractal.validateCurrentFile",
+  ]);
   assert.ok(!language.extensions.includes(".upr"));
   assert.ok(!language.extensions.includes(".txt"));
   assert.doesNotThrow(() =>

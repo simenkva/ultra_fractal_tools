@@ -1,8 +1,9 @@
 # Structural analyzer and diagnostic rules
 
-The M3 analyzer is an editor-independent TypeScript core. It tokenizes and
-parses incomplete Ultra Fractal source without importing the VS Code API. Live
-editor diagnostics are intentionally deferred to M4.
+The analyzer is an editor-independent TypeScript core. It tokenizes and parses
+incomplete Ultra Fractal source without importing the VS Code API. The M4 VS
+Code integration validates supported files on open, edit, and save, and clears
+diagnostics when a document closes.
 
 The analyzer performs structural checks only. Ultra Fractal remains the
 authority on compilation, types, overloads, class resolution, and runtime
@@ -23,6 +24,26 @@ configured search location was checked. Resolver failure is treated as
 
 Any rule can be suppressed through `disabledRules`. This is especially useful
 for the optional compatibility warning `UF2004`.
+
+## VS Code integration
+
+Edit validation is debounced and obsolete scheduled work is cancelled. The
+**Ultra Fractal: Validate Current File** command bypasses the delay. Unexpected
+analyzer failures are contained, clear the affected diagnostic collection, and
+are recorded in the **Ultra Fractal** output channel.
+
+The `ultraFractal.lint.severityOverrides` setting changes displayed severity by
+stable rule ID; assigning `off` suppresses that rule. Displayed results are
+bounded by `ultraFractal.lint.maxDiagnostics`, and
+`ultraFractal.lint.enabled` can disable all diagnostics without disabling
+highlighting, folding, Outline, snippets, or import navigation.
+
+For imports, the extension searches the current document directory, workspace
+folders, and `ultraFractal.formulaSearchPaths`, in that order. Relative
+configured paths are resolved from workspace folders (or from the document
+directory when no workspace is open). A missing-import warning is emitted only
+when every available root was checked. Resolvable imports become document links
+and **Go to Definition** targets.
 
 ## Stable rules
 
