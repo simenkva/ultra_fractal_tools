@@ -1,0 +1,14 @@
+.DS_Store
+.vscode/**
+.vscode-test/**
+docs/**
+src/**
+test/**
+uf-formulas/**
+node_modules/**
+uf6-manual.pdf
+PLAN.md
+tsconfig.json
+eslint.config.mjs
+*.vsix
+

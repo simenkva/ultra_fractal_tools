@@ -1,0 +1,281 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "Ultra Fractal",
+  "scopeName": "source.ultra-fractal",
+  "patterns": [
+    { "include": "#documentation-entry" },
+    { "include": "#line-comment" },
+    { "include": "#string" },
+    { "include": "#compiler-directive" },
+    { "include": "#class-declaration" },
+    { "include": "#entry-declaration" },
+    { "include": "#import" },
+    { "include": "#section-label" },
+    { "include": "#legacy-section-label" },
+    { "include": "#parameter-block" },
+    { "include": "#function-declaration" },
+    { "include": "#function-parameter-block" },
+    { "include": "#typed-variable-declaration" },
+    { "include": "#member-method" },
+    { "include": "#member-field" },
+    { "include": "#parameter-reference" },
+    { "include": "#predefined-symbol" },
+    { "include": "#built-in-function" },
+    { "include": "#function-call" },
+    { "include": "#setting" },
+    { "include": "#primitive-type" },
+    { "include": "#built-in-class" },
+    { "include": "#boolean" },
+    { "include": "#control-flow" },
+    { "include": "#block-keyword" },
+    { "include": "#semi-reserved-keyword" },
+    { "include": "#contextual-class-word" },
+    { "include": "#complex-constant" },
+    { "include": "#imaginary-constant" },
+    { "include": "#float-constant" },
+    { "include": "#integer-constant" },
+    { "include": "#line-continuation" },
+    { "include": "#operator" },
+    { "include": "#punctuation" }
+  ],
+  "repository": {
+    "documentation-entry": {
+      "name": "comment.block.documentation.ultra-fractal",
+      "begin": "(?i)^(\\s*)(comment)(\\s*)(\\{)",
+      "beginCaptures": {
+        "2": { "name": "keyword.other.documentation.ultra-fractal" },
+        "4": { "name": "punctuation.definition.comment.begin.ultra-fractal" }
+      },
+      "end": "^(\\s*)(\\})(?=\\s*(?:;.*)?$)",
+      "endCaptures": {
+        "2": { "name": "punctuation.definition.comment.end.ultra-fractal" }
+      }
+    },
+    "line-comment": {
+      "name": "comment.line.semicolon.ultra-fractal",
+      "begin": ";",
+      "beginCaptures": {
+        "0": { "name": "punctuation.definition.comment.ultra-fractal" }
+      },
+      "end": "$"
+    },
+    "string": {
+      "name": "string.quoted.double.ultra-fractal",
+      "begin": "\"",
+      "beginCaptures": {
+        "0": { "name": "punctuation.definition.string.begin.ultra-fractal" }
+      },
+      "end": "\"|(?<!\\\\)(?=\\n)",
+      "endCaptures": {
+        "0": { "name": "punctuation.definition.string.end.ultra-fractal" }
+      },
+      "patterns": [
+        {
+          "name": "constant.character.escape.line-continuation.ultra-fractal",
+          "match": "\\\\$"
+        }
+      ]
+    },
+    "compiler-directive": {
+      "match": "(?i)(?<![A-Za-z0-9_])(\\$(?:define|undef|ifdef|else|endif))\\b(?:\\s+([A-Za-z_][A-Za-z0-9_]*))?",
+      "captures": {
+        "1": { "name": "keyword.control.directive.ultra-fractal" },
+        "2": { "name": "constant.other.directive-symbol.ultra-fractal" }
+      }
+    },
+    "class-declaration": {
+      "match": "(?i)^(\\s*)(class)(\\s+)([A-Za-z_][A-Za-z0-9_]*)(\\s*)(\\(([^()]*)\\))?(\\s*)(\\{)",
+      "captures": {
+        "2": { "name": "storage.type.class.ultra-fractal" },
+        "4": { "name": "entity.name.type.class.ultra-fractal" },
+        "6": { "name": "meta.inheritance.ultra-fractal" },
+        "7": { "name": "entity.other.inherited-class.ultra-fractal" },
+        "9": { "name": "punctuation.section.block.begin.ultra-fractal" }
+      }
+    },
+    "entry-declaration": {
+      "match": "(?i)^(\\s*)(?!(?:class|comment)\\b)([^\\s{};()]+)(\\s*)(\\(([^()]*)\\))?(\\s*)(\\{)",
+      "captures": {
+        "2": { "name": "entity.name.function.formula.ultra-fractal" },
+        "4": { "name": "meta.annotation.entry-setting.ultra-fractal" },
+        "5": { "name": "constant.language.entry-setting.ultra-fractal" },
+        "7": { "name": "punctuation.section.block.begin.ultra-fractal" }
+      }
+    },
+    "import": {
+      "match": "(?i)\\b(import)(\\s+)(\"[^\"\\r\\n]*\")",
+      "captures": {
+        "1": { "name": "keyword.control.import.ultra-fractal" },
+        "3": { "name": "string.quoted.double.filename.ultra-fractal" }
+      }
+    },
+    "section-label": {
+      "match": "(?i)^(\\s*)(global|builtin|init|loop|bailout|perturbinit|perturbloop|default|switch|transform|final|public|protected|private)(\\s*)(:)",
+      "captures": {
+        "2": { "name": "keyword.control.section.ultra-fractal" },
+        "4": { "name": "punctuation.separator.section.ultra-fractal" }
+      }
+    },
+    "legacy-section-label": {
+      "match": "^(\\s*)(:)(?=\\s*(?:;|$))",
+      "captures": {
+        "2": { "name": "keyword.control.section.legacy.ultra-fractal" }
+      }
+    },
+    "parameter-block": {
+      "match": "(?i)\\b(?:(bool|int|float|complex|color|Object|Image)(\\s+))?(param)(\\s+)(@?[A-Za-z_][A-Za-z0-9_]*)",
+      "captures": {
+        "1": { "name": "storage.type.ultra-fractal" },
+        "3": { "name": "storage.type.parameter.ultra-fractal" },
+        "5": { "name": "variable.parameter.declaration.ultra-fractal" }
+      }
+    },
+    "function-declaration": {
+      "match": "(?i)\\b(?:(bool|int|float|complex|color|Object|Image)(\\s+))?(func)(\\s+)([A-Za-z_][A-Za-z0-9_]*)(?=\\s*\\()",
+      "captures": {
+        "1": { "name": "storage.type.ultra-fractal" },
+        "3": { "name": "storage.type.function.ultra-fractal" },
+        "5": { "name": "entity.name.function.ultra-fractal" }
+      }
+    },
+    "function-parameter-block": {
+      "match": "(?i)\\b(func)(\\s+)(@?[A-Za-z_][A-Za-z0-9_]*)(?!\\s*\\()",
+      "captures": {
+        "1": { "name": "storage.type.function-parameter.ultra-fractal" },
+        "3": { "name": "variable.parameter.function.ultra-fractal" }
+      }
+    },
+    "typed-variable-declaration": {
+      "match": "(?i)\\b(bool|int|float|complex|color|Object|Image)(\\s+)([A-Za-z_][A-Za-z0-9_]*)(?=\\s*(?:=|\\[|,|$))",
+      "captures": {
+        "1": { "name": "storage.type.ultra-fractal" },
+        "3": { "name": "variable.other.declaration.ultra-fractal" }
+      }
+    },
+    "member-method": {
+      "match": "(\\.)([A-Za-z_][A-Za-z0-9_]*)(?=\\s*\\()",
+      "captures": {
+        "1": { "name": "punctuation.accessor.ultra-fractal" },
+        "2": { "name": "entity.name.function.member.ultra-fractal" }
+      }
+    },
+    "member-field": {
+      "match": "(\\.)([A-Za-z_][A-Za-z0-9_]*)",
+      "captures": {
+        "1": { "name": "punctuation.accessor.ultra-fractal" },
+        "2": { "name": "variable.other.member.ultra-fractal" }
+      }
+    },
+    "parameter-reference": {
+      "name": "variable.other.parameter.ultra-fractal",
+      "match": "@[A-Za-z_][A-Za-z0-9_]*"
+    },
+    "predefined-symbol": {
+      "name": "variable.language.predefined.ultra-fractal",
+      "match": "#[A-Za-z_][A-Za-z0-9_]*"
+    },
+    "built-in-function": {
+      "name": "support.function.builtin.ultra-fractal",
+      "match": "(?i)\\b(?:abs|acos|acosh|alpha|asin|asinh|atan|atan2|atanh|blend|blue|cabs|ceil|compose|conj|cos|cosh|cotan|cotanh|exp|flip|floor|gradient|green|hsl|hsla|hue|ident|imag|isInf|isNaN|length|log|lum|oldz|print|random|real|recip|red|rgb|rgba|round|sat|setLength|sin|sinh|sqr|sqrt|tan|tanh|trunc|zero|mergenormal|mergemultiply|mergescreen|mergeoverlay|mergehardlight|mergesoftlight|mergedarken|mergelighten|mergedifference|mergehue|mergesaturation|mergecolor|mergeluminance|mergeaddition|mergesubtraction|mergehsladdition|mergered|mergegreen|mergeblue)(?=\\s*\\()"
+    },
+    "function-call": {
+      "name": "entity.name.function.call.ultra-fractal",
+      "match": "\\b[A-Za-z_][A-Za-z0-9_]*(?=\\s*\\()"
+    },
+    "setting": {
+      "name": "support.type.property-name.setting.ultra-fractal",
+      "match": "(?i)\\b(?:angle|caption|center|default|enabled|enum|expanded|exponential|helpfile|helptopic|hint|magn|max|maxiter|method|min|periodicity|perturb|precision|rating|render|selectable|skew|stretch|text|title|type|visible)(?=\\s*=)"
+    },
+    "primitive-type": {
+      "name": "storage.type.primitive.ultra-fractal",
+      "match": "(?i)\\b(?:bool|int|float|complex|color)\\b"
+    },
+    "built-in-class": {
+      "name": "support.class.builtin.ultra-fractal",
+      "match": "(?i)\\b(?:Object|Image)\\b"
+    },
+    "boolean": {
+      "name": "constant.language.boolean.ultra-fractal",
+      "match": "(?i)\\b(?:true|false)\\b"
+    },
+    "control-flow": {
+      "name": "keyword.control.flow.ultra-fractal",
+      "match": "(?i)\\b(?:if|elseif|else|endif|while|endwhile|repeat|until|return)\\b"
+    },
+    "block-keyword": {
+      "name": "keyword.other.block.ultra-fractal",
+      "match": "(?i)\\b(?:func|endfunc|param|endparam|heading|endheading)\\b"
+    },
+    "semi-reserved-keyword": {
+      "name": "keyword.other.contextual.ultra-fractal",
+      "match": "(?i)\\b(?:const|import|new|static|this)\\b"
+    },
+    "contextual-class-word": {
+      "name": "keyword.other.class.ultra-fractal",
+      "match": "(?i)\\b(?:class|public|private|protected)\\b"
+    },
+    "complex-constant": {
+      "name": "meta.number.complex.ultra-fractal",
+      "match": "(\\()\\s*([+-]?(?:(?:\\d+\\.\\d*|\\.\\d+|\\d+)(?:[eE][+-]?\\d+)?))\\s*(,)\\s*([+-]?(?:(?:\\d+\\.\\d*|\\.\\d+|\\d+)(?:[eE][+-]?\\d+)?))\\s*(\\))",
+      "captures": {
+        "1": { "name": "punctuation.definition.numeric.begin.ultra-fractal" },
+        "2": { "name": "constant.numeric.ultra-fractal" },
+        "3": { "name": "punctuation.separator.sequence.ultra-fractal" },
+        "4": { "name": "constant.numeric.ultra-fractal" },
+        "5": { "name": "punctuation.definition.numeric.end.ultra-fractal" }
+      }
+    },
+    "imaginary-constant": {
+      "name": "constant.numeric.imaginary.ultra-fractal",
+      "match": "(?<![A-Za-z0-9_.])(?:\\d+\\.\\d*|\\.\\d+|\\d+)(?:[eE][+-]?\\d+)?[iI]\\b"
+    },
+    "float-constant": {
+      "name": "constant.numeric.float.ultra-fractal",
+      "match": "(?<![A-Za-z0-9_.])(?:(?:\\d+\\.\\d*|\\.\\d+)(?:[eE][+-]?\\d+)?|\\d+[eE][+-]?\\d+)\\b"
+    },
+    "integer-constant": {
+      "name": "constant.numeric.integer.ultra-fractal",
+      "match": "(?<![A-Za-z0-9_.])\\d+\\b"
+    },
+    "line-continuation": {
+      "name": "constant.character.escape.line-continuation.ultra-fractal",
+      "match": "\\\\$"
+    },
+    "operator": {
+      "name": "keyword.operator.ultra-fractal",
+      "match": "==|!=|<=|>=|&&|\\|\\||\\+=|-=|\\*=|/=|\\^=|[=+\\-*/^%<>!&|]"
+    },
+    "punctuation": {
+      "patterns": [
+        {
+          "name": "punctuation.section.block.begin.ultra-fractal",
+          "match": "\\{"
+        },
+        {
+          "name": "punctuation.section.block.end.ultra-fractal",
+          "match": "\\}"
+        },
+        {
+          "name": "punctuation.section.group.begin.ultra-fractal",
+          "match": "\\("
+        },
+        {
+          "name": "punctuation.section.group.end.ultra-fractal",
+          "match": "\\)"
+        },
+        {
+          "name": "punctuation.section.brackets.begin.ultra-fractal",
+          "match": "\\["
+        },
+        {
+          "name": "punctuation.section.brackets.end.ultra-fractal",
+          "match": "\\]"
+        },
+        {
+          "name": "punctuation.separator.sequence.ultra-fractal",
+          "match": ","
+        }
+      ]
+    }
+  }
+}

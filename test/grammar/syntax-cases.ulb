@@ -1,0 +1,18 @@
+class ExamplePlugin(common.ulb:Object) {
+public:
+  import "common.ulb"
+  func ExamplePlugin()
+    helper = new Object
+  endfunc
+
+  complex func Iterate(const complex value)
+    return helper.Apply(value)
+  endfunc
+protected:
+  Object helper
+private:
+  bool enabled = true
+default:
+  title = "Example plug-in"
+}
+

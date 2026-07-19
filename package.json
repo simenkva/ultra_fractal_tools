@@ -1,0 +1,93 @@
+{
+  "name": "ultra-fractal-language",
+  "displayName": "Ultra Fractal Language Support",
+  "description": "Language support for Ultra Fractal formula source files.",
+  "version": "0.0.1",
+  "publisher": "ultra-fractal-tools",
+  "private": true,
+  "license": "UNLICENSED",
+  "engines": {
+    "vscode": "^1.96.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "keywords": [
+    "Ultra Fractal",
+    "fractal",
+    "formula",
+    "language"
+  ],
+  "main": "./out/extension.js",
+  "activationEvents": [
+    "onLanguage:ultra-fractal"
+  ],
+  "files": [
+    "out/extension.js",
+    "out/editor/indentation.js",
+    "out/editor/providers.js",
+    "out/editor/structure.js",
+    "language-configuration.json",
+    "snippets/ultra-fractal.code-snippets",
+    "syntaxes/ultra-fractal.tmLanguage.json",
+    "README.md"
+  ],
+  "contributes": {
+    "languages": [
+      {
+        "id": "ultra-fractal",
+        "aliases": [
+          "Ultra Fractal",
+          "Ultra Fractal Formula"
+        ],
+        "extensions": [
+          ".ufm",
+          ".ucl",
+          ".uxf",
+          ".ulb"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "ultra-fractal",
+        "scopeName": "source.ultra-fractal",
+        "path": "./syntaxes/ultra-fractal.tmLanguage.json"
+      }
+    ],
+    "snippets": [
+      {
+        "language": "ultra-fractal",
+        "path": "./snippets/ultra-fractal.code-snippets"
+      }
+    ],
+    "configurationDefaults": {
+      "[ultra-fractal]": {
+        "editor.formatOnType": true
+      }
+    }
+  },
+  "scripts": {
+    "compile": "tsc -p .",
+    "watch": "tsc -watch -p .",
+    "check": "tsc -p . --noEmit",
+    "lint": "eslint .",
+    "test:unit": "node --test out/test/catalog.test.js out/test/editor.test.js out/test/foundation.test.js out/test/grammar.test.js",
+    "benchmark:grammar": "node out/test/grammar-benchmark.js",
+    "test:integration": "node out/test/runTest.js",
+    "test": "npm run compile && npm run lint && npm run test:unit",
+    "verify": "npm test && npm run test:integration"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.17.0",
+    "@types/node": "^22.10.2",
+    "@types/vscode": "^1.96.0",
+    "@vscode/test-electron": "^2.4.1",
+    "eslint": "^9.17.0",
+    "typescript": "^5.7.2",
+    "typescript-eslint": "^8.18.0",
+    "vscode-oniguruma": "^2.0.1",
+    "vscode-textmate": "^9.3.2"
+  }
+}

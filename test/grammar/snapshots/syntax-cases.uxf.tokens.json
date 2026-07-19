@@ -1,0 +1,23 @@
+[
+  { "line": 1, "text": "Identity-Transform", "scope": "entity.name.function.formula.ultra-fractal" },
+  { "line": 1, "text": "{", "scope": "punctuation.section.block.begin.ultra-fractal" },
+  { "line": 2, "text": "transform", "scope": "keyword.control.section.ultra-fractal" },
+  { "line": 2, "text": ":", "scope": "punctuation.separator.section.ultra-fractal" },
+  { "line": 3, "text": "#pixel", "scope": "variable.language.predefined.ultra-fractal" },
+  { "line": 3, "text": "=", "scope": "keyword.operator.ultra-fractal" },
+  { "line": 3, "text": "@offset", "scope": "variable.other.parameter.ultra-fractal" },
+  { "line": 4, "text": "false", "scope": "constant.language.boolean.ultra-fractal" },
+  { "line": 6, "text": "title", "scope": "support.type.property-name.setting.ultra-fractal" },
+  { "line": 6, "text": "\"", "scope": "punctuation.definition.string.begin.ultra-fractal" },
+  { "line": 6, "text": "Identity transform", "scope": "string.quoted.double.ultra-fractal" },
+  { "line": 6, "text": "\"", "scope": "punctuation.definition.string.end.ultra-fractal" },
+  { "line": 7, "text": "complex", "scope": "storage.type.ultra-fractal" },
+  { "line": 7, "text": "param", "scope": "storage.type.parameter.ultra-fractal" },
+  { "line": 7, "text": "offset", "scope": "variable.parameter.declaration.ultra-fractal" },
+  { "line": 8, "text": "(", "scope": "punctuation.definition.numeric.begin.ultra-fractal" },
+  { "line": 8, "text": "0", "scope": "constant.numeric.ultra-fractal" },
+  { "line": 8, "text": ",", "scope": "punctuation.separator.sequence.ultra-fractal" },
+  { "line": 8, "text": ")", "scope": "punctuation.definition.numeric.end.ultra-fractal" },
+  { "line": 9, "text": "endparam", "scope": "keyword.other.block.ultra-fractal" },
+  { "line": 10, "text": "}", "scope": "punctuation.section.block.end.ultra-fractal" }
+]

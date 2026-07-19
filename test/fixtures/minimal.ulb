@@ -1,0 +1,9 @@
+class IdentityPlugin {
+public:
+  complex func Iterate(complex value)
+    return value
+  endfunc
+default:
+  title = "Identity plug-in"
+}
+

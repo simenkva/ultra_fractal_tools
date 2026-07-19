@@ -1,0 +1,7 @@
+IterationCount(OUTSIDE) {
+final:
+  #index = #numiter / #maxiter
+default:
+  title = "Iteration count"
+}
+

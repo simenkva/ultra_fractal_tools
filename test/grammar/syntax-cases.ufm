@@ -1,0 +1,42 @@
+comment {
+  <p>Documentation with { braces }, ; semicolons, and "quotes".</p>
+}
+
+My-Formula(XAXIS) {
+$IFDEF VER60
+global:
+  import "common.ulb"
+  float scale = 1.25e-3
+init:
+  complex z = (2.0, -3e2)
+  z = @seed + #pixel + 2.5i
+loop:
+  if isNaN(real(z)) || false
+    z = sqr(z) + #pixel ; comment with "quote" and } brace
+  elseif scale >= 1
+    z = z.member + this.Calculate(z)
+  else
+    z = oldz(z)
+  endif
+bailout:
+  |z| <= @bailout
+default:
+  title = "Continued title with { brace } \
+           and another line"
+  enum = "\" "|"
+  float param bailout
+    caption = "Bailout"
+    default = 4.0
+  endparam
+  func transform
+    default = ident()
+  endfunc
+}
+$ENDIF
+
+Legacy-Formula {
+  z = 0
+:
+  z = z*z + #pixel, |z| < 4
+}
+

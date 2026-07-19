@@ -1,0 +1,14 @@
+Coloring(OUTSIDE) {
+global:
+  color background = rgb(0.1, 0.2, 0.3)
+init:
+  int count = 0
+loop:
+  count = count + 1
+final:
+  #color = mergeoverlay(background, rgba(1, 0, 0, 0.5))
+  #solid = false
+default:
+  title = "Direct coloring"
+}
+

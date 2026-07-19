@@ -1,0 +1,36 @@
+{
+  "description": "Representative existing corpus files selected for future grammar, compatibility, and performance tests. The files remain in uf-formulas and are excluded from extension packages.",
+  "selections": [
+    {
+      "path": "uf-formulas/om.ufm",
+      "kind": "ufm",
+      "reasons": ["multiple entries", "parameters", "functions", "CRLF"]
+    },
+    {
+      "path": "uf-formulas/anv.ufm",
+      "kind": "ufm",
+      "reasons": ["legacy empty section label", "Fractint compatibility"]
+    },
+    {
+      "path": "uf-formulas/gmc.ufm",
+      "kind": "ufm",
+      "reasons": ["ISO-8859 text", "mixed CR and CRLF terminators"]
+    },
+    {
+      "path": "uf-formulas/mmf5.ucl",
+      "kind": "ucl",
+      "reasons": ["documentation entry", "classes", "imports", "direct coloring"]
+    },
+    {
+      "path": "uf-formulas/raf.uxf",
+      "kind": "uxf",
+      "reasons": ["transform section", "parameters", "legacy capitalization"]
+    },
+    {
+      "path": "uf-formulas/mmf.ulb",
+      "kind": "ulb",
+      "reasons": ["large class library", "visibility sections", "imports"]
+    }
+  ]
+}
+

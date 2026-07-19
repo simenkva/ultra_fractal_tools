@@ -1,0 +1,99 @@
+{
+  "Fractal formula": {
+    "prefix": "uf-formula",
+    "description": "Create an Ultra Fractal fractal formula",
+    "body": [
+      "${1:FormulaName} {",
+      "global:",
+      "  ${2:complex z}",
+      "init:",
+      "  ${3:z = #pixel}",
+      "loop:",
+      "  ${4:z = sqr(z) + #pixel}",
+      "bailout:",
+      "  ${5:|z| < 4}",
+      "default:",
+      "  title = \"${6:Formula title}\"",
+      "}",
+      "$0"
+    ]
+  },
+  "Coloring algorithm": {
+    "prefix": "uf-coloring",
+    "description": "Create an Ultra Fractal coloring algorithm",
+    "body": [
+      "${1:ColoringName}(${2:OUTSIDE}) {",
+      "init:",
+      "  ${3:float value = 0}",
+      "loop:",
+      "  ${4:value = value + 1}",
+      "final:",
+      "  #index = ${5:value}",
+      "default:",
+      "  title = \"${6:Coloring title}\"",
+      "}",
+      "$0"
+    ]
+  },
+  "Transformation": {
+    "prefix": "uf-transform",
+    "description": "Create an Ultra Fractal transformation",
+    "body": [
+      "${1:TransformationName} {",
+      "transform:",
+      "  ${2:#pixel = #pixel}",
+      "default:",
+      "  title = \"${3:Transformation title}\"",
+      "}",
+      "$0"
+    ]
+  },
+  "Class": {
+    "prefix": "uf-class",
+    "description": "Create an Ultra Fractal class",
+    "body": [
+      "class ${1:ClassName}(${2:common.ulb:Object}) {",
+      "public:",
+      "  func ${1:ClassName}()",
+      "    $3",
+      "  endfunc",
+      "default:",
+      "  title = \"${4:Class title}\"",
+      "}",
+      "$0"
+    ]
+  },
+  "Parameter block": {
+    "prefix": "uf-param",
+    "description": "Create an Ultra Fractal parameter block",
+    "body": [
+      "${1:float} param ${2:name}",
+      "  caption = \"${3:Caption}\"",
+      "  default = ${4:0}",
+      "endparam",
+      "$0"
+    ]
+  },
+  "Function block": {
+    "prefix": "uf-func",
+    "description": "Create an Ultra Fractal function block",
+    "body": [
+      "${1:complex} func ${2:name}(${3:complex value})",
+      "  ${4:return value}",
+      "endfunc",
+      "$0"
+    ]
+  },
+  "Conditional block": {
+    "prefix": "uf-if",
+    "description": "Create an Ultra Fractal conditional block",
+    "body": [
+      "if ${1:condition}",
+      "  $2",
+      "else",
+      "  $3",
+      "endif",
+      "$0"
+    ]
+  }
+}

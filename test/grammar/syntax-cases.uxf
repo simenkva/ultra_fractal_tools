@@ -1,0 +1,11 @@
+Identity-Transform {
+transform:
+  #pixel = #pixel + @offset
+  #solid = false
+default:
+  title = "Identity transform"
+  complex param offset
+    default = (0, 0)
+  endparam
+}
+
