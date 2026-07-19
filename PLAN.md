@@ -44,7 +44,7 @@ structures.
 
 ## Current inputs
 
-The repository currently contains:
+The local development checkout can contain these ignored reference inputs:
 
 - The Ultra Fractal 6 manual in `uf6-manual.pdf`.
 - 403 relevant formula and library files in `uf-formulas/`.
@@ -52,9 +52,10 @@ The repository currently contains:
 - Examples of legacy syntax, compiler directives, classes, imports, parameter
   blocks, embedded documentation, and files several megabytes in size.
 
-This corpus will be used for discovery, regression testing, compatibility
-testing, and performance testing. Source files in `uf-formulas/` are fixtures;
-the extension must not rewrite them.
+This corpus can be used locally for discovery, compatibility checks, and
+performance testing. It and the manual are not redistributed or tracked by
+Git. Committed regression fixtures are original, minimal examples; the
+extension must never rewrite local reference inputs.
 
 ## Recommended architecture
 
@@ -159,7 +160,8 @@ of truth for the supported language constructs.
   `.uxf`, and `.ulb` open as `ultra-fractal`, while `.upr` and `.txt` do not.
 - Catalog tests verify that every catalog group is non-empty, UF6-versioned,
   officially sourced, and case-insensitively unique where applicable.
-- Fixture tests verify all four supported kinds and every selected corpus path.
+- Fixture tests verify all four supported kinds and validate the optional
+  local-corpus manifest without requiring copyrighted inputs in a clean clone.
 - `.gitignore`, `.vscodeignore`, and the package `files` allowlist exclude build
   output, dependencies, the formula corpus, the manual, and test runtimes from
   source control or distributable packages as appropriate.
@@ -279,6 +281,8 @@ Make routine formula editing comfortable before adding semantic analysis.
 
 ## M3 - Structural analyzer
 
+**Status:** Complete (2026-07-19)
+
 ### Objective
 
 Build an error-tolerant analysis core that reports definite structural problems
@@ -333,6 +337,32 @@ Warnings:
 - The analyzer has no dependency on the VS Code API.
 - Tests cover nested and interleaved compiler directives separately from normal
   control-flow nesting.
+
+### Completion evidence
+
+- `src/analyzer/` contains an editor-independent source map, lexer, tolerant
+  parser, typed syntax tree, diagnostic engine, and public barrel module; a
+  source-level test confirms none imports the VS Code API.
+- The lexer emits range-bearing identifiers, string/number/boolean literals,
+  symbols, line and documentation comments, directives, physical newlines, and
+  line continuations. Tests cover LF, CRLF, legacy CR-CRLF input, continued
+  strings, adjacent quoted fragments, and masking of delimiters in non-code.
+- The parser returns partial entries and classes with sections, declarations,
+  and nested normal blocks. Compiler directives use an independent nesting
+  stack, including explicit nested and interleaved regression cases.
+- Ten stable rules (`UF1001`-`UF1006` and `UF2001`-`UF2004`) have fixed
+  severities, focused source ranges, documented rationale, and focused tests.
+  Missing imports are reported only after a resolver returns `missing`, and
+  compatibility warnings can be disabled.
+- Fourteen analyzer tests cover valid `.ufm`, `.ucl`, `.uxf`, and `.ulb`
+  fixtures plus incomplete, malformed, legacy, duplicate, illegal-order,
+  directive, import, and inline-alias cases. The full unit suite has 31 passing
+  tests, and the VS Code 1.129.1 Extension Host suite remains green.
+- A read-only scan of all 403 supported files in the ignored local corpus
+  completed without an exception. Reviewing and baselining its diagnostics is
+  intentionally reserved for M5.
+- A package dry run includes the compiled analyzer, UF6 catalog, and diagnostic
+  reference while excluding tests, the local corpus, and the manual.
 
 ## M4 - VS Code diagnostics and navigation
 

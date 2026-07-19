@@ -17,8 +17,16 @@ parameters, predefined symbols, sections, declarations, and legacy labels.
 Editor support also includes semicolon comment toggling, bracket and quote
 pairs, Ultra Fractal-aware word selection and indentation, structural folding
 including `comment { ... }` documentation, Outline symbols, and starter
-snippets. Structural diagnostics are planned for a later milestone. See
-`PLAN.md` in the source repository for the project roadmap.
+snippets.
+
+An editor-independent structural analyzer now tokenizes and parses incomplete
+source and produces stable, conservative diagnostic rules. It checks strings,
+delimiters, language blocks, compiler directives, duplicate definitions,
+sections, parameters, imports when resolution is exhaustive, and optional
+legacy warnings. Live display of these diagnostics in VS Code is planned for
+M4; Ultra Fractal remains the authority on compilation. See
+[the diagnostic rule reference](docs/diagnostics.md) and `PLAN.md` for the
+roadmap.
 
 ## Snippets
 
@@ -44,6 +52,10 @@ npm test
 npm run benchmark:grammar
 npm run test:integration
 ```
+
+The grammar benchmark requires a separately downloaded, local `uf-formulas/`
+directory. That reference corpus and the Ultra Fractal manual are ignored by
+Git and are never packaged with the extension.
 
 Press F5 in VS Code and choose **Run Ultra Fractal Extension** to open an
 Extension Development Host. Scope conventions and bundled-theme verification

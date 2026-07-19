@@ -1,0 +1,5 @@
+Legacy-Compatible {
+  z = 0
+:
+  z = sqr(z) + #pixel, |z| < 4
+}

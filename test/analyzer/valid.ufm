@@ -1,0 +1,37 @@
+comment {
+  Analyzer fixture with { arbitrary braces } and "quoted text".
+}
+
+Analyzer-Sample {
+global:
+  import "common.ulb"
+  float scale = 1.0
+init:
+  complex z = (0, 0)
+$ifdef VER60
+  if @enabled
+    while |z| < @limit
+      z = z + #pixel
+    endwhile
+  else
+    repeat
+      z = z / 2
+    until |z| < 1
+  endif
+$else
+  z = #pixel
+$endif
+loop:
+  z = sqr(z) + #pixel
+bailout:
+  |z| < @limit
+default:
+  title = "Structural analyzer \
+           fixture"
+  float param limit
+    default = 4
+  endparam
+  float func Adjust(float value)
+    return value * scale
+  endfunc
+}

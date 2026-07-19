@@ -1,5 +1,5 @@
 {
-  "description": "Representative existing corpus files selected for future grammar, compatibility, and performance tests. The files remain in uf-formulas and are excluded from extension packages.",
+  "description": "Representative optional local inputs selected for compatibility and performance checks. The uf-formulas directory is ignored by Git and excluded from extension packages.",
   "selections": [
     {
       "path": "uf-formulas/om.ufm",
@@ -33,4 +33,3 @@
     }
   ]
 }
-
