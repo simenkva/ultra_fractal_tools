@@ -2,6 +2,8 @@
 
 VS Code language support for Ultra Fractal formula source files.
 
+Coded with OpenAI Codex.
+
 The extension registers a single `ultra-fractal` language mode for:
 
 - `.ufm` fractal formulas
