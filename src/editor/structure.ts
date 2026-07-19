@@ -130,6 +130,7 @@ export function scanStructure(source: string): StructureScan {
   let root: MutableStructureItem | undefined;
   let rootDepth = 0;
   let section: MutableStructureItem | undefined;
+  let documentationStart: number | undefined;
   const functions: OpenKeywordBlock[] = [];
   const parameters: OpenKeywordBlock[] = [];
 
@@ -155,7 +156,18 @@ export function scanStructure(source: string): StructureScan {
   };
 
   for (const [lineNumber, originalLine] of lines.entries()) {
+    const wasInDocumentation = lexicalState.inDocumentation;
     const line = maskNonCode(originalLine, lexicalState);
+    if (!wasInDocumentation && lexicalState.inDocumentation) {
+      documentationStart = lineNumber;
+    } else if (
+      wasInDocumentation &&
+      !lexicalState.inDocumentation &&
+      documentationStart !== undefined
+    ) {
+      addFold(foldingRegions, documentationStart, lineNumber);
+      documentationStart = undefined;
+    }
     const depthBeforeLine = braceDepth;
 
     if (root === undefined && depthBeforeLine === 0) {

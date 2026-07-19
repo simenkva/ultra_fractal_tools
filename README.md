@@ -13,10 +13,10 @@ It provides theme-compatible syntax highlighting for formulas, coloring
 algorithms, transformations, classes, comments, strings, directives, numbers,
 parameters, predefined symbols, sections, declarations, and legacy labels.
 Editor support also includes semicolon comment toggling, bracket and quote
-pairs, Ultra Fractal-aware word selection and indentation, structural folding,
-Outline symbols, and starter snippets. Structural diagnostics are planned for a
-later milestone. See `PLAN.md` in the source repository for the project
-roadmap.
+pairs, Ultra Fractal-aware word selection and indentation, structural folding
+including `comment { ... }` documentation, Outline symbols, and starter
+snippets. Structural diagnostics are planned for a later milestone. See
+`PLAN.md` in the source repository for the project roadmap.
 
 ## Snippets
 

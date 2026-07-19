@@ -256,6 +256,7 @@ void test("structure scan creates ordered entry, section, and function symbols",
   );
 
   const expectedFolds = [
+    [0, 2],
     [4, 33],
     [6, 8],
     [9, 11],

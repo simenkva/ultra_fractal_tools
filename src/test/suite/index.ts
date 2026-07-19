@@ -80,6 +80,7 @@ export async function run(): Promise<void> {
   assert.ok(foldingRanges);
   const folds = foldingRanges.map(({ start, end }) => [start, end]);
   for (const expected of [
+    [0, 2],
     [4, 33],
     [6, 8],
     [22, 32],
