@@ -420,6 +420,8 @@ Expose the analyzer through responsive VS Code features.
 
 ## M5 - Corpus validation and hardening
 
+**Status:** Complete (2026-07-20)
+
 ### Objective
 
 Prove that the extension handles the repository's real formula collection with
@@ -465,6 +467,27 @@ then review and correct false positives without redistributing source files.
 - Each analyzer correction has a focused, original regression fixture that can
   run in a clean checkout without the reference corpus.
 
+#### Completion evidence
+
+- `npm run corpus:scan`, `corpus:baseline`, and `corpus:verify` use isolated,
+  memory-bounded workers with a per-file timeout. They clearly skip when the
+  optional corpus is absent, and verification reproduces the committed
+  deterministic baseline exactly.
+- The reviewed baseline covers 403 supported files, 3,543,322 physical lines,
+  and 101,460,929 bytes. Its 644 diagnostics are grouped by severity, stable
+  rule, file type, and file without storing source text, diagnostic excerpts,
+  timings, or memory measurements.
+- Every stable rule and every diagnostic category present in the scan is
+  classified in `docs/corpus-validation.md`. External imports remain unchecked
+  because the scan cannot exhaust a user's Ultra Fractal search paths.
+- Corpus review corrected delimiter false positives in file preambles and
+  punctuation-heavy entry identifiers. An original minimal fixture preserves
+  both cases without redistributing corpus content.
+- Unit coverage verifies deterministic/source-free reports, the committed
+  baseline, absent-corpus discovery, Latin-1 decoding, and LF, CRLF, CR, and
+  mixed CR/CRLF input. Known-good fixtures for all four file types remain free
+  of diagnostics.
+
 ### M5b - Performance and lifecycle hardening
 
 #### Objective
@@ -503,6 +526,29 @@ resource-safe on typical and multi-megabyte formula files.
   timeout, runaway memory use, or catastrophic backtracking.
 - The VS Code Extension Host scenario passes with the same cancellation and
   cleanup behavior exercised by unit-level tests.
+
+#### Completion evidence
+
+- Live diagnostics run in a worker outside the Extension Host with a 768 MiB
+  old-generation heap bound. Obsolete work terminates the worker; unchanged
+  document versions and import-root sets reuse cached diagnostic arrays.
+- Import navigation uses a cancellable line scanner rather than the full
+  analyzer on the Extension Host and shields `comment { ... }` documentation
+  entries from false links.
+- `npm run benchmark:analyzer` enforces 2-second typical-file, 15-second
+  large-file, 45-second combined, and 768 MiB heap budgets. The reference run
+  completed typical files in 15-20 ms and each of the five largest files in
+  1.1-2.2 seconds using at most 500 MiB heap.
+- `npm run benchmark:grammar` tokenized 472,700 lines and 5,591,632 tokens in
+  14.1 seconds of wall time. No line reached its two-second cutoff, and the
+  enforced wall-time budget remains 60 seconds.
+- The VS Code 1.129.1 Extension Host suite validates a generated source larger
+  than 2 MiB, bounds import navigation, cancels its in-flight analyzer worker,
+  publishes only the corrected version, proves an unchanged validation is a
+  cache hit, and confirms close removes diagnostics and all controller state.
+- The full unit suite has 43 passing tests. Package review includes both worker
+  modules and M5 documentation while excluding tests, the reference corpus,
+  the manual, source files, and dependencies.
 
 ## M6 - Release candidate and distribution
 

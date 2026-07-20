@@ -32,6 +32,12 @@ Edit validation is debounced and obsolete scheduled work is cancelled. The
 analyzer failures are contained, clear the affected diagnostic collection, and
 are recorded in the **Ultra Fractal** output channel.
 
+Analysis runs in a memory-bounded worker outside the Extension Host. Cancelling
+obsolete work terminates that worker. An unchanged document version and import
+root set reuse cached diagnostics; severity and display-limit changes therefore
+do not rescan source. Closing a document removes both its diagnostics and its
+cached controller state.
+
 The `ultraFractal.lint.severityOverrides` setting changes displayed severity by
 stable rule ID; assigning `off` suppresses that rule. Displayed results are
 bounded by `ultraFractal.lint.maxDiagnostics`, and

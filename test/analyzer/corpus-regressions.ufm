@@ -1,0 +1,10 @@
+  Compatibility notes may mention choices 1) and 2) outside entries.
+
+Punctuation][Allowed {
+init:
+  z = #pixel
+loop:
+  z = sqr(z) + #pixel
+bailout:
+  |z| < 4
+}

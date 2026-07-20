@@ -3,16 +3,20 @@ import { performance } from "node:perf_hooks";
 
 import * as vscode from "vscode";
 
-import {
-  analyze,
-  type AnalysisOptions,
-  type AnalysisResult,
-  type FormulaFileType,
-  type ImportResolution,
+import type {
+  AnalysisOptions,
+  AnalysisResult,
+  Diagnostic,
+  FormulaFileType,
 } from "../analyzer";
+import {
+  AnalysisCancelledError,
+  runAnalysisInWorker,
+  type AnalysisRunner,
+  type AnalysisWorkerRequest,
+} from "./analysis-service";
 import { importSearchRoots, resolveImportPath } from "./imports";
 import {
-  disabledDiagnosticRules,
   normalizeValidationSettings,
   selectDisplayDiagnostics,
   type DisplaySeverity,
@@ -23,12 +27,15 @@ type Analyzer = (source: string, options: AnalysisOptions) => AnalysisResult;
 
 export interface DiagnosticsControllerDependencies {
   readonly analyzeSource?: Analyzer;
+  readonly runAnalysis?: AnalysisRunner;
 }
 
 export interface ValidationDebugState {
   readonly generation: number;
   readonly pending: boolean;
   readonly startedRuns: number;
+  readonly analysisRuns: number;
+  readonly cacheHits: number;
   readonly discardedRuns: number;
   readonly publishedVersion?: number;
 }
@@ -36,8 +43,17 @@ export interface ValidationDebugState {
 interface MutableValidationDebugState {
   generation: number;
   startedRuns: number;
+  analysisRuns: number;
+  cacheHits: number;
   discardedRuns: number;
   publishedVersion?: number;
+}
+
+interface CachedAnalysis {
+  readonly version: number;
+  readonly fileType: FormulaFileType;
+  readonly rootsKey: string;
+  readonly diagnostics: readonly Diagnostic[];
 }
 
 const supportedFileTypes = new Set<FormulaFileType>([
@@ -134,7 +150,7 @@ const diagnosticForVscode = (
 };
 
 export class UltraFractalDiagnosticsController implements vscode.Disposable {
-  private readonly analyzeSource: Analyzer;
+  private readonly runAnalysis: AnalysisRunner;
   private readonly disposables: vscode.Disposable[] = [];
   private readonly timers = new Map<string, ReturnType<typeof setTimeout>>();
   private readonly cancellations = new Map<
@@ -142,13 +158,28 @@ export class UltraFractalDiagnosticsController implements vscode.Disposable {
     vscode.CancellationTokenSource
   >();
   private readonly states = new Map<string, MutableValidationDebugState>();
+  private readonly cache = new Map<string, CachedAnalysis>();
 
   public constructor(
     private readonly collection: vscode.DiagnosticCollection,
     private readonly output: vscode.OutputChannel,
     dependencies: DiagnosticsControllerDependencies = {},
   ) {
-    this.analyzeSource = dependencies.analyzeSource ?? analyze;
+    if (dependencies.runAnalysis !== undefined) {
+      this.runAnalysis = dependencies.runAnalysis;
+    } else if (dependencies.analyzeSource !== undefined) {
+      const analyzeSource = dependencies.analyzeSource;
+      this.runAnalysis = (request) => {
+        const result = analyzeSource(request.source, {
+          fileType: request.fileType,
+          resolveImport: (importPath) =>
+            resolveImportPath(importPath, request.roots).status,
+        });
+        return Promise.resolve(result.diagnostics);
+      };
+    } else {
+      this.runAnalysis = runAnalysisInWorker;
+    }
   }
 
   public start(): void {
@@ -178,8 +209,14 @@ export class UltraFractalDiagnosticsController implements vscode.Disposable {
     const watcher = vscode.workspace.createFileSystemWatcher(
       "**/*.{ufm,ucl,uxf,ulb}",
     );
-    watcher.onDidCreate(() => this.revalidateOpenDocuments("import created"));
-    watcher.onDidDelete(() => this.revalidateOpenDocuments("import deleted"));
+    watcher.onDidCreate(() => {
+      this.invalidateImportCaches();
+      this.revalidateOpenDocuments("import created");
+    });
+    watcher.onDidDelete(() => {
+      this.invalidateImportCaches();
+      this.revalidateOpenDocuments("import deleted");
+    });
     this.disposables.push(watcher);
 
     for (const document of vscode.workspace.textDocuments) {
@@ -228,11 +265,19 @@ export class UltraFractalDiagnosticsController implements vscode.Disposable {
 
   public getValidationState(uri: vscode.Uri): ValidationDebugState {
     const key = uri.toString();
-    const state = this.stateFor(key);
+    const state = this.states.get(key) ?? {
+      generation: 0,
+      startedRuns: 0,
+      analysisRuns: 0,
+      cacheHits: 0,
+      discardedRuns: 0,
+    };
     return {
       generation: state.generation,
       pending: this.timers.has(key) || this.cancellations.has(key),
       startedRuns: state.startedRuns,
+      analysisRuns: state.analysisRuns,
+      cacheHits: state.cacheHits,
       discardedRuns: state.discardedRuns,
       ...(state.publishedVersion === undefined
         ? {}
@@ -242,7 +287,19 @@ export class UltraFractalDiagnosticsController implements vscode.Disposable {
 
   public handleDocumentClosed(document: vscode.TextDocument): void {
     this.clearDocument(document.uri);
-    this.states.delete(document.uri.toString());
+    const key = document.uri.toString();
+    this.states.delete(key);
+    this.cache.delete(key);
+  }
+
+  public hasDocumentState(uri: vscode.Uri): boolean {
+    const key = uri.toString();
+    return (
+      this.states.has(key) ||
+      this.cache.has(key) ||
+      this.timers.has(key) ||
+      this.cancellations.has(key)
+    );
   }
 
   public dispose(): void {
@@ -253,6 +310,8 @@ export class UltraFractalDiagnosticsController implements vscode.Disposable {
       disposable.dispose();
     }
     this.disposables.length = 0;
+    this.cache.clear();
+    this.states.clear();
   }
 
   private stateFor(key: string): MutableValidationDebugState {
@@ -261,6 +320,8 @@ export class UltraFractalDiagnosticsController implements vscode.Disposable {
       state = {
         generation: 0,
         startedRuns: 0,
+        analysisRuns: 0,
+        cacheHits: 0,
         discardedRuns: 0,
       };
       this.states.set(key, state);
@@ -295,6 +356,10 @@ export class UltraFractalDiagnosticsController implements vscode.Disposable {
     this.collection.delete(uri);
   }
 
+  private invalidateImportCaches(): void {
+    this.cache.clear();
+  }
+
   private revalidateOpenDocuments(reason: string): void {
     for (const document of vscode.workspace.textDocuments) {
       if (!isUltraFractalDocument(document)) {
@@ -327,31 +392,42 @@ export class UltraFractalDiagnosticsController implements vscode.Disposable {
       return 0;
     }
 
-    const cancellation = new vscode.CancellationTokenSource();
-    this.cancellations.set(key, cancellation);
     state.startedRuns += 1;
     const version = document.version;
     const source = document.getText();
+    const fileType = formulaFileType(document);
+    const roots = importRootsForDocument(document, settings);
+    const rootsKey = roots.join("\u0000");
     const started = performance.now();
+    let cancellation: vscode.CancellationTokenSource | undefined;
+    let cacheHit = false;
 
     try {
-      await new Promise<void>((resolve) => setTimeout(resolve, 0));
-      if (cancellation.token.isCancellationRequested) {
-        state.discardedRuns += 1;
-        return undefined;
+      const cached = this.cache.get(key);
+      let diagnostics: readonly Diagnostic[];
+      if (
+        cached !== undefined &&
+        cached.version === version &&
+        cached.fileType === fileType &&
+        cached.rootsKey === rootsKey
+      ) {
+        diagnostics = cached.diagnostics;
+        state.cacheHits += 1;
+        cacheHit = true;
+      } else {
+        cancellation = new vscode.CancellationTokenSource();
+        this.cancellations.set(key, cancellation);
+        state.analysisRuns += 1;
+        const request: AnalysisWorkerRequest = {
+          source,
+          fileType,
+          roots,
+        };
+        diagnostics = await this.runAnalysis(request, cancellation.token);
       }
 
-      const roots = importRootsForDocument(document, settings);
-      const resolveImport = (importPath: string): ImportResolution =>
-        resolveImportPath(importPath, roots).status;
-      const result = this.analyzeSource(source, {
-        fileType: formulaFileType(document),
-        disabledRules: disabledDiagnosticRules(settings),
-        resolveImport,
-      });
-
       if (
-        cancellation.token.isCancellationRequested ||
+        cancellation?.token.isCancellationRequested === true ||
         state.generation !== generation ||
         document.version !== version
       ) {
@@ -359,18 +435,30 @@ export class UltraFractalDiagnosticsController implements vscode.Disposable {
         return undefined;
       }
 
-      const selected = selectDisplayDiagnostics(result.diagnostics, settings);
+      if (!cacheHit) {
+        this.cache.set(key, {
+          version,
+          fileType,
+          rootsKey,
+          diagnostics,
+        });
+      }
+      const selected = selectDisplayDiagnostics(diagnostics, settings);
       this.collection.set(
         document.uri,
         selected.map((diagnostic) => diagnosticForVscode(document, diagnostic)),
       );
       state.publishedVersion = version;
-      const truncated = result.diagnostics.length > selected.length;
+      const truncated = diagnostics.length > selected.length;
       this.output.appendLine(
-        `Validated ${document.uri.toString()} v${String(version)} (${reason}): ${String(selected.length)} diagnostic${selected.length === 1 ? "" : "s"}${truncated ? `, limited from ${String(result.diagnostics.length)}` : ""} in ${(performance.now() - started).toFixed(1)} ms.`,
+        `Validated ${document.uri.toString()} v${String(version)} (${reason}, ${cacheHit ? "cache" : "worker"}): ${String(selected.length)} diagnostic${selected.length === 1 ? "" : "s"}${truncated ? `, limited from ${String(diagnostics.length)}` : ""} in ${(performance.now() - started).toFixed(1)} ms.`,
       );
       return selected.length;
     } catch (error: unknown) {
+      if (error instanceof AnalysisCancelledError) {
+        state.discardedRuns += 1;
+        return undefined;
+      }
       if (state.generation === generation) {
         this.collection.delete(document.uri);
       }
@@ -381,10 +469,13 @@ export class UltraFractalDiagnosticsController implements vscode.Disposable {
       );
       return undefined;
     } finally {
-      if (this.cancellations.get(key) === cancellation) {
+      if (
+        cancellation !== undefined &&
+        this.cancellations.get(key) === cancellation
+      ) {
         this.cancellations.delete(key);
       }
-      cancellation.dispose();
+      cancellation?.dispose();
     }
   }
 }

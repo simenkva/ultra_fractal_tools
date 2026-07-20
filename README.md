@@ -74,13 +74,22 @@ they are typed. Existing files are never formatted or rewritten automatically.
 ```sh
 npm ci
 npm test
+npm run corpus:verify
+npm run benchmark:analyzer
 npm run benchmark:grammar
 npm run test:integration
 ```
 
-The grammar benchmark requires a separately downloaded, local `uf-formulas/`
-directory. That reference corpus and the Ultra Fractal manual are ignored by
-Git and are never packaged with the extension.
+The corpus commands and benchmarks use a separately downloaded, local
+`uf-formulas/` directory and report a clear skip when it is absent. The
+reference corpus and Ultra Fractal manual are ignored by Git and are never
+packaged with the extension. See the
+[corpus review](docs/corpus-validation.md) and
+[performance budgets](docs/performance.md) for the M5 workflow and baseline.
+
+Live structural analysis runs in a cancellable worker so large files do not
+block the Extension Host. Unchanged document versions reuse cached diagnostics,
+and closing a document releases its pending work and cached state.
 
 Press F5 in VS Code and choose **Run Ultra Fractal Extension** to open an
 Extension Development Host. Scope conventions and bundled-theme verification

@@ -316,6 +316,35 @@ const checkDirectives = (
   }
 };
 
+const tokenGroupsInsideDefinitions = (
+  tokens: readonly Token[],
+  definitions: readonly MutableDefinitionNode[],
+): readonly (readonly Token[])[] => {
+  const groups: Token[][] = definitions.map(() => []);
+  let definitionIndex = 0;
+  for (const current of tokens) {
+    while (
+      definitionIndex < definitions.length &&
+      current.range.start.offset >=
+        (definitions[definitionIndex]?.range.end.offset ?? Number.POSITIVE_INFINITY)
+    ) {
+      definitionIndex += 1;
+    }
+    const definition = definitions[definitionIndex];
+    if (
+      definition === undefined ||
+      current.range.start.offset < definition.range.start.offset ||
+      current.range.end.offset > definition.range.end.offset ||
+      (current.range.start.offset >= definition.nameRange.start.offset &&
+        current.range.end.offset <= definition.nameRange.end.offset)
+    ) {
+      continue;
+    }
+    groups[definitionIndex]?.push(current);
+  }
+  return groups;
+};
+
 const blockName = (kind: BlockKind, maskedLine: string): string | undefined => {
   if (kind === "function") {
     return functionPattern.exec(maskedLine)?.[1];
@@ -554,9 +583,6 @@ export function parse(source: string, tokens: readonly Token[]): ParseResult {
   let definitionDepth = 0;
   let section: MutableSectionNode | undefined;
 
-  checkDelimiters(tokens, issues);
-  checkDirectives(tokens, issues);
-
   const closeSection = (endOffset: number): void => {
     if (section !== undefined) {
       section.range = {
@@ -688,5 +714,12 @@ export function parse(source: string, tokens: readonly Token[]): ParseResult {
     range: map.range(0, source.length),
     definitions,
   };
+  for (const structuralTokens of tokenGroupsInsideDefinitions(
+    tokens,
+    definitions,
+  )) {
+    checkDelimiters(structuralTokens, issues);
+    checkDirectives(structuralTokens, issues);
+  }
   return { program, issues };
 }

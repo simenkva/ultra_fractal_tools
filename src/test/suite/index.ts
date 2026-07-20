@@ -439,7 +439,10 @@ init:
     console.log("PASS: severity overrides, rule disabling, and limits apply live");
 
     const importDocument = (
-      await showUntitled(`Imports {
+      await showUntitled(`comment {
+  import "documentation-only.ulb"
+}
+Imports {
 global:
   import "minimal.ulb"
 }
@@ -471,13 +474,86 @@ global:
     >(
       "vscode.executeDefinitionProvider",
       importDocument.uri,
-      new vscode.Position(2, 12),
+      new vscode.Position(5, 12),
     );
     assert.equal(definitions.length, 1);
     const definition = definitions[0];
     assert.ok(definition instanceof vscode.Location);
     assert.equal(definition.uri.fsPath, importedFile);
     console.log("PASS: search-path changes update diagnostics and import navigation");
+
+    await waitFor(
+      () => !diagnosticsController.getValidationState(importDocument.uri).pending,
+      "import validation did not settle before the cache check",
+    );
+    const cacheStateBefore = diagnosticsController.getValidationState(
+      importDocument.uri,
+    );
+    await diagnosticsController.validateNow(importDocument, "M5 cache check");
+    const cacheStateAfter = diagnosticsController.getValidationState(
+      importDocument.uri,
+    );
+    assert.equal(cacheStateAfter.analysisRuns, cacheStateBefore.analysisRuns);
+    assert.equal(cacheStateAfter.cacheHits, cacheStateBefore.cacheHits + 1);
+    console.log("PASS: unchanged revalidation reuses cached analyzer results");
+
+    await updateConfiguration("lint.enabled", false);
+    const largeSource = `Large-Lifecycle-Test {
+init:
+${"  z = z + #pixel\n".repeat(120_000)}}
+`;
+    const largeDocument = (await showUntitled(largeSource)).document;
+    assert.ok(largeDocument.getText().length > 2_000_000);
+    const navigationStarted = Date.now();
+    assert.deepEqual(
+      await vscode.commands.executeCommand<vscode.DocumentLink[]>(
+        "vscode.executeLinkProvider",
+        largeDocument.uri,
+      ),
+      [],
+    );
+    assert.ok(
+      Date.now() - navigationStarted < 5_000,
+      "large-file import navigation exceeded five seconds",
+    );
+    await updateConfiguration("lint.enabled", true);
+    await waitFor(
+      () => {
+        const state = diagnosticsController.getValidationState(
+          largeDocument.uri,
+        );
+        return state.analysisRuns > 0 && state.pending;
+      },
+      "large-file worker did not start",
+      15_000,
+    );
+    const discardedBefore = diagnosticsController.getValidationState(
+      largeDocument.uri,
+    ).discardedRuns;
+    await replaceDocument(largeDocument, validSource);
+    await waitFor(
+      () => {
+        const state = diagnosticsController.getValidationState(
+          largeDocument.uri,
+        );
+        return (
+          !state.pending &&
+          state.publishedVersion === largeDocument.version &&
+          state.discardedRuns > discardedBefore
+        );
+      },
+      "obsolete large-file analysis was not cancelled and replaced",
+      15_000,
+    );
+    assert.equal(diagnosticsFor(largeDocument.uri).length, 0);
+    assert.equal(diagnosticsController.hasDocumentState(largeDocument.uri), true);
+    await closeDocumentTab(largeDocument);
+    diagnosticsController.handleDocumentClosed(largeDocument);
+    assert.equal(diagnosticsController.hasDocumentState(largeDocument.uri), false);
+    assert.equal(diagnosticsFor(largeDocument.uri).length, 0);
+    console.log(
+      "PASS: large-file work is cancellable and close releases document state",
+    );
 
     const failureDiagnostics = new Map<string, readonly vscode.Diagnostic[]>();
     const failureCollection = {

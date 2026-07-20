@@ -1,0 +1,4209 @@
+{
+  "schemaVersion": 1,
+  "status": "complete",
+  "corpus": "uf-formulas",
+  "totals": {
+    "files": 403,
+    "bytes": 101460929,
+    "lines": 3543322,
+    "diagnostics": 644
+  },
+  "bySeverity": {
+    "error": 232,
+    "warning": 412
+  },
+  "byRule": {
+    "UF1001": 54,
+    "UF1002": 2,
+    "UF1003": 56,
+    "UF1004": 0,
+    "UF1005": 8,
+    "UF1006": 112,
+    "UF2001": 320,
+    "UF2002": 24,
+    "UF2003": 0,
+    "UF2004": 68
+  },
+  "byFileType": {
+    "ufm": {
+      "files": 213,
+      "bytes": 49839085,
+      "lines": 1879822,
+      "diagnostics": 453,
+      "errors": 49,
+      "warnings": 404
+    },
+    "ucl": {
+      "files": 109,
+      "bytes": 36390126,
+      "lines": 1109384,
+      "diagnostics": 19,
+      "errors": 14,
+      "warnings": 5
+    },
+    "uxf": {
+      "files": 57,
+      "bytes": 3545380,
+      "lines": 110288,
+      "diagnostics": 56,
+      "errors": 53,
+      "warnings": 3
+    },
+    "ulb": {
+      "files": 24,
+      "bytes": 11686338,
+      "lines": 443828,
+      "diagnostics": 116,
+      "errors": 116,
+      "warnings": 0
+    }
+  },
+  "files": [
+    {
+      "path": "uf-formulas/abs.ufm",
+      "fileType": "ufm",
+      "bytes": 4800,
+      "lines": 181,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/adm.ufm",
+      "fileType": "ufm",
+      "bytes": 1099,
+      "lines": 67,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/ads.ucl",
+      "fileType": "ucl",
+      "bytes": 3079,
+      "lines": 233,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/ads.ufm",
+      "fileType": "ufm",
+      "bytes": 2883,
+      "lines": 214,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/ahm.ucl",
+      "fileType": "ucl",
+      "bytes": 3493,
+      "lines": 115,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/ahm.ufm",
+      "fileType": "ufm",
+      "bytes": 13354,
+      "lines": 556,
+      "diagnostics": 1,
+      "errors": 0,
+      "warnings": 1,
+      "byRule": {
+        "UF2001": 1
+      }
+    },
+    {
+      "path": "uf-formulas/aho.ucl",
+      "fileType": "ucl",
+      "bytes": 33531,
+      "lines": 1370,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/aho.ufm",
+      "fileType": "ufm",
+      "bytes": 118524,
+      "lines": 4894,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/aho.ulb",
+      "fileType": "ulb",
+      "bytes": 116467,
+      "lines": 5078,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/aho.uxf",
+      "fileType": "uxf",
+      "bytes": 8335,
+      "lines": 282,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/akl-m-agm.ucl",
+      "fileType": "ucl",
+      "bytes": 245035,
+      "lines": 9890,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/akl-m-dmj.ucl",
+      "fileType": "ucl",
+      "bytes": 304658,
+      "lines": 11698,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/akl-m-geom.ucl",
+      "fileType": "ucl",
+      "bytes": 434865,
+      "lines": 17024,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/akl-m-lkm-hevia.ucl",
+      "fileType": "ucl",
+      "bytes": 276293,
+      "lines": 10861,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/akl-m-lkm-liss.ucl",
+      "fileType": "ucl",
+      "bytes": 370580,
+      "lines": 14541,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/akl-m-math.ucl",
+      "fileType": "ucl",
+      "bytes": 470124,
+      "lines": 18626,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/akl-m-msc.ucl",
+      "fileType": "ucl",
+      "bytes": 158762,
+      "lines": 6294,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/akl-m-mt.ucl",
+      "fileType": "ucl",
+      "bytes": 239209,
+      "lines": 9477,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/akl-t-math.ucl",
+      "fileType": "ucl",
+      "bytes": 1001853,
+      "lines": 29788,
+      "diagnostics": 1,
+      "errors": 0,
+      "warnings": 1,
+      "byRule": {
+        "UF2002": 1
+      }
+    },
+    {
+      "path": "uf-formulas/akl.ucl",
+      "fileType": "ucl",
+      "bytes": 484057,
+      "lines": 19713,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/akl.ufm",
+      "fileType": "ufm",
+      "bytes": 294852,
+      "lines": 12182,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/akl.uxf",
+      "fileType": "uxf",
+      "bytes": 92307,
+      "lines": 3727,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/akln.ucl",
+      "fileType": "ucl",
+      "bytes": 20973,
+      "lines": 782,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/alf.ufm",
+      "fileType": "ufm",
+      "bytes": 7876,
+      "lines": 402,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/alt.ufm",
+      "fileType": "ufm",
+      "bytes": 19240,
+      "lines": 978,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/amb.ufm",
+      "fileType": "ufm",
+      "bytes": 1259,
+      "lines": 62,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/amc.ufm",
+      "fileType": "ufm",
+      "bytes": 797,
+      "lines": 51,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/amm.ufm",
+      "fileType": "ufm",
+      "bytes": 44346,
+      "lines": 2710,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/anon.ufm",
+      "fileType": "ufm",
+      "bytes": 3619,
+      "lines": 206,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/anv.ucl",
+      "fileType": "ucl",
+      "bytes": 15053,
+      "lines": 738,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/anv.ufm",
+      "fileType": "ufm",
+      "bytes": 181037,
+      "lines": 8029,
+      "diagnostics": 2,
+      "errors": 0,
+      "warnings": 2,
+      "byRule": {
+        "UF2004": 2
+      }
+    },
+    {
+      "path": "uf-formulas/apophysis.ucl",
+      "fileType": "ucl",
+      "bytes": 376896,
+      "lines": 13313,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/ar.ufm",
+      "fileType": "ufm",
+      "bytes": 415,
+      "lines": 32,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/as.ucl",
+      "fileType": "ucl",
+      "bytes": 303468,
+      "lines": 9844,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/as.ufm",
+      "fileType": "ufm",
+      "bytes": 4624236,
+      "lines": 161969,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/as2.ufm",
+      "fileType": "ufm",
+      "bytes": 1150007,
+      "lines": 38618,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/asz.ucl",
+      "fileType": "ucl",
+      "bytes": 4110,
+      "lines": 221,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/asz.ufm",
+      "fileType": "ufm",
+      "bytes": 24368,
+      "lines": 1259,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/asz.uxf",
+      "fileType": "uxf",
+      "bytes": 27662,
+      "lines": 952,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/ben.ufm",
+      "fileType": "ufm",
+      "bytes": 24141,
+      "lines": 1309,
+      "diagnostics": 1,
+      "errors": 0,
+      "warnings": 1,
+      "byRule": {
+        "UF2002": 1
+      }
+    },
+    {
+      "path": "uf-formulas/bje.ucl",
+      "fileType": "ucl",
+      "bytes": 96011,
+      "lines": 1623,
+      "diagnostics": 1,
+      "errors": 0,
+      "warnings": 1,
+      "byRule": {
+        "UF2002": 1
+      }
+    },
+    {
+      "path": "uf-formulas/bje.ufm",
+      "fileType": "ufm",
+      "bytes": 58767,
+      "lines": 3395,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/bje.uxf",
+      "fileType": "uxf",
+      "bytes": 634,
+      "lines": 38,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/blb.ufm",
+      "fileType": "ufm",
+      "bytes": 111284,
+      "lines": 5300,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/bmg.ufm",
+      "fileType": "ufm",
+      "bytes": 750,
+      "lines": 46,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/bobm.ufm",
+      "fileType": "ufm",
+      "bytes": 1380,
+      "lines": 109,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/bobm000.ufm",
+      "fileType": "ufm",
+      "bytes": 15254,
+      "lines": 1091,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/bvb.ucl",
+      "fileType": "ucl",
+      "bytes": 1735,
+      "lines": 126,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/bwp.ucl",
+      "fileType": "ucl",
+      "bytes": 3050,
+      "lines": 175,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/bwp.ufm",
+      "fileType": "ufm",
+      "bytes": 34931,
+      "lines": 1997,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/carr0900.ufm",
+      "fileType": "ufm",
+      "bytes": 16290,
+      "lines": 898,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/carr0900_s.ufm",
+      "fileType": "ufm",
+      "bytes": 131482,
+      "lines": 6420,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/carr1000.ufm",
+      "fileType": "ufm",
+      "bytes": 16870,
+      "lines": 917,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/carr1000_s.ufm",
+      "fileType": "ufm",
+      "bytes": 129885,
+      "lines": 6328,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/carr1100.ufm",
+      "fileType": "ufm",
+      "bytes": 18847,
+      "lines": 979,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/carr1100_s.ufm",
+      "fileType": "ufm",
+      "bytes": 126801,
+      "lines": 6197,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/carr1200.ufm",
+      "fileType": "ufm",
+      "bytes": 35218,
+      "lines": 1787,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/carr1200_s.ufm",
+      "fileType": "ufm",
+      "bytes": 130664,
+      "lines": 6289,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/carr1300.ufm",
+      "fileType": "ufm",
+      "bytes": 34369,
+      "lines": 1809,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/carr1300_s.ufm",
+      "fileType": "ufm",
+      "bytes": 129485,
+      "lines": 6304,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/carr1400.ufm",
+      "fileType": "ufm",
+      "bytes": 37226,
+      "lines": 1913,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/carr1400_s.ufm",
+      "fileType": "ufm",
+      "bytes": 132570,
+      "lines": 6439,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/carr1500.ufm",
+      "fileType": "ufm",
+      "bytes": 38809,
+      "lines": 1909,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/carr1500_s.ufm",
+      "fileType": "ufm",
+      "bytes": 134149,
+      "lines": 6374,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/carr1600.ufm",
+      "fileType": "ufm",
+      "bytes": 36387,
+      "lines": 1807,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/carr1600_s.ufm",
+      "fileType": "ufm",
+      "bytes": 132821,
+      "lines": 6328,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/carr1700.ufm",
+      "fileType": "ufm",
+      "bytes": 35260,
+      "lines": 1745,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/carr1700_s.ufm",
+      "fileType": "ufm",
+      "bytes": 132776,
+      "lines": 6312,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/carr1800.ufm",
+      "fileType": "ufm",
+      "bytes": 32924,
+      "lines": 1625,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/carr1800_s.ufm",
+      "fileType": "ufm",
+      "bytes": 124425,
+      "lines": 6003,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/carr1900.ufm",
+      "fileType": "ufm",
+      "bytes": 113197,
+      "lines": 4883,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/carr2000.ufm",
+      "fileType": "ufm",
+      "bytes": 104080,
+      "lines": 4294,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/carr2100.ufm",
+      "fileType": "ufm",
+      "bytes": 112945,
+      "lines": 4667,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/carr2200.ufm",
+      "fileType": "ufm",
+      "bytes": 122311,
+      "lines": 4906,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/carr2300.ufm",
+      "fileType": "ufm",
+      "bytes": 123317,
+      "lines": 4813,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/carr2400.ufm",
+      "fileType": "ufm",
+      "bytes": 128477,
+      "lines": 5021,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/carr2500.ufm",
+      "fileType": "ufm",
+      "bytes": 128169,
+      "lines": 5065,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/carr2600.ufm",
+      "fileType": "ufm",
+      "bytes": 138589,
+      "lines": 5331,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/carr2700.ufm",
+      "fileType": "ufm",
+      "bytes": 153829,
+      "lines": 5992,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/carr2800.ufm",
+      "fileType": "ufm",
+      "bytes": 152415,
+      "lines": 6005,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/carr2900.ufm",
+      "fileType": "ufm",
+      "bytes": 158910,
+      "lines": 6397,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/carr3000.ufm",
+      "fileType": "ufm",
+      "bytes": 160148,
+      "lines": 6111,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/carr3100.ufm",
+      "fileType": "ufm",
+      "bytes": 168966,
+      "lines": 6143,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/carr3200.ufm",
+      "fileType": "ufm",
+      "bytes": 175540,
+      "lines": 6530,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/carr3300.ufm",
+      "fileType": "ufm",
+      "bytes": 174444,
+      "lines": 6696,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/carr3400.ufm",
+      "fileType": "ufm",
+      "bytes": 133670,
+      "lines": 4971,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/carr3500.ufm",
+      "fileType": "ufm",
+      "bytes": 45324,
+      "lines": 1543,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/cdj.ufm",
+      "fileType": "ufm",
+      "bytes": 5175,
+      "lines": 217,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/cep.ufm",
+      "fileType": "ufm",
+      "bytes": 5610,
+      "lines": 276,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/ck.ucl",
+      "fileType": "ucl",
+      "bytes": 48,
+      "lines": 6,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/ck.ufm",
+      "fileType": "ufm",
+      "bytes": 7323,
+      "lines": 356,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/ck.ulb",
+      "fileType": "ulb",
+      "bytes": 47993,
+      "lines": 1921,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/cls.ucl",
+      "fileType": "ucl",
+      "bytes": 6243,
+      "lines": 206,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/common.ulb",
+      "fileType": "ulb",
+      "bytes": 244773,
+      "lines": 7179,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/cy.ufm",
+      "fileType": "ufm",
+      "bytes": 5070,
+      "lines": 264,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/dac.ufm",
+      "fileType": "ufm",
+      "bytes": 1773959,
+      "lines": 44284,
+      "diagnostics": 1,
+      "errors": 0,
+      "warnings": 1,
+      "byRule": {
+        "UF2002": 1
+      }
+    },
+    {
+      "path": "uf-formulas/dan.ucl",
+      "fileType": "ucl",
+      "bytes": 41085,
+      "lines": 1601,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/dan.ufm",
+      "fileType": "ufm",
+      "bytes": 86160,
+      "lines": 5024,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/dan.uxf",
+      "fileType": "uxf",
+      "bytes": 10032,
+      "lines": 415,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/dav.ucl",
+      "fileType": "ucl",
+      "bytes": 1295,
+      "lines": 42,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/dav.ufm",
+      "fileType": "ufm",
+      "bytes": 17579,
+      "lines": 794,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/daz.ucl",
+      "fileType": "ucl",
+      "bytes": 704,
+      "lines": 37,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/daz.ufm",
+      "fileType": "ufm",
+      "bytes": 310,
+      "lines": 21,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/ddr.ufm",
+      "fileType": "ufm",
+      "bytes": 470371,
+      "lines": 17170,
+      "diagnostics": 1,
+      "errors": 0,
+      "warnings": 1,
+      "byRule": {
+        "UF2002": 1
+      }
+    },
+    {
+      "path": "uf-formulas/des.ufm",
+      "fileType": "ufm",
+      "bytes": 110,
+      "lines": 12,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/dja.uxf",
+      "fileType": "uxf",
+      "bytes": 14832,
+      "lines": 622,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/djk+akl.ufm",
+      "fileType": "ufm",
+      "bytes": 26932,
+      "lines": 1008,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/djk.ucl",
+      "fileType": "ucl",
+      "bytes": 13267,
+      "lines": 580,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/djk.ufm",
+      "fileType": "ufm",
+      "bytes": 24716,
+      "lines": 1041,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/djk.uxf",
+      "fileType": "uxf",
+      "bytes": 64504,
+      "lines": 2743,
+      "diagnostics": 1,
+      "errors": 0,
+      "warnings": 1,
+      "byRule": {
+        "UF2002": 1
+      }
+    },
+    {
+      "path": "uf-formulas/djw.ucl",
+      "fileType": "ucl",
+      "bytes": 8585,
+      "lines": 360,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/djw.ufm",
+      "fileType": "ufm",
+      "bytes": 14259,
+      "lines": 519,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/dmj.ucl",
+      "fileType": "ucl",
+      "bytes": 96411,
+      "lines": 3166,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/dmj.ufm",
+      "fileType": "ufm",
+      "bytes": 281392,
+      "lines": 10045,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/dmj.uxf",
+      "fileType": "uxf",
+      "bytes": 81649,
+      "lines": 2747,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/dmj3-glyph.uxf",
+      "fileType": "uxf",
+      "bytes": 717151,
+      "lines": 14769,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/dmj3.ucl",
+      "fileType": "ucl",
+      "bytes": 249193,
+      "lines": 6136,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/dmj3.ufm",
+      "fileType": "ufm",
+      "bytes": 27794,
+      "lines": 934,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/dmj3.uxf",
+      "fileType": "uxf",
+      "bytes": 177306,
+      "lines": 4583,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/dmj5.ucl",
+      "fileType": "ucl",
+      "bytes": 2540,
+      "lines": 109,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/dmj5.ufm",
+      "fileType": "ufm",
+      "bytes": 942,
+      "lines": 49,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/dmj5.ulb",
+      "fileType": "ulb",
+      "bytes": 272180,
+      "lines": 7924,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/dmj5.uxf",
+      "fileType": "uxf",
+      "bytes": 1257,
+      "lines": 68,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/dpb.ufm",
+      "fileType": "ufm",
+      "bytes": 177966,
+      "lines": 7134,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/dpb.ulb",
+      "fileType": "ulb",
+      "bytes": 194049,
+      "lines": 7800,
+      "diagnostics": 93,
+      "errors": 93,
+      "warnings": 0,
+      "byRule": {
+        "UF1006": 93
+      }
+    },
+    {
+      "path": "uf-formulas/dpm.ufm",
+      "fileType": "ufm",
+      "bytes": 66039,
+      "lines": 2352,
+      "diagnostics": 2,
+      "errors": 0,
+      "warnings": 2,
+      "byRule": {
+        "UF2001": 2
+      }
+    },
+    {
+      "path": "uf-formulas/drd.ufm",
+      "fileType": "ufm",
+      "bytes": 2800,
+      "lines": 162,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/ea.ucl",
+      "fileType": "ucl",
+      "bytes": 49174,
+      "lines": 1553,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/ea.ufm",
+      "fileType": "ufm",
+      "bytes": 474656,
+      "lines": 14064,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/ea.ulb",
+      "fileType": "ulb",
+      "bytes": 14552,
+      "lines": 484,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/ea.uxf",
+      "fileType": "uxf",
+      "bytes": 53038,
+      "lines": 1607,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/eew.ucl",
+      "fileType": "ucl",
+      "bytes": 36179,
+      "lines": 1350,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/eew.ufm",
+      "fileType": "ufm",
+      "bytes": 108329,
+      "lines": 5243,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/eew.ulb",
+      "fileType": "ulb",
+      "bytes": 7230,
+      "lines": 344,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/eew.uxf",
+      "fileType": "uxf",
+      "bytes": 7285,
+      "lines": 260,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/ejb.ucl",
+      "fileType": "ucl",
+      "bytes": 169291,
+      "lines": 5448,
+      "diagnostics": 1,
+      "errors": 0,
+      "warnings": 1,
+      "byRule": {
+        "UF2002": 1
+      }
+    },
+    {
+      "path": "uf-formulas/ejb.ufm",
+      "fileType": "ufm",
+      "bytes": 398541,
+      "lines": 15553,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/ejb.ulb",
+      "fileType": "ulb",
+      "bytes": 91,
+      "lines": 3,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/ejb.uxf",
+      "fileType": "uxf",
+      "bytes": 95619,
+      "lines": 3316,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/em.ucl",
+      "fileType": "ucl",
+      "bytes": 98025,
+      "lines": 3348,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/em.ufm",
+      "fileType": "ufm",
+      "bytes": 180634,
+      "lines": 8196,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/emp.ucl",
+      "fileType": "ucl",
+      "bytes": 8281,
+      "lines": 479,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/enr-convert.ufm",
+      "fileType": "ufm",
+      "bytes": 23266,
+      "lines": 1019,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/enr.ucl",
+      "fileType": "ucl",
+      "bytes": 95655,
+      "lines": 3079,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/esa.ucl",
+      "fileType": "ucl",
+      "bytes": 4137,
+      "lines": 194,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/esa.ufm",
+      "fileType": "ufm",
+      "bytes": 21152,
+      "lines": 846,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/ev.ufm",
+      "fileType": "ufm",
+      "bytes": 6571,
+      "lines": 471,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/evc.ufm",
+      "fileType": "ufm",
+      "bytes": 118,
+      "lines": 11,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/fa.ufm",
+      "fileType": "ufm",
+      "bytes": 64521,
+      "lines": 3086,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/fgm.ucl",
+      "fileType": "ucl",
+      "bytes": 2759,
+      "lines": 172,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/fgm.ufm",
+      "fileType": "ufm",
+      "bytes": 14597,
+      "lines": 878,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/fhq.ufm",
+      "fileType": "ufm",
+      "bytes": 14605,
+      "lines": 798,
+      "diagnostics": 1,
+      "errors": 0,
+      "warnings": 1,
+      "byRule": {
+        "UF2002": 1
+      }
+    },
+    {
+      "path": "uf-formulas/fracmod.ufm",
+      "fileType": "ufm",
+      "bytes": 3502,
+      "lines": 137,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/fs.uxf",
+      "fileType": "uxf",
+      "bytes": 11758,
+      "lines": 459,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/fwp.ucl",
+      "fileType": "ucl",
+      "bytes": 598,
+      "lines": 29,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/fwp.ufm",
+      "fileType": "ufm",
+      "bytes": 9312,
+      "lines": 486,
+      "diagnostics": 1,
+      "errors": 1,
+      "warnings": 0,
+      "byRule": {
+        "UF1005": 1
+      }
+    },
+    {
+      "path": "uf-formulas/fwp.ulb",
+      "fileType": "ulb",
+      "bytes": 598,
+      "lines": 29,
+      "diagnostics": 3,
+      "errors": 3,
+      "warnings": 0,
+      "byRule": {
+        "UF1006": 3
+      }
+    },
+    {
+      "path": "uf-formulas/fwp.uxf",
+      "fileType": "uxf",
+      "bytes": 1951,
+      "lines": 75,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/gbd.ufm",
+      "fileType": "ufm",
+      "bytes": 1500,
+      "lines": 42,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/gfp.ufm",
+      "fileType": "ufm",
+      "bytes": 181689,
+      "lines": 7681,
+      "diagnostics": 1,
+      "errors": 0,
+      "warnings": 1,
+      "byRule": {
+        "UF2002": 1
+      }
+    },
+    {
+      "path": "uf-formulas/gmc.ucl",
+      "fileType": "ucl",
+      "bytes": 37752,
+      "lines": 1237,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/gmc.ufm",
+      "fileType": "ufm",
+      "bytes": 68252,
+      "lines": 3699,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/gnd.ucl",
+      "fileType": "ucl",
+      "bytes": 462630,
+      "lines": 12864,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/gnd.ufm",
+      "fileType": "ufm",
+      "bytes": 1469739,
+      "lines": 56387,
+      "diagnostics": 9,
+      "errors": 0,
+      "warnings": 9,
+      "byRule": {
+        "UF2001": 9
+      }
+    },
+    {
+      "path": "uf-formulas/gwfa-matrix.ufm",
+      "fileType": "ufm",
+      "bytes": 11532,
+      "lines": 773,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/gwfa.ucl",
+      "fileType": "ucl",
+      "bytes": 8488,
+      "lines": 527,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/gwfa.ufm",
+      "fileType": "ufm",
+      "bytes": 142421,
+      "lines": 7692,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/gwfa.uxf",
+      "fileType": "uxf",
+      "bytes": 5506,
+      "lines": 361,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/hjk.ufm",
+      "fileType": "ufm",
+      "bytes": 226,
+      "lines": 28,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/hth.ufm",
+      "fileType": "ufm",
+      "bytes": 11461,
+      "lines": 757,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/icm.ucl",
+      "fileType": "ucl",
+      "bytes": 21867,
+      "lines": 882,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/ifb.ucl",
+      "fileType": "ucl",
+      "bytes": 1369,
+      "lines": 71,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/ifb.ufm",
+      "fileType": "ufm",
+      "bytes": 4769,
+      "lines": 234,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/ik.ucl",
+      "fileType": "ucl",
+      "bytes": 1847,
+      "lines": 105,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/ik.ufm",
+      "fileType": "ufm",
+      "bytes": 175606,
+      "lines": 9122,
+      "diagnostics": 46,
+      "errors": 0,
+      "warnings": 46,
+      "byRule": {
+        "UF2001": 42,
+        "UF2002": 4
+      }
+    },
+    {
+      "path": "uf-formulas/ilc.ulb",
+      "fileType": "ulb",
+      "bytes": 16239,
+      "lines": 454,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/jam-newton.ufm",
+      "fileType": "ufm",
+      "bytes": 556181,
+      "lines": 20284,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/jam.ucl",
+      "fileType": "ucl",
+      "bytes": 4279508,
+      "lines": 109227,
+      "diagnostics": 1,
+      "errors": 0,
+      "warnings": 1,
+      "byRule": {
+        "UF2002": 1
+      }
+    },
+    {
+      "path": "uf-formulas/jam.ufm",
+      "fileType": "ufm",
+      "bytes": 1327914,
+      "lines": 47049,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/jam.uxf",
+      "fileType": "uxf",
+      "bytes": 579918,
+      "lines": 14316,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/jam2.ucl",
+      "fileType": "ucl",
+      "bytes": 3300287,
+      "lines": 73376,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/jam2.ufm",
+      "fileType": "ufm",
+      "bytes": 1958841,
+      "lines": 57857,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/jam3.ufm",
+      "fileType": "ufm",
+      "bytes": 2091671,
+      "lines": 57398,
+      "diagnostics": 3,
+      "errors": 3,
+      "warnings": 0,
+      "byRule": {
+        "UF1001": 2,
+        "UF1003": 1
+      }
+    },
+    {
+      "path": "uf-formulas/jaw.ufm",
+      "fileType": "ufm",
+      "bytes": 26135,
+      "lines": 1402,
+      "diagnostics": 4,
+      "errors": 4,
+      "warnings": 0,
+      "byRule": {
+        "UF1001": 4
+      }
+    },
+    {
+      "path": "uf-formulas/jay.ucl",
+      "fileType": "ucl",
+      "bytes": 695806,
+      "lines": 17554,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/jay.ufm",
+      "fileType": "ufm",
+      "bytes": 2172567,
+      "lines": 50957,
+      "diagnostics": 3,
+      "errors": 0,
+      "warnings": 3,
+      "byRule": {
+        "UF2002": 3
+      }
+    },
+    {
+      "path": "uf-formulas/jay.uxf",
+      "fileType": "uxf",
+      "bytes": 284216,
+      "lines": 6708,
+      "diagnostics": 51,
+      "errors": 50,
+      "warnings": 1,
+      "byRule": {
+        "UF1003": 50,
+        "UF2002": 1
+      }
+    },
+    {
+      "path": "uf-formulas/jbo.ucl",
+      "fileType": "ucl",
+      "bytes": 2605,
+      "lines": 102,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/jbo.ufm",
+      "fileType": "ufm",
+      "bytes": 6330,
+      "lines": 430,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/jbo.uxf",
+      "fileType": "uxf",
+      "bytes": 36111,
+      "lines": 1223,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/jcp.ufm",
+      "fileType": "ufm",
+      "bytes": 33009,
+      "lines": 1935,
+      "diagnostics": 2,
+      "errors": 0,
+      "warnings": 2,
+      "byRule": {
+        "UF2001": 2
+      }
+    },
+    {
+      "path": "uf-formulas/jgr.ufm",
+      "fileType": "ufm",
+      "bytes": 3834,
+      "lines": 242,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/jh.ucl",
+      "fileType": "ucl",
+      "bytes": 56665,
+      "lines": 1771,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/jh.ufm",
+      "fileType": "ufm",
+      "bytes": 33769,
+      "lines": 1320,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/jh.uxf",
+      "fileType": "uxf",
+      "bytes": 14329,
+      "lines": 449,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/jjd.ufm",
+      "fileType": "ufm",
+      "bytes": 3421,
+      "lines": 121,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/jlb.ucl",
+      "fileType": "ucl",
+      "bytes": 44140,
+      "lines": 1754,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/jlb.ufm",
+      "fileType": "ufm",
+      "bytes": 57790,
+      "lines": 2630,
+      "diagnostics": 1,
+      "errors": 1,
+      "warnings": 0,
+      "byRule": {
+        "UF1002": 1
+      }
+    },
+    {
+      "path": "uf-formulas/jlb.ulb",
+      "fileType": "ulb",
+      "bytes": 918661,
+      "lines": 36593,
+      "diagnostics": 2,
+      "errors": 2,
+      "warnings": 0,
+      "byRule": {
+        "UF1002": 1,
+        "UF1005": 1
+      }
+    },
+    {
+      "path": "uf-formulas/jlb.uxf",
+      "fileType": "uxf",
+      "bytes": 110631,
+      "lines": 2756,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/jlp.uxf",
+      "fileType": "uxf",
+      "bytes": 5051,
+      "lines": 268,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/jmh.ufm",
+      "fileType": "ufm",
+      "bytes": 233,
+      "lines": 17,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/jmk.ufm",
+      "fileType": "ufm",
+      "bytes": 565,
+      "lines": 29,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/jml.ufm",
+      "fileType": "ufm",
+      "bytes": 1214,
+      "lines": 89,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/jock.ufm",
+      "fileType": "ufm",
+      "bytes": 34915,
+      "lines": 1933,
+      "diagnostics": 1,
+      "errors": 1,
+      "warnings": 0,
+      "byRule": {
+        "UF1005": 1
+      }
+    },
+    {
+      "path": "uf-formulas/jos.ucl",
+      "fileType": "ucl",
+      "bytes": 334525,
+      "lines": 14467,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/jos.ufm",
+      "fileType": "ufm",
+      "bytes": 6526,
+      "lines": 381,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/jos.uxf",
+      "fileType": "uxf",
+      "bytes": 22984,
+      "lines": 984,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/jp.ufm",
+      "fileType": "ufm",
+      "bytes": 387,
+      "lines": 20,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/jrf.ucl",
+      "fileType": "ucl",
+      "bytes": 12262,
+      "lines": 575,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/jrf.ufm",
+      "fileType": "ufm",
+      "bytes": 177655,
+      "lines": 9515,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/jrf.uxf",
+      "fileType": "uxf",
+      "bytes": 5471,
+      "lines": 290,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/jvx.ufm",
+      "fileType": "ufm",
+      "bytes": 1582,
+      "lines": 83,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/jwx.ufm",
+      "fileType": "ufm",
+      "bytes": 373,
+      "lines": 34,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/kcc3.ucl",
+      "fileType": "ucl",
+      "bytes": 1103833,
+      "lines": 29656,
+      "diagnostics": 2,
+      "errors": 2,
+      "warnings": 0,
+      "byRule": {
+        "UF1001": 2
+      }
+    },
+    {
+      "path": "uf-formulas/kcc5.ulb",
+      "fileType": "ulb",
+      "bytes": 473646,
+      "lines": 16493,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/kec.ufm",
+      "fileType": "ufm",
+      "bytes": 43879,
+      "lines": 2873,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/kpk+akl.ufm",
+      "fileType": "ufm",
+      "bytes": 148742,
+      "lines": 5950,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/kpk.ucl",
+      "fileType": "ucl",
+      "bytes": 179420,
+      "lines": 5989,
+      "diagnostics": 4,
+      "errors": 4,
+      "warnings": 0,
+      "byRule": {
+        "UF1001": 4
+      }
+    },
+    {
+      "path": "uf-formulas/kpk.ufm",
+      "fileType": "ufm",
+      "bytes": 256819,
+      "lines": 13154,
+      "diagnostics": 1,
+      "errors": 0,
+      "warnings": 1,
+      "byRule": {
+        "UF2002": 1
+      }
+    },
+    {
+      "path": "uf-formulas/kpk.uxf",
+      "fileType": "uxf",
+      "bytes": 7175,
+      "lines": 318,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/kr.ucl",
+      "fileType": "ucl",
+      "bytes": 1236,
+      "lines": 85,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/kr.ufm",
+      "fileType": "ufm",
+      "bytes": 1010,
+      "lines": 52,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/ks.ufm",
+      "fileType": "ufm",
+      "bytes": 3818,
+      "lines": 258,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/kto.ufm",
+      "fileType": "ufm",
+      "bytes": 7184,
+      "lines": 363,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/la.ufm",
+      "fileType": "ufm",
+      "bytes": 497,
+      "lines": 29,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/lal.ucl",
+      "fileType": "ucl",
+      "bytes": 19983,
+      "lines": 745,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/lal.ufm",
+      "fileType": "ufm",
+      "bytes": 20943,
+      "lines": 1468,
+      "diagnostics": 1,
+      "errors": 0,
+      "warnings": 1,
+      "byRule": {
+        "UF2002": 1
+      }
+    },
+    {
+      "path": "uf-formulas/ldm.ucl",
+      "fileType": "ucl",
+      "bytes": 71178,
+      "lines": 2776,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/ldm.ufm",
+      "fileType": "ufm",
+      "bytes": 2884,
+      "lines": 181,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/ldm.uxf",
+      "fileType": "uxf",
+      "bytes": 16923,
+      "lines": 631,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/lgn.ucl",
+      "fileType": "ucl",
+      "bytes": 11280,
+      "lines": 495,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/lgn.ufm",
+      "fileType": "ufm",
+      "bytes": 133469,
+      "lines": 5482,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/lgn.uxf",
+      "fileType": "uxf",
+      "bytes": 15125,
+      "lines": 553,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/lgr.ufm",
+      "fileType": "ufm",
+      "bytes": 5062,
+      "lines": 295,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/lkm-special.ucl",
+      "fileType": "ucl",
+      "bytes": 679959,
+      "lines": 33481,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/lkm-special.ufm",
+      "fileType": "ufm",
+      "bytes": 17525,
+      "lines": 802,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/lkm-special.uxf",
+      "fileType": "uxf",
+      "bytes": 295,
+      "lines": 12,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/lkm.ucl",
+      "fileType": "ucl",
+      "bytes": 107445,
+      "lines": 4326,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/lkm.ufm",
+      "fileType": "ufm",
+      "bytes": 182286,
+      "lines": 7115,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/lkm.uxf",
+      "fileType": "uxf",
+      "bytes": 33652,
+      "lines": 1570,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/lkm3.ucl",
+      "fileType": "ucl",
+      "bytes": 1130658,
+      "lines": 44503,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/lkm3.ufm",
+      "fileType": "ufm",
+      "bytes": 289498,
+      "lines": 10833,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/lmc.ufm",
+      "fileType": "ufm",
+      "bytes": 12861,
+      "lines": 983,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/lp.ucl",
+      "fileType": "ucl",
+      "bytes": 28681,
+      "lines": 1241,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/lp.ufm",
+      "fileType": "ufm",
+      "bytes": 4141,
+      "lines": 238,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/lp.uxf",
+      "fileType": "uxf",
+      "bytes": 6205,
+      "lines": 270,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/mac.ucl",
+      "fileType": "ucl",
+      "bytes": 46137,
+      "lines": 1948,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/mac.ufm",
+      "fileType": "ufm",
+      "bytes": 131509,
+      "lines": 5776,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/mac.uxf",
+      "fileType": "uxf",
+      "bytes": 5580,
+      "lines": 228,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/macp.ufm",
+      "fileType": "ufm",
+      "bytes": 32228,
+      "lines": 1367,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/mas.ufm",
+      "fileType": "ufm",
+      "bytes": 6480,
+      "lines": 237,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/maz.ufm",
+      "fileType": "ufm",
+      "bytes": 5276,
+      "lines": 282,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/mbs.ucl",
+      "fileType": "ucl",
+      "bytes": 6762,
+      "lines": 285,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/mbs.ufm",
+      "fileType": "ufm",
+      "bytes": 5949,
+      "lines": 303,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/mch.ufm",
+      "fileType": "ufm",
+      "bytes": 171238,
+      "lines": 6704,
+      "diagnostics": 10,
+      "errors": 0,
+      "warnings": 10,
+      "byRule": {
+        "UF2001": 10
+      }
+    },
+    {
+      "path": "uf-formulas/mch.uxf",
+      "fileType": "uxf",
+      "bytes": 10241,
+      "lines": 302,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/mde-eng.ucl",
+      "fileType": "ucl",
+      "bytes": 72164,
+      "lines": 2541,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/mde.ucl",
+      "fileType": "ucl",
+      "bytes": 218464,
+      "lines": 7550,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/mde.ufm",
+      "fileType": "ufm",
+      "bytes": 126681,
+      "lines": 4958,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/mde3-courbes.ucl",
+      "fileType": "ucl",
+      "bytes": 337150,
+      "lines": 11846,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/mde3.ucl",
+      "fileType": "ucl",
+      "bytes": 282155,
+      "lines": 10137,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/mde3.ufm",
+      "fileType": "ufm",
+      "bytes": 43701,
+      "lines": 1744,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/mde3.uxf",
+      "fileType": "uxf",
+      "bytes": 4731,
+      "lines": 195,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/mhb.ucl",
+      "fileType": "ucl",
+      "bytes": 6747,
+      "lines": 301,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/mhb.ulb",
+      "fileType": "ulb",
+      "bytes": 4253,
+      "lines": 191,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/mjd.ucl",
+      "fileType": "ucl",
+      "bytes": 55020,
+      "lines": 1801,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/mjd.ufm",
+      "fileType": "ufm",
+      "bytes": 57873,
+      "lines": 2624,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/mjd.uxf",
+      "fileType": "uxf",
+      "bytes": 17771,
+      "lines": 813,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/mjw.ucl",
+      "fileType": "ucl",
+      "bytes": 51589,
+      "lines": 1884,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/mjw.ufm",
+      "fileType": "ufm",
+      "bytes": 9884,
+      "lines": 454,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/mjw.uxf",
+      "fileType": "uxf",
+      "bytes": 2151,
+      "lines": 89,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/mmf.ucl",
+      "fileType": "ucl",
+      "bytes": 40261,
+      "lines": 1212,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/mmf.ufm",
+      "fileType": "ufm",
+      "bytes": 858651,
+      "lines": 30951,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/mmf.ulb",
+      "fileType": "ulb",
+      "bytes": 1127998,
+      "lines": 33247,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/mmf.uxf",
+      "fileType": "uxf",
+      "bytes": 3712,
+      "lines": 175,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/mmf3.ucl",
+      "fileType": "ucl",
+      "bytes": 437472,
+      "lines": 14559,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/mmf3.ufm",
+      "fileType": "ufm",
+      "bytes": 150302,
+      "lines": 5225,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/mmf3.uxf",
+      "fileType": "uxf",
+      "bytes": 8134,
+      "lines": 327,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/mmf4.ucl",
+      "fileType": "ucl",
+      "bytes": 10114,
+      "lines": 349,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/mmf4.ufm",
+      "fileType": "ufm",
+      "bytes": 1475057,
+      "lines": 44506,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/mmf5.ucl",
+      "fileType": "ucl",
+      "bytes": 44759,
+      "lines": 1294,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/mmf5.ufm",
+      "fileType": "ufm",
+      "bytes": 64742,
+      "lines": 1769,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/mmfs.ufm",
+      "fileType": "ufm",
+      "bytes": 152847,
+      "lines": 4733,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/mpp.ufm",
+      "fileType": "ufm",
+      "bytes": 113610,
+      "lines": 8571,
+      "diagnostics": 1,
+      "errors": 1,
+      "warnings": 0,
+      "byRule": {
+        "UF1005": 1
+      }
+    },
+    {
+      "path": "uf-formulas/mt-mod.ufm",
+      "fileType": "ufm",
+      "bytes": 799,
+      "lines": 42,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/mt.ucl",
+      "fileType": "ucl",
+      "bytes": 259727,
+      "lines": 10450,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/mt.ufm",
+      "fileType": "ufm",
+      "bytes": 72957,
+      "lines": 3671,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/mt.ulb",
+      "fileType": "ulb",
+      "bytes": 106358,
+      "lines": 4431,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/mt.uxf",
+      "fileType": "uxf",
+      "bytes": 78292,
+      "lines": 3163,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/mt5.ucl",
+      "fileType": "ucl",
+      "bytes": 7381,
+      "lines": 322,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/mtc.ufm",
+      "fileType": "ufm",
+      "bytes": 10065,
+      "lines": 499,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/mtz.ucl",
+      "fileType": "ucl",
+      "bytes": 124453,
+      "lines": 5156,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/mtz.ufm",
+      "fileType": "ufm",
+      "bytes": 2333,
+      "lines": 122,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/mtz.uxf",
+      "fileType": "uxf",
+      "bytes": 5612,
+      "lines": 278,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/mwb.ufm",
+      "fileType": "ufm",
+      "bytes": 17544,
+      "lines": 907,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/nuj.ucl",
+      "fileType": "ucl",
+      "bytes": 190674,
+      "lines": 7555,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/obsolete.ucl",
+      "fileType": "ucl",
+      "bytes": 933851,
+      "lines": 29801,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/obsolete.ufm",
+      "fileType": "ufm",
+      "bytes": 58442,
+      "lines": 2220,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/obsolete.uxf",
+      "fileType": "uxf",
+      "bytes": 327,
+      "lines": 21,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/om.ucl",
+      "fileType": "ucl",
+      "bytes": 793373,
+      "lines": 31409,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/om.ufm",
+      "fileType": "ufm",
+      "bytes": 2107563,
+      "lines": 114382,
+      "diagnostics": 1,
+      "errors": 0,
+      "warnings": 1,
+      "byRule": {
+        "UF2002": 1
+      }
+    },
+    {
+      "path": "uf-formulas/om.ulb",
+      "fileType": "ulb",
+      "bytes": 3291215,
+      "lines": 154584,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/om.uxf",
+      "fileType": "uxf",
+      "bytes": 68341,
+      "lines": 3898,
+      "diagnostics": 1,
+      "errors": 0,
+      "warnings": 1,
+      "byRule": {
+        "UF2002": 1
+      }
+    },
+    {
+      "path": "uf-formulas/om2.ufm",
+      "fileType": "ufm",
+      "bytes": 2093707,
+      "lines": 117604,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/om2.ulb",
+      "fileType": "ulb",
+      "bytes": 423078,
+      "lines": 23567,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/ost.ufm",
+      "fileType": "ufm",
+      "bytes": 25379,
+      "lines": 816,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/pb.ucl",
+      "fileType": "ucl",
+      "bytes": 4226,
+      "lines": 187,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/pb.ufm",
+      "fileType": "ufm",
+      "bytes": 2422,
+      "lines": 115,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/pdd.ufm",
+      "fileType": "ufm",
+      "bytes": 5209,
+      "lines": 271,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/pdf.ucl",
+      "fileType": "ucl",
+      "bytes": 33900,
+      "lines": 1281,
+      "diagnostics": 4,
+      "errors": 4,
+      "warnings": 0,
+      "byRule": {
+        "UF1001": 4
+      }
+    },
+    {
+      "path": "uf-formulas/pdf.ufm",
+      "fileType": "ufm",
+      "bytes": 115794,
+      "lines": 4239,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/pdf.uxf",
+      "fileType": "uxf",
+      "bytes": 11237,
+      "lines": 300,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/pfj.ucl",
+      "fileType": "ucl",
+      "bytes": 671,
+      "lines": 43,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/pfj.ufm",
+      "fileType": "ufm",
+      "bytes": 1110,
+      "lines": 49,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/phr.ufm",
+      "fileType": "ufm",
+      "bytes": 1517,
+      "lines": 52,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/phs.ufm",
+      "fileType": "ufm",
+      "bytes": 40622,
+      "lines": 1442,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/phs.ulb",
+      "fileType": "ulb",
+      "bytes": 7517,
+      "lines": 281,
+      "diagnostics": 16,
+      "errors": 16,
+      "warnings": 0,
+      "byRule": {
+        "UF1006": 16
+      }
+    },
+    {
+      "path": "uf-formulas/phs.uxf",
+      "fileType": "uxf",
+      "bytes": 2372,
+      "lines": 125,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/plk.uxf",
+      "fileType": "uxf",
+      "bytes": 3041,
+      "lines": 108,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/pny.ufm",
+      "fileType": "ufm",
+      "bytes": 1426,
+      "lines": 108,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/pwc-convert.ufm",
+      "fileType": "ufm",
+      "bytes": 38688,
+      "lines": 1965,
+      "diagnostics": 6,
+      "errors": 0,
+      "warnings": 6,
+      "byRule": {
+        "UF2001": 6
+      }
+    },
+    {
+      "path": "uf-formulas/pwc.ucl",
+      "fileType": "ucl",
+      "bytes": 76495,
+      "lines": 3090,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/pwc.ufm",
+      "fileType": "ufm",
+      "bytes": 240692,
+      "lines": 9603,
+      "diagnostics": 2,
+      "errors": 0,
+      "warnings": 2,
+      "byRule": {
+        "UF2001": 2
+      }
+    },
+    {
+      "path": "uf-formulas/raf.ucl",
+      "fileType": "ucl",
+      "bytes": 2650,
+      "lines": 103,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/raf.uxf",
+      "fileType": "uxf",
+      "bytes": 32426,
+      "lines": 1098,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/rbs.ufm",
+      "fileType": "ufm",
+      "bytes": 6368,
+      "lines": 177,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/rdf.ufm",
+      "fileType": "ufm",
+      "bytes": 5579,
+      "lines": 204,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/rds.ulb",
+      "fileType": "ulb",
+      "bytes": 2954,
+      "lines": 110,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/rdw.ucl",
+      "fileType": "ucl",
+      "bytes": 79896,
+      "lines": 2404,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/rdw.uxf",
+      "fileType": "uxf",
+      "bytes": 121549,
+      "lines": 3692,
+      "diagnostics": 3,
+      "errors": 3,
+      "warnings": 0,
+      "byRule": {
+        "UF1001": 2,
+        "UF1003": 1
+      }
+    },
+    {
+      "path": "uf-formulas/reb.ucl",
+      "fileType": "ucl",
+      "bytes": 5339883,
+      "lines": 145071,
+      "diagnostics": 3,
+      "errors": 2,
+      "warnings": 1,
+      "byRule": {
+        "UF1003": 2,
+        "UF2002": 1
+      }
+    },
+    {
+      "path": "uf-formulas/reb.ufm",
+      "fileType": "ufm",
+      "bytes": 2876339,
+      "lines": 81403,
+      "diagnostics": 1,
+      "errors": 0,
+      "warnings": 1,
+      "byRule": {
+        "UF2002": 1
+      }
+    },
+    {
+      "path": "uf-formulas/reb.ulb",
+      "fileType": "ulb",
+      "bytes": 4164346,
+      "lines": 135185,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/reb.uxf",
+      "fileType": "uxf",
+      "bytes": 173439,
+      "lines": 5863,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/reb5.ucl",
+      "fileType": "ucl",
+      "bytes": 777792,
+      "lines": 22163,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/reb5.ufm",
+      "fileType": "ufm",
+      "bytes": 68293,
+      "lines": 2323,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/reb5.uxf",
+      "fileType": "uxf",
+      "bytes": 954,
+      "lines": 33,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/rhk.ufm",
+      "fileType": "ufm",
+      "bytes": 143,
+      "lines": 10,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/rjs.ucl",
+      "fileType": "ucl",
+      "bytes": 487,
+      "lines": 39,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/rjs.ufm",
+      "fileType": "ufm",
+      "bytes": 226545,
+      "lines": 15036,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/rjs.uxf",
+      "fileType": "uxf",
+      "bytes": 618,
+      "lines": 29,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/rkb.ucl",
+      "fileType": "ucl",
+      "bytes": 238245,
+      "lines": 5903,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/rkb.ufm",
+      "fileType": "ufm",
+      "bytes": 2245,
+      "lines": 109,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/rkb.ulb",
+      "fileType": "ulb",
+      "bytes": 110490,
+      "lines": 2157,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/rlw.ucl",
+      "fileType": "ucl",
+      "bytes": 7034,
+      "lines": 447,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/rlw.ufm",
+      "fileType": "ufm",
+      "bytes": 28426,
+      "lines": 1853,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/rm.ufm",
+      "fileType": "ufm",
+      "bytes": 284,
+      "lines": 23,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/rsp.ucl",
+      "fileType": "ucl",
+      "bytes": 15626,
+      "lines": 588,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/rsp.ufm",
+      "fileType": "ufm",
+      "bytes": 35347,
+      "lines": 1483,
+      "diagnostics": 66,
+      "errors": 0,
+      "warnings": 66,
+      "byRule": {
+        "UF2004": 66
+      }
+    },
+    {
+      "path": "uf-formulas/rsp.uxf",
+      "fileType": "uxf",
+      "bytes": 472,
+      "lines": 23,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/rvr.ufm",
+      "fileType": "ufm",
+      "bytes": 38162,
+      "lines": 1103,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/sam.ucl",
+      "fileType": "ucl",
+      "bytes": 116544,
+      "lines": 5717,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/sam.ufm",
+      "fileType": "ufm",
+      "bytes": 134259,
+      "lines": 6188,
+      "diagnostics": 1,
+      "errors": 0,
+      "warnings": 1,
+      "byRule": {
+        "UF2001": 1
+      }
+    },
+    {
+      "path": "uf-formulas/sam.ulb",
+      "fileType": "ulb",
+      "bytes": 16460,
+      "lines": 470,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/sam.uxf",
+      "fileType": "uxf",
+      "bytes": 444149,
+      "lines": 20338,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/scb.ufm",
+      "fileType": "ufm",
+      "bytes": 2671,
+      "lines": 91,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/sck.ucl",
+      "fileType": "ucl",
+      "bytes": 1204,
+      "lines": 36,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/sdc-apo.ucl",
+      "fileType": "ucl",
+      "bytes": 419756,
+      "lines": 14861,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/sdc.ucl",
+      "fileType": "ucl",
+      "bytes": 167833,
+      "lines": 6587,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/sdc.ufm",
+      "fileType": "ufm",
+      "bytes": 725869,
+      "lines": 27448,
+      "diagnostics": 33,
+      "errors": 0,
+      "warnings": 33,
+      "byRule": {
+        "UF2001": 33
+      }
+    },
+    {
+      "path": "uf-formulas/sdc.uxf",
+      "fileType": "uxf",
+      "bytes": 3980,
+      "lines": 204,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/sft-dizzy.ufm",
+      "fileType": "ufm",
+      "bytes": 3597,
+      "lines": 144,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/sft.ucl",
+      "fileType": "ucl",
+      "bytes": 30064,
+      "lines": 985,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/sft.ufm",
+      "fileType": "ufm",
+      "bytes": 10619,
+      "lines": 400,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/sft.uxf",
+      "fileType": "uxf",
+      "bytes": 1630,
+      "lines": 71,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/sg.ucl",
+      "fileType": "ucl",
+      "bytes": 4160,
+      "lines": 186,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/sg.ufm",
+      "fileType": "ufm",
+      "bytes": 44676,
+      "lines": 1624,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/sg.uxf",
+      "fileType": "uxf",
+      "bytes": 22064,
+      "lines": 1080,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/slf.ufm",
+      "fileType": "ufm",
+      "bytes": 5808,
+      "lines": 360,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/smp.ufm",
+      "fileType": "ufm",
+      "bytes": 7420,
+      "lines": 290,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/sp.ucl",
+      "fileType": "ucl",
+      "bytes": 37391,
+      "lines": 1734,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/sp.ufm",
+      "fileType": "ufm",
+      "bytes": 204936,
+      "lines": 10162,
+      "diagnostics": 39,
+      "errors": 3,
+      "warnings": 36,
+      "byRule": {
+        "UF1001": 2,
+        "UF1003": 1,
+        "UF2001": 36
+      }
+    },
+    {
+      "path": "uf-formulas/spr.ucl",
+      "fileType": "ucl",
+      "bytes": 17242,
+      "lines": 793,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/spr.ufm",
+      "fileType": "ufm",
+      "bytes": 253829,
+      "lines": 10290,
+      "diagnostics": 14,
+      "errors": 0,
+      "warnings": 14,
+      "byRule": {
+        "UF2001": 14
+      }
+    },
+    {
+      "path": "uf-formulas/sss.ufm",
+      "fileType": "ufm",
+      "bytes": 62773,
+      "lines": 4265,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/sss2.ufm",
+      "fileType": "ufm",
+      "bytes": 196352,
+      "lines": 10153,
+      "diagnostics": 2,
+      "errors": 2,
+      "warnings": 0,
+      "byRule": {
+        "UF1005": 2
+      }
+    },
+    {
+      "path": "uf-formulas/sts.ucl",
+      "fileType": "ucl",
+      "bytes": 768,
+      "lines": 28,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/svg.ufm",
+      "fileType": "ufm",
+      "bytes": 9268,
+      "lines": 399,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/sza.ufm",
+      "fileType": "ufm",
+      "bytes": 3662,
+      "lines": 174,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/tah.ucl",
+      "fileType": "ucl",
+      "bytes": 2,
+      "lines": 2,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/tah.ufm",
+      "fileType": "ufm",
+      "bytes": 10642,
+      "lines": 567,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/thm.ufm",
+      "fileType": "ufm",
+      "bytes": 13659,
+      "lines": 743,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/thm.ulb",
+      "fileType": "ulb",
+      "bytes": 92582,
+      "lines": 4204,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/tjs.ufm",
+      "fileType": "ufm",
+      "bytes": 1845,
+      "lines": 63,
+      "diagnostics": 1,
+      "errors": 1,
+      "warnings": 0,
+      "byRule": {
+        "UF1003": 1
+      }
+    },
+    {
+      "path": "uf-formulas/tma.ucl",
+      "fileType": "ucl",
+      "bytes": 3376552,
+      "lines": 96865,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/tma.ufm",
+      "fileType": "ufm",
+      "bytes": 950071,
+      "lines": 43656,
+      "diagnostics": 48,
+      "errors": 0,
+      "warnings": 48,
+      "byRule": {
+        "UF2001": 48
+      }
+    },
+    {
+      "path": "uf-formulas/tma.ulb",
+      "fileType": "ulb",
+      "bytes": 32608,
+      "lines": 1099,
+      "diagnostics": 2,
+      "errors": 2,
+      "warnings": 0,
+      "byRule": {
+        "UF1005": 2
+      }
+    },
+    {
+      "path": "uf-formulas/tma.uxf",
+      "fileType": "uxf",
+      "bytes": 12547,
+      "lines": 412,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/tma2.ucl",
+      "fileType": "ucl",
+      "bytes": 3376552,
+      "lines": 96865,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/tma2.ufm",
+      "fileType": "ufm",
+      "bytes": 3794678,
+      "lines": 136684,
+      "diagnostics": 36,
+      "errors": 0,
+      "warnings": 36,
+      "byRule": {
+        "UF2001": 36
+      }
+    },
+    {
+      "path": "uf-formulas/tma3.ufm",
+      "fileType": "ufm",
+      "bytes": 4508697,
+      "lines": 165660,
+      "diagnostics": 78,
+      "errors": 0,
+      "warnings": 78,
+      "byRule": {
+        "UF2001": 78
+      }
+    },
+    {
+      "path": "uf-formulas/tna.ucl",
+      "fileType": "ucl",
+      "bytes": 18746,
+      "lines": 682,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/tna.ufm",
+      "fileType": "ufm",
+      "bytes": 86840,
+      "lines": 3920,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/tvc.ucl",
+      "fileType": "ucl",
+      "bytes": 4425,
+      "lines": 168,
+      "diagnostics": 2,
+      "errors": 2,
+      "warnings": 0,
+      "byRule": {
+        "UF1001": 2
+      }
+    },
+    {
+      "path": "uf-formulas/tvc.ufm",
+      "fileType": "ufm",
+      "bytes": 323331,
+      "lines": 12353,
+      "diagnostics": 32,
+      "errors": 32,
+      "warnings": 0,
+      "byRule": {
+        "UF1001": 32
+      }
+    },
+    {
+      "path": "uf-formulas/tvc.uxf",
+      "fileType": "uxf",
+      "bytes": 1098,
+      "lines": 51,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/vb.ufm",
+      "fileType": "ufm",
+      "bytes": 158,
+      "lines": 13,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/vdb.ufm",
+      "fileType": "ufm",
+      "bytes": 187238,
+      "lines": 11044,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/wjd.ufm",
+      "fileType": "ufm",
+      "bytes": 8542,
+      "lines": 429,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/wk.ufm",
+      "fileType": "ufm",
+      "bytes": 266,
+      "lines": 11,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/wkc.ufm",
+      "fileType": "ufm",
+      "bytes": 104749,
+      "lines": 4195,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    },
+    {
+      "path": "uf-formulas/wla.ufm",
+      "fileType": "ufm",
+      "bytes": 4758,
+      "lines": 386,
+      "diagnostics": 0,
+      "errors": 0,
+      "warnings": 0,
+      "byRule": {}
+    }
+  ]
+}

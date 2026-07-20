@@ -195,6 +195,38 @@ void test("delimiter and language-block errors identify the expected match", () 
   assert.equal(blocks[0]?.range.start.character, 2);
 });
 
+void test("preamble text and punctuation in entry identifiers stay structural-noise free", () => {
+  const source = `
+  Notes about choices 1) and 2) are outside formula entries.
+
+KelleysEnglish][ {
+init:
+  z = #pixel
+}
+`;
+  assert.deepEqual(analyze(source, { fileType: "ufm" }).diagnostics, []);
+});
+
+void test("block keywords inside strings remain non-structural", () => {
+  const source = `Keyword-Text {
+init:
+  z = 0
+default:
+  heading
+    text = "Words such as if and until are plain text here."
+  endheading
+  param note
+    hint = "A recovered fragment mentioning if must not open a block."
+  endparam
+}
+`;
+  assert.ok(
+    !analyze(source, { fileType: "ufm" }).diagnostics.some(
+      ({ rule }) => rule === DIAGNOSTIC_RULES.blockMismatch,
+    ),
+  );
+});
+
 void test("compiler directives nest independently from normal control flow", () => {
   const valid = `Independent {
 init:
