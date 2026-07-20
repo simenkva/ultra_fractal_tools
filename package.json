@@ -1,23 +1,57 @@
 {
   "name": "ultra-fractal-language",
   "displayName": "Ultra Fractal Language Support",
-  "description": "Language support for Ultra Fractal formula source files.",
-  "version": "0.0.1",
+  "description": "Syntax highlighting, editor support, and structural diagnostics for Ultra Fractal formulas.",
+  "version": "0.1.0",
   "publisher": "ultra-fractal-tools",
-  "private": true,
-  "license": "UNLICENSED",
+  "license": "SEE LICENSE IN LICENSE",
+  "author": {
+    "name": "simenkva",
+    "url": "https://github.com/simenkva"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/simenkva/ultra_fractal_tools.git"
+  },
+  "homepage": "https://github.com/simenkva/ultra_fractal_tools#readme",
+  "bugs": {
+    "url": "https://github.com/simenkva/ultra_fractal_tools/issues"
+  },
+  "icon": "images/icon.png",
+  "galleryBanner": {
+    "color": "#171A2B",
+    "theme": "dark"
+  },
+  "preview": true,
+  "pricing": "Free",
   "engines": {
     "vscode": "^1.96.0"
   },
   "categories": [
-    "Programming Languages"
+    "Programming Languages",
+    "Linters",
+    "Snippets"
   ],
   "keywords": [
     "Ultra Fractal",
     "fractal",
     "formula",
-    "language"
+    "language",
+    "syntax highlighting",
+    "linter"
   ],
+  "extensionKind": [
+    "workspace"
+  ],
+  "capabilities": {
+    "untrustedWorkspaces": {
+      "supported": true
+    },
+    "virtualWorkspaces": {
+      "supported": false,
+      "description": "Import resolution and worker-backed analysis require local or remote file-system access."
+    }
+  },
   "main": "./out/extension.js",
   "activationEvents": [
     "onLanguage:ultra-fractal",
@@ -41,9 +75,17 @@
     "out/analyzer/source.js",
     "out/analyzer/types.js",
     "out/catalog/uf6.js",
+    "CHANGELOG.md",
+    "LICENSE",
+    "PRIVACY.md",
+    "SUPPORT.md",
     "docs/corpus-validation.md",
     "docs/diagnostics.md",
     "docs/performance.md",
+    "docs/releasing.md",
+    "images/diagnostics.png",
+    "images/highlighting.png",
+    "images/icon.png",
     "language-configuration.json",
     "snippets/ultra-fractal.code-snippets",
     "syntaxes/ultra-fractal.tmLanguage.json",
@@ -141,11 +183,12 @@
     }
   },
   "scripts": {
+    "vscode:prepublish": "npm run compile",
     "compile": "tsc -p .",
     "watch": "tsc -watch -p .",
     "check": "tsc -p . --noEmit",
     "lint": "eslint .",
-    "test:unit": "node --test out/test/analyzer.test.js out/test/catalog.test.js out/test/editor.test.js out/test/foundation.test.js out/test/grammar.test.js out/test/m4.test.js out/test/m5.test.js",
+    "test:unit": "node --test out/test/analyzer.test.js out/test/catalog.test.js out/test/editor.test.js out/test/foundation.test.js out/test/grammar.test.js out/test/m4.test.js out/test/m5.test.js out/test/m6.test.js",
     "corpus:scan": "npm run compile && node out/test/corpus-scan.js",
     "corpus:baseline": "npm run compile && node out/test/corpus-scan.js --write-baseline",
     "corpus:verify": "npm run compile && node out/test/corpus-scan.js --verify-baseline",
@@ -153,13 +196,16 @@
     "benchmark:grammar": "node out/test/grammar-benchmark.js",
     "test:integration": "node out/test/runTest.js",
     "test": "npm run compile && npm run lint && npm run test:unit",
-    "verify": "npm test && npm run test:integration"
+    "verify": "npm test && npm run test:integration",
+    "package:contents": "vsce ls --tree",
+    "package:vsix": "npm test && vsce package"
   },
   "devDependencies": {
     "@eslint/js": "^9.17.0",
     "@types/node": "^22.10.2",
     "@types/vscode": "^1.96.0",
     "@vscode/test-electron": "^2.4.1",
+    "@vscode/vsce": "3.9.2",
     "eslint": "^9.17.0",
     "typescript": "^5.7.2",
     "typescript-eslint": "^8.18.0",

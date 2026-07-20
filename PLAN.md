@@ -162,9 +162,10 @@ of truth for the supported language constructs.
   officially sourced, and case-insensitively unique where applicable.
 - Fixture tests verify all four supported kinds and validate the optional
   local-corpus manifest without requiring copyrighted inputs in a clean clone.
-- `.gitignore`, `.vscodeignore`, and the package `files` allowlist exclude build
-  output, dependencies, the formula corpus, the manual, and test runtimes from
-  source control or distributable packages as appropriate.
+- `.gitignore` and the package `files` allowlist exclude build output,
+  dependencies, the formula corpus, the manual, and test runtimes from source
+  control or distributable packages as appropriate. Current `vsce` versions
+  reject combining that allowlist with a `.vscodeignore` file.
 
 ## M1 - Syntax highlighting MVP
 
@@ -552,6 +553,8 @@ resource-safe on typical and multi-megabyte formula files.
 
 ## M6 - Release candidate and distribution
 
+**Status:** Complete (2026-07-20)
+
 ### Objective
 
 Create a polished extension package that can be installed and evaluated by
@@ -584,6 +587,40 @@ Ultra Fractal users.
   compiler validation.
 - Publishing credentials and publisher ownership remain external to the
   repository.
+
+### Completion evidence
+
+- Release metadata now targets version 0.1.0 with repository, issue tracker,
+  icon, banner, privacy, support, and preview-listing metadata.
+- `@vscode/vsce` 3.9.2 is pinned as a development dependency. Package scripts
+  compile, test, review contents, and build the VSIX.
+- The README includes feature and file-type coverage, VSIX installation,
+  screenshots, every setting, analyzer limits, privacy, and issue-reporting
+  guidance. `CHANGELOG.md`, `PRIVACY.md`, `SUPPORT.md`, and the two-registry
+  release checklist cover the remaining release documentation.
+- Simen Kvaal confirmed the MIT license. The VSIX manifest links its packaged
+  `LICENSE.txt`, icon, README, changelog, repository, support page, and release
+  identity.
+- `ultra-fractal-language-0.1.0.vsix` contains 35 files and is 192,663 bytes.
+  Its SHA-256 digest is
+  `ddbe6d59a449c618da72fd24847ac7bb7a7ab8f3129e4445b0ea1e6736ab9f73`.
+  Archive and `vsce` file-list audits confirm that it contains no corpus,
+  manual, TypeScript source, tests, source maps, dependencies, or credentials.
+- VS Code 1.129.1 installed that exact VSIX into an empty profile without
+  development tooling and listed
+  `ultra-fractal-tools.ultra-fractal-language@0.1.0`. Opening the grammar
+  fixture activated the installed extension through `onLanguage:ultra-fractal`,
+  displayed Dark+ highlighting, and ran worker diagnostics. Restarting the
+  profile with `ultraFractal.lint.enabled` set to `false` retained Ultra Fractal
+  language selection and highlighting while the Problems counts stayed at
+  zero and the analyzer performed no validation.
+- Fifty unit and package tests pass. The VS Code Extension Host suite passes all
+  language, editing, Outline, folding, snippet, diagnostic, import, caching,
+  cancellation, and lifecycle checks.
+- The final corpus verification processes 403 files, 3,543,322 lines, and
+  101,460,929 bytes without a baseline change. The analyzer's five large files
+  complete in 8.94 seconds against a 45-second budget; the three-file grammar
+  benchmark completes in 14.60 seconds against a 60-second wall budget.
 
 ## Post-1.0 candidates
 

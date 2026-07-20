@@ -178,17 +178,37 @@ export async function run(): Promise<void> {
 
   const singleComment = await showUntitled("alpha");
   singleComment.editor.selection = new vscode.Selection(0, 0, 0, 5);
+  await vscode.commands.executeCommand("workbench.action.focusActiveEditorGroup");
   await vscode.commands.executeCommand("editor.action.commentLine");
+  await waitFor(
+    () => /^\s*;/u.test(singleComment.document.lineAt(0).text),
+    "single-line comment toggle did not update the document",
+  );
   assert.match(singleComment.document.lineAt(0).text, /^\s*;/u);
   await vscode.commands.executeCommand("editor.action.commentLine");
+  await waitFor(
+    () => singleComment.document.getText() === "alpha",
+    "single-line uncomment did not update the document",
+  );
   assert.equal(singleComment.document.getText(), "alpha");
 
   const multipleComments = await showUntitled("alpha\n  beta");
   multipleComments.editor.selection = new vscode.Selection(0, 0, 1, 6);
+  await vscode.commands.executeCommand("workbench.action.focusActiveEditorGroup");
   await vscode.commands.executeCommand("editor.action.commentLine");
+  await waitFor(
+    () =>
+      /^\s*;/u.test(multipleComments.document.lineAt(0).text) &&
+      /^\s*;/u.test(multipleComments.document.lineAt(1).text),
+    "multi-line comment toggle did not update the document",
+  );
   assert.match(multipleComments.document.lineAt(0).text, /^\s*;/u);
   assert.match(multipleComments.document.lineAt(1).text, /^\s*;/u);
   await vscode.commands.executeCommand("editor.action.commentLine");
+  await waitFor(
+    () => multipleComments.document.getText() === "alpha\n  beta",
+    "multi-line uncomment did not update the document",
+  );
   assert.equal(multipleComments.document.getText(), "alpha\n  beta");
   console.log("PASS: single- and multi-line semicolon comment toggling works");
 
