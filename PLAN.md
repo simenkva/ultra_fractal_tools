@@ -601,9 +601,9 @@ Ultra Fractal users.
 - Simen Kvaal confirmed the MIT license. The VSIX manifest links its packaged
   `LICENSE.txt`, icon, README, changelog, repository, support page, and release
   identity.
-- `ultra-fractal-language-0.1.0.vsix` contains 35 files and is 192,663 bytes.
+- `ultra-fractal-language-0.1.0.vsix` contains 35 files and is 194,572 bytes.
   Its SHA-256 digest is
-  `ddbe6d59a449c618da72fd24847ac7bb7a7ab8f3129e4445b0ea1e6736ab9f73`.
+  `3012edfbd73a27c4ffddf0ca3f6dc42ef818894044f0540caf691155a1f7afb4`.
   Archive and `vsce` file-list audits confirm that it contains no corpus,
   manual, TypeScript source, tests, source maps, dependencies, or credentials.
 - VS Code 1.129.1 installed that exact VSIX into an empty profile without
