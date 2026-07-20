@@ -425,34 +425,84 @@ Expose the analyzer through responsive VS Code features.
 Prove that the extension handles the repository's real formula collection with
 acceptable compatibility and performance.
 
-### Deliverables
+M5 is divided into two independently reviewable sub-goals. M5a establishes
+correctness against the corpus before M5b fixes performance budgets around the
+stabilized behavior.
+
+### M5a - Corpus compatibility baseline
+
+#### Objective
+
+Turn the ignored local formula corpus into repeatable compatibility evidence,
+then review and correct false positives without redistributing source files.
+
+#### Deliverables
 
 - An automated full-corpus analysis command.
-- A reviewed baseline of diagnostics emitted for `uf-formulas/`.
+- A machine-readable, aggregate baseline of diagnostics emitted for
+  `uf-formulas/`, containing no formula source text.
 - Regression fixtures for every corrected false positive or crash.
-- Performance measurements for typical files and the largest files.
 - Tests covering mixed line endings and representative source encodings found
   in the corpus.
 
-### Quality gates
+#### Quality gates
 
 - No analyzer crashes or infinite loops across the supported corpus.
 - No unreviewed error-level diagnostics on known-good fixtures.
+- Every diagnostic class found in the corpus is reviewed, sampled, or explicitly
+  deferred with a reason.
+- The corpus and manual remain read-only reference inputs excluded from Git and
+  distributable packages.
+
+#### Acceptance criteria
+
+- The corpus command succeeds when the local corpus is available and reports a
+  clear skip when it is absent.
+- A complete scan produces a deterministic machine-readable summary grouped by
+  rule, severity, file type, and file.
+- All known false positives are fixed, downgraded with justification, or
+  explicitly documented.
+- Each analyzer correction has a focused, original regression fixture that can
+  run in a clean checkout without the reference corpus.
+
+### M5b - Performance and lifecycle hardening
+
+#### Objective
+
+Set enforceable performance budgets and keep validation responsive and
+resource-safe on typical and multi-megabyte formula files.
+
+#### Deliverables
+
+- Performance measurements for representative typical files and the largest
+  corpus files.
+- Recorded analysis, grammar-tokenization, and editor-lifecycle budgets with
+  regression checks where practical.
+- Cancellable large-file validation that avoids rescanning unchanged source.
+- Lifecycle coverage proving closed-document state and resources are released.
+- An end-to-end large-file scenario in a VS Code Extension Development Host.
+
+#### Quality gates
+
 - Normal editing remains responsive on typical source files.
 - Large-file analysis is cancellable and does not repeatedly rescan unchanged
   documents.
 - TextMate patterns avoid catastrophic backtracking on multi-megabyte files.
 - Memory used for closed documents is released.
 
-### Acceptance criteria
+#### Acceptance criteria
 
-- The corpus scan completes successfully and produces a machine-readable
-  summary.
-- All known false positives are either fixed, downgraded with justification, or
-  explicitly documented.
-- Performance budgets are recorded after the initial benchmark and enforced in
-  regression tests where practical.
-- At least one end-to-end test runs in a VS Code Extension Development Host.
+- Performance budgets are recorded with the test environment and enforced in
+  regression tests where stable enough to be meaningful.
+- Typical-file edits stay within the recorded responsiveness budget, and a
+  superseded large-file run cannot publish stale diagnostics.
+- Revalidation reuses unchanged results or demonstrably avoids redundant scans.
+- Closing a document cancels its work, removes diagnostics, and releases cached
+  state.
+- The grammar and analyzer complete on the largest corpus files without a
+  timeout, runaway memory use, or catastrophic backtracking.
+- The VS Code Extension Host scenario passes with the same cancellation and
+  cleanup behavior exercised by unit-level tests.
 
 ## M6 - Release candidate and distribution
 
