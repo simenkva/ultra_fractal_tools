@@ -45,7 +45,7 @@ leaves them alone. It also leaves ordinary `.txt` files alone.
 
 A VSIX is an installable VS Code extension file. To install one:
 
-1. Download `ultra-fractal-language-0.1.0.vsix` from the matching GitHub
+1. Download `ultra-fractal-language-0.2.0.vsix` from the matching GitHub
    release.
 2. Open the Extensions view in VS Code. Its icon looks like four small blocks.
 3. Open the **Views and More Actions** menu at the top of that view.
@@ -56,7 +56,7 @@ If you are comfortable with a terminal, the same installation takes one
 command:
 
 ```sh
-code --install-extension ultra-fractal-language-0.1.0.vsix
+code --install-extension ultra-fractal-language-0.2.0.vsix
 ```
 
 Marketplace and Open VSX links will be added after the first registry release.
@@ -253,6 +253,18 @@ npm run corpus:verify
 npm run benchmark:analyzer
 npm run benchmark:grammar
 ```
+
+The repository also contains a
+[Codex skill](https://github.com/simenkva/ultra_fractal_tools/tree/main/skills/develop-ultra-fractal-formulas)
+for developing UF6 formulas and a command-line form of the structural analyzer:
+
+```sh
+npm run analyze:formula -- path/to/formula.ufm
+```
+
+These are repository development tools and are not installed by the VSIX. The
+skill treats structural analysis, mathematical or numerical checks, native UF6
+compilation, and rendered-image evaluation as separate levels of evidence.
 
 The repository does not include that collection or the Ultra Fractal manual.
 Both stay outside Git and outside the extension package. The

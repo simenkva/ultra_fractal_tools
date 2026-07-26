@@ -54,7 +54,7 @@ void test("M6 release metadata identifies a versioned public extension", () => {
   const manifest = readJson<ReleaseManifest>("package.json");
   assert.equal(manifest.name, "ultra-fractal-language");
   assert.equal(manifest.displayName, "Ultra Fractal Language Support");
-  assert.equal(manifest.version, "0.1.0");
+  assert.equal(manifest.version, "0.2.0");
   assert.match(manifest.publisher, /^[a-z0-9][a-z0-9-]*$/u);
   assert.equal(manifest.preview, true);
   assert.equal(manifest.icon, "images/icon.png");

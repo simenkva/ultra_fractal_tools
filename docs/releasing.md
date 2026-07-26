@@ -8,7 +8,8 @@ material stay outside this repository.
 
 - Confirm the version in `package.json` and `CHANGELOG.md`.
 - Confirm that `publisher` matches a publisher or namespace you control in both
-  registries. Version 0.1.0 uses `ultra-fractal-tools` as the proposed value.
+  registries. Current releases use `ultra-fractal-tools`; keep this identity
+  unchanged after publication.
 - Confirm the repository, homepage, issue tracker, license, icon, banner, and
   privacy links.
 - Keep credentials out of source files, shell history, logs, VSIX files, and

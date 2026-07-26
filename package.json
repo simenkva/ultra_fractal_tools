@@ -2,7 +2,7 @@
   "name": "ultra-fractal-language",
   "displayName": "Ultra Fractal Language Support",
   "description": "Syntax highlighting, editor support, and structural diagnostics for Ultra Fractal formulas.",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "publisher": "ultra-fractal-tools",
   "license": "SEE LICENSE IN LICENSE",
   "author": {
