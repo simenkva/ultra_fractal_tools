@@ -11,6 +11,7 @@ did not add Ultra Fractal-specific colors.
 | `$IFDEF` | `keyword.control` | `#C586C0` | `#AF00DB` |
 | `float` | `storage.type` | `#569CD6` | `#0000FF` |
 | `@seed` | `variable.other.parameter` | `#9CDCFE` | `#001080` |
+| Ordinary variable | `variable.other.readwrite` | `#9CDCFE` | `#001080` |
 | `1.25e-3` | `constant.numeric` | `#B5CEA8` | `#098658` |
 | `isNaN` | `support.function` | `#DCDCAA` | `#795E26` |
 | Continued string text | `string.quoted.double` | `#CE9178` | `#A31515` |

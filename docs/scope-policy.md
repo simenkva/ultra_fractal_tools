@@ -17,6 +17,7 @@ and third-party VS Code themes work without extension-specific color rules.
 | Setting name | `support.type.property-name` |
 | `@parameter` | `variable.other.parameter` |
 | `#predefined` symbol | `variable.language.predefined` |
+| Ordinary variable reference | `variable.other.readwrite` |
 | Numeric and boolean constants | `constant.numeric`, `constant.language` |
 | Strings | `string.quoted.double` |
 | Semicolon comments | `comment.line.semicolon` |
@@ -44,3 +45,8 @@ customizable while retaining a standard parent scope.
 - User-defined class types cannot be identified reliably with lexical rules.
   M1 highlights declared class names and documented built-in classes; semantic
   resolution belongs to a later analyzer milestone.
+- A late ordinary-identifier fallback scopes variable reads, writes, and
+  switch mappings without overriding earlier rules for settings, types,
+  functions, keywords, `@parameters`, or `#predefined` symbols. TextMate
+  highlighting does not resolve whether two identical names refer to the same
+  symbol.

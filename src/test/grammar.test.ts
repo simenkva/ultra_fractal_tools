@@ -148,6 +148,48 @@ void test("all catalogued built-ins and directives tokenize case-insensitively",
   }
 });
 
+void test("ordinary identifiers receive a fallback variable scope", async () => {
+  const grammar = await loadUltraFractalGrammar();
+  const tokens = tokenizeForSnapshot(
+    grammar,
+    [
+      "Fallback {",
+      "loop:",
+      "  z = analyticPart + realBridge + #pixel",
+      "switch:",
+      '  type = "Companion"',
+      "  power = power",
+      "}",
+    ].join("\n"),
+  );
+
+  for (const identifier of ["z", "analyticPart", "realBridge"]) {
+    requireToken(
+      tokens,
+      identifier,
+      "variable.other.readwrite.ultra-fractal",
+    );
+  }
+
+  const switchPower = tokens.filter(
+    (token) =>
+      token.line === 6 &&
+      token.text === "power" &&
+      hasScope(token, "variable.other.readwrite.ultra-fractal"),
+  );
+  assert.equal(switchPower.length, 2);
+  requireToken(
+    tokens,
+    "type",
+    "support.type.property-name.setting.ultra-fractal",
+  );
+  requireToken(
+    tokens,
+    "#pixel",
+    "variable.language.predefined.ultra-fractal",
+  );
+});
+
 for (const extension of ["ufm", "ucl", "uxf", "ulb"]) {
   void test(`.${extension} token scopes match the committed snapshot`, async () => {
     const grammar = await loadUltraFractalGrammar();

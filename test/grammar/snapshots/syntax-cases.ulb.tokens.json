@@ -12,6 +12,7 @@
   { "line": 4, "text": "ExamplePlugin", "scope": "entity.name.function.ultra-fractal" },
   { "line": 4, "text": "(", "scope": "punctuation.section.group.begin.ultra-fractal" },
   { "line": 4, "text": ")", "scope": "punctuation.section.group.end.ultra-fractal" },
+  { "line": 5, "text": "helper", "scope": "variable.other.readwrite.ultra-fractal" },
   { "line": 5, "text": "=", "scope": "keyword.operator.ultra-fractal" },
   { "line": 5, "text": "new", "scope": "keyword.other.contextual.ultra-fractal" },
   { "line": 5, "text": "Object", "scope": "support.class.builtin.ultra-fractal" },

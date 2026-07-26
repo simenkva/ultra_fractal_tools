@@ -21,6 +21,7 @@
   { "line": 11, "text": "2.0", "scope": "constant.numeric.ultra-fractal" },
   { "line": 11, "text": ",", "scope": "punctuation.separator.sequence.ultra-fractal" },
   { "line": 11, "text": ")", "scope": "punctuation.definition.numeric.end.ultra-fractal" },
+  { "line": 12, "text": "z", "scope": "variable.other.readwrite.ultra-fractal" },
   { "line": 12, "text": "@seed", "scope": "variable.other.parameter.ultra-fractal" },
   { "line": 12, "text": "#pixel", "scope": "variable.language.predefined.ultra-fractal" },
   { "line": 12, "text": "2.5i", "scope": "constant.numeric.imaginary.ultra-fractal" },

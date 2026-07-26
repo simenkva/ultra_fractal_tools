@@ -14,6 +14,7 @@
   { "line": 3, "text": ",", "scope": "punctuation.separator.sequence.ultra-fractal" },
   { "line": 3, "text": ")", "scope": "punctuation.section.group.end.ultra-fractal" },
   { "line": 5, "text": "0", "scope": "constant.numeric.integer.ultra-fractal" },
+  { "line": 7, "text": "count", "scope": "variable.other.readwrite.ultra-fractal" },
   { "line": 9, "text": "#color", "scope": "variable.language.predefined.ultra-fractal" },
   { "line": 10, "text": "false", "scope": "constant.language.boolean.ultra-fractal" },
   { "line": 12, "text": "title", "scope": "support.type.property-name.setting.ultra-fractal" },
