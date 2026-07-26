@@ -18,10 +18,17 @@ try {
   const request = workerData as AnalysisWorkerRequest;
   const result = analyze(request.source, {
     fileType: request.fileType,
+    disabledRules: request.disabledRules,
     resolveImport: (importPath) =>
       resolveImportPath(importPath, request.roots).status,
   });
-  respond({ ok: true, diagnostics: result.diagnostics });
+  respond({
+    ok: true,
+    diagnostics: result.diagnostics,
+    definitions: result.program.definitions.map(
+      ({ kind, name, nameRange }) => ({ kind, name, nameRange }),
+    ),
+  });
 } catch (error: unknown) {
   respond({
     ok: false,

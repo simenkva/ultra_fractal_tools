@@ -1,0 +1,17 @@
+; Original synthetic forward-test fixture.
+ReviewMandelbrot {
+init:
+  z = 0
+loop:
+  z = sqr(z) + #pixel
+bailout:
+  |z| < @escapeLimit
+default:
+  title = "Review Mandelbrot"
+  float param escapeLimit
+    caption = "Squared escape limit"
+    default = 4.0
+    min = 0.01
+    max = 10000.0
+  endparam
+}

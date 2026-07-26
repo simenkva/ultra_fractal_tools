@@ -1,0 +1,11 @@
+; Original synthetic forward-test fixture.
+ReviewMandelbrot {
+init:
+  z = 0
+loop:
+  z = sqr(z) + #pixel
+bailout:
+  |z| < 4
+default:
+  title = "Review Mandelbrot"
+}

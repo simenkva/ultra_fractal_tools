@@ -1,0 +1,3 @@
+Synthetic UF6-style test input; this message was not captured from the UF6 compiler.
+
+Error in SyntheticCompilerFailure.ufm line 4: Unknown identifier 'mysteryValue'.

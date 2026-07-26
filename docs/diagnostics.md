@@ -25,6 +25,29 @@ configured search location was checked. Resolver failure is treated as
 Any rule can be suppressed through `disabledRules`. This is especially useful
 for the optional compatibility warning `UF2004`.
 
+## Command-line structural analysis
+
+After compiling the project, files can be checked without starting VS Code:
+
+```sh
+npm run analyze:formula -- path/to/formula.ufm
+npm run analyze:formula -- --format json path/to/coloring.ucl
+```
+
+The command derives the formula type from `.ufm`, `.ucl`, `.uxf`, or `.ulb`.
+For standard input, pass `--stdin` and an explicit `--file-type`. Text output
+uses one-based line and column locations. JSON output uses the analyzer's
+zero-based, exclusive ranges and explicitly records that the result is
+structural, not compiled or rendered. Each JSON file report also includes
+top-level entry and class identifiers with their source ranges. This supports
+project-level tooling without turning naming conventions into analyzer rules.
+
+Import checking is unchecked by default. Use `--imports exhaustive` only when
+the document directory and every `--search-path` together represent all
+locations that Ultra Fractal would search. This prevents an absent local file
+from being misreported when it could exist in an unconfigured installation
+folder.
+
 ## VS Code integration
 
 Edit validation is debounced and obsolete scheduled work is cancelled. The

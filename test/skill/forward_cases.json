@@ -1,0 +1,185 @@
+{
+  "schemaVersion": 2,
+  "target": "UF6",
+  "cases": [
+    {
+      "id": "create-parameterized-family",
+      "prompt": "Create a parameterized Mandelbrot-family formula with an adjustable power and escape limit.",
+      "fixture": "test/skill/forward/parameterized-power-family.ufm",
+      "success": [
+        "original minimal .ufm source",
+        "source-backed sections and symbols",
+        "useful parameter defaults and ranges",
+        "structural check reported separately from compilation and rendering"
+      ]
+    },
+    {
+      "id": "create-outside-coloring",
+      "prompt": "Create an outside-coloring algorithm that maps normalized iteration count to adjustable gradient bands.",
+      "fixture": "test/skill/forward/iteration-bands.ucl",
+      "success": [
+        "legal .ucl section lifecycle",
+        "mathematical mapping explained",
+        "parameter behavior stated",
+        "no claim of successful compilation or rendering"
+      ]
+    },
+    {
+      "id": "creative-exploration",
+      "prompt": "Use a circle-map-like recurrence to make an interesting fractal. Exact mathematical fidelity is not important.",
+      "success": [
+        "creative intent selected without demanding proof",
+        "numerical robustness and parameter behavior checked",
+        "intentional departures described as design choices",
+        "compilation and visual results remain separate"
+      ]
+    },
+    {
+      "id": "faithful-algorithm-validation",
+      "prompt": "Implement a Lyapunov-exponent fractal faithfully and verify stable, neutral, and chaotic regimes.",
+      "success": [
+        "mathematically faithful intent selected",
+        "independent numerical calculation used",
+        "known regimes and tolerances stated",
+        "algorithmic success not used as compilation proof"
+      ]
+    },
+    {
+      "id": "hybrid-design",
+      "prompt": "Use a verified exponent calculation but remap it artistically for coloring.",
+      "success": [
+        "mathematical kernel isolated",
+        "kernel and artistic remapping validated separately",
+        "creative transformation labeled",
+        "render requested for aesthetic evaluation"
+      ]
+    },
+    {
+      "id": "fast-path-small-formula",
+      "prompt": "Write a tiny self-contained .ufm using familiar UF6 constructs.",
+      "success": [
+        "fast path used",
+        "no unnecessary corpus search",
+        "smallest testable formula produced",
+        "final structural check and honest native status reported"
+      ]
+    },
+    {
+      "id": "add-parameter",
+      "prompt": "Add an escape-limit parameter without breaking this existing formula.",
+      "fixtureBefore": "test/skill/forward/add-parameter-before.ufm",
+      "fixtureAfter": "test/skill/forward/add-parameter-after.ufm",
+      "success": [
+        "entry identifier and title preserved",
+        "minimal behavioral change",
+        "complete file structurally revalidated",
+        "compiler and render comparison requested"
+      ]
+    },
+    {
+      "id": "prose-only-validation-cadence",
+      "prompt": "Improve only comments, captions, and parameter hints in this formula.",
+      "fixture": "test/skill/forward/add-parameter-after.ufm",
+      "success": [
+        "no structural run required after every prose edit",
+        "final structural check still run",
+        "executable behavior not claimed to change"
+      ]
+    },
+    {
+      "id": "executable-validation-cadence",
+      "prompt": "Change the loop recurrence and add a parameter block.",
+      "fixture": "test/skill/forward/add-parameter-after.ufm",
+      "success": [
+        "structural validation run after executable changes",
+        "complete file validated",
+        "algorithmic and native effects reported separately"
+      ]
+    },
+    {
+      "id": "related-file-bundle",
+      "prompt": "Review this .ufm and companion .ucl as one bundle.",
+      "fixtures": [
+        "test/skill/forward/parameterized-power-family.ufm",
+        "test/skill/forward/iteration-bands.ucl"
+      ],
+      "success": [
+        "all files analyzed together",
+        "file roles and cross-file conventions reviewed",
+        "UF and UFB identifiers kept distinct",
+        "cross-file duplicate identifiers not treated as UF6 errors"
+      ]
+    },
+    {
+      "id": "wrapper-help-discovery",
+      "prompt": "Show me every structural-analyzer wrapper and forwarded option.",
+      "success": [
+        "wrapper options shown",
+        "format, imports, and search-path options discoverable",
+        "structural-only limitation shown"
+      ]
+    },
+    {
+      "id": "diagnose-malformed",
+      "prompt": "Diagnose this deliberately malformed source.",
+      "fixture": "test/skill/forward/malformed.ufm",
+      "success": [
+        "stable UF identifiers and source locations",
+        "earliest structural cause prioritized",
+        "no unsupported semantic diagnosis"
+      ]
+    },
+    {
+      "id": "compiler-error",
+      "prompt": "Help me respond to this Ultra Fractal compiler message.",
+      "fixture": "test/skill/forward/compiler-error.txt",
+      "success": [
+        "message preserved exactly",
+        "not assigned an analyzer UF or UFB identifier",
+        "minimal fix proposed as unconfirmed",
+        "UF6 compiler rerun requested"
+      ]
+    },
+    {
+      "id": "manual-native-validation",
+      "prompt": "Tell me exactly how to compile and render-test this in my UF6 installation.",
+      "success": [
+        "platform-neutral manual checklist supplied",
+        "no GUI automation proposed",
+        "entry, environment, parameters, and render context recorded",
+        "compiler messages and screenshots accepted for the next pass"
+      ]
+    },
+    {
+      "id": "explain-legacy",
+      "prompt": "Explain this legacy formula without rewriting it.",
+      "fixture": "test/analyzer/legacy.ufm",
+      "success": [
+        "empty label explained as compatibility syntax",
+        "source left unchanged",
+        "corpus usage not treated as authority"
+      ]
+    },
+    {
+      "id": "structural-only-refusal",
+      "prompt": "The structural analyzer is clean and the render looks good. Tell me whether the formula compiles and the mathematics is correct.",
+      "fixture": "test/fixtures/minimal.ufm",
+      "success": [
+        "refuse to claim compilation or mathematical correctness",
+        "state that structural and visual evidence are separate",
+        "direct user to UF6 compiler and intent-appropriate algorithm tests"
+      ]
+    },
+    {
+      "id": "unknown-class",
+      "prompt": "Explain the MysteryPlugin class and its Apply member.",
+      "fixture": "test/skill/forward/unknown-class.ufm",
+      "success": [
+        "unknown class remains unresolved",
+        "no member behavior invented",
+        "import source or official documentation requested",
+        "missing import not claimed without exhaustive roots"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Ultra Fractal Formula Developer"
+  short_description: "Develop and debug Ultra Fractal 6 formulas"
+  default_prompt: "Use $develop-ultra-fractal-formulas to create, explain, debug, or review an Ultra Fractal 6 formula."

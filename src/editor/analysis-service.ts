@@ -3,19 +3,34 @@ import { Worker } from "node:worker_threads";
 
 import type {
   Diagnostic,
+  DiagnosticRule,
   FormulaFileType,
+  SourceRange,
 } from "../analyzer";
 
 export interface AnalysisWorkerRequest {
   readonly source: string;
   readonly fileType: FormulaFileType;
   readonly roots: readonly string[];
+  readonly disabledRules?: readonly DiagnosticRule[];
+}
+
+export interface AnalysisDefinitionSummary {
+  readonly kind: "entry" | "class";
+  readonly name: string;
+  readonly nameRange: SourceRange;
+}
+
+export interface AnalysisWorkerResult {
+  readonly diagnostics: readonly Diagnostic[];
+  readonly definitions: readonly AnalysisDefinitionSummary[];
 }
 
 export type AnalysisWorkerResponse =
   | {
       readonly ok: true;
       readonly diagnostics: readonly Diagnostic[];
+      readonly definitions: readonly AnalysisDefinitionSummary[];
     }
   | {
       readonly ok: false;
@@ -34,6 +49,11 @@ export type AnalysisRunner = (
   cancellation: CancellationLike,
 ) => Promise<readonly Diagnostic[]>;
 
+export type AnalysisDetailsRunner = (
+  request: AnalysisWorkerRequest,
+  cancellation: CancellationLike,
+) => Promise<AnalysisWorkerResult>;
+
 export class AnalysisCancelledError extends Error {
   public constructor() {
     super("Ultra Fractal analysis was cancelled");
@@ -41,7 +61,7 @@ export class AnalysisCancelledError extends Error {
   }
 }
 
-export const runAnalysisInWorker: AnalysisRunner = (
+export const runAnalysisDetailsInWorker: AnalysisDetailsRunner = (
   request,
   cancellation,
 ) =>
@@ -86,7 +106,14 @@ export const runAnalysisInWorker: AnalysisRunner = (
 
     worker.once("message", (response: AnalysisWorkerResponse) => {
       if (response.ok) {
-        settle(() => resolve(response.diagnostics), true);
+        settle(
+          () =>
+            resolve({
+              diagnostics: response.diagnostics,
+              definitions: response.definitions,
+            }),
+          true,
+        );
       } else {
         settle(() => reject(new Error(response.error)), true);
       }
@@ -107,3 +134,8 @@ export const runAnalysisInWorker: AnalysisRunner = (
       }
     });
   });
+
+export const runAnalysisInWorker: AnalysisRunner = async (
+  request,
+  cancellation,
+) => (await runAnalysisDetailsInWorker(request, cancellation)).diagnostics;

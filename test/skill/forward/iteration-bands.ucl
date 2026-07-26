@@ -1,0 +1,13 @@
+; Original synthetic forward-test fixture.
+IterationBands(OUTSIDE) {
+final:
+  #index = @bands * #numiter / #maxiter
+default:
+  title = "Iteration Bands"
+  float param bands
+    caption = "Bands"
+    default = 8.0
+    min = 1.0
+    max = 100.0
+  endparam
+}

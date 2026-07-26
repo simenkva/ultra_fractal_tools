@@ -1,0 +1,8 @@
+; Original synthetic forward-test fixture.
+MalformedForwardTest {
+init:
+  if true
+    z = (#pixel
+default:
+  title = "Unfinished
+}

@@ -1,0 +1,21 @@
+; Original synthetic forward-test fixture.
+ParameterizedPowerFamily {
+init:
+  z = 0
+loop:
+  z = z ^ @power + #pixel
+bailout:
+  |z| < @escapeLimit
+default:
+  title = "Parameterized Power Family"
+  complex param power
+    caption = "Power"
+    default = (2, 0)
+  endparam
+  float param escapeLimit
+    caption = "Squared escape limit"
+    default = 4.0
+    min = 0.01
+    max = 10000.0
+  endparam
+}
