@@ -61,6 +61,65 @@ code --install-extension ultra-fractal-language-0.2.0.vsix
 
 Marketplace and Open VSX links will be added after the first registry release.
 
+## Installing the Codex skill
+
+This repository also contains
+`develop-ultra-fractal-formulas`, a Codex skill for creating, explaining,
+debugging, modernizing, and reviewing Ultra Fractal 6 source. It works with
+`.ufm`, `.ucl`, `.uxf`, and `.ulb` files and can use this repository's
+structural analyzer.
+
+The Codex skill is separate from the VS Code extension.
+It is not installed by the VSIX. Install it from a repository checkout so its
+helper scripts can find the analyzer. You need Git, Node.js 20 or newer, npm,
+and Codex.
+
+### macOS or Linux
+
+```sh
+git clone https://github.com/simenkva/ultra_fractal_tools.git
+cd ultra_fractal_tools
+npm ci
+mkdir -p "${CODEX_HOME:-$HOME/.codex}/skills"
+ln -s "$PWD/skills/develop-ultra-fractal-formulas" \
+  "${CODEX_HOME:-$HOME/.codex}/skills/develop-ultra-fractal-formulas"
+```
+
+### Windows PowerShell
+
+```powershell
+git clone https://github.com/simenkva/ultra_fractal_tools.git
+Set-Location ultra_fractal_tools
+npm ci
+$skillsRoot = if ($env:CODEX_HOME) {
+    Join-Path $env:CODEX_HOME "skills"
+} else {
+    Join-Path $env:USERPROFILE ".codex\skills"
+}
+New-Item -ItemType Directory -Force $skillsRoot | Out-Null
+New-Item -ItemType Junction `
+    -Path (Join-Path $skillsRoot "develop-ultra-fractal-formulas") `
+    -Target (Join-Path (Get-Location) "skills\develop-ultra-fractal-formulas")
+```
+
+Restart Codex after installing the skill. You can then ask for Ultra Fractal
+work normally or invoke it explicitly:
+
+```text
+Use $develop-ultra-fractal-formulas to review this UF6 formula.
+```
+
+The skill keeps structural analysis, mathematical or numerical validation,
+native UF6 compilation, and rendered-image evaluation separate. It does not
+claim that structurally valid source has compiled or produced the intended
+image.
+
+The optional `uf6-manual.pdf` and `uf-formulas/` reference collection are not
+included in this repository or the skill. If you have lawful local copies,
+place them in the repository root or configure the paths described in the
+[skill instructions](https://github.com/simenkva/ultra_fractal_tools/blob/main/skills/develop-ultra-fractal-formulas/SKILL.md).
+They remain ignored by Git and excluded from the VSIX.
+
 ## Reading and moving around a formula file
 
 ### Colorization
@@ -254,17 +313,15 @@ npm run benchmark:analyzer
 npm run benchmark:grammar
 ```
 
-The repository also contains a
-[Codex skill](https://github.com/simenkva/ultra_fractal_tools/tree/main/skills/develop-ultra-fractal-formulas)
-for developing UF6 formulas and a command-line form of the structural analyzer:
+The structural analyzer used by the
+[Codex skill](#installing-the-codex-skill) is also available directly:
 
 ```sh
 npm run analyze:formula -- path/to/formula.ufm
 ```
 
-These are repository development tools and are not installed by the VSIX. The
-skill treats structural analysis, mathematical or numerical checks, native UF6
-compilation, and rendered-image evaluation as separate levels of evidence.
+The analyzer and skill are repository development tools and are not installed
+by the VSIX.
 
 The repository does not include that collection or the Ultra Fractal manual.
 Both stay outside Git and outside the extension package. The
