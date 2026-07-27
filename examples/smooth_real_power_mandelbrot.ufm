@@ -1,0 +1,169 @@
+SmoothRealPowerMandelbrot {
+;
+; A smooth real-map interpolation of the integer-power Mandelbrot family.
+;
+; Let n = floor(p), t = p - n, and let s(t) be a C-infinity step from
+; zero to one. The iterated map before adding c is
+;
+;   F_p(z) = (1-s) z^n + s z^(n+1)
+;            + a s(1-s) conjugate(z^n).
+;
+; At every integer p, s = 0 and F_p(z) = z^p exactly. Between integers,
+; a nonzero a makes this a non-analytic but smooth map from R^2 to R^2.
+;
+global:
+  int lowerPower = floor(@power)
+  float fraction = @power - lowerPower
+  float blend = 0.0
+
+  ; This normalized bump-function blend is flat at both endpoints.
+  if fraction > 0.0
+    float leftWeight = exp(-1.0 / fraction)
+    float rightWeight = exp(-1.0 / (1.0 - fraction))
+    blend = leftWeight / (leftWeight + rightWeight)
+  endif
+
+init:
+  z = 0
+
+loop:
+  complex lowerMonomial = z ^ lowerPower
+
+  if blend > 0.0
+    complex upperMonomial = lowerMonomial * z
+    complex analyticPart = (1.0 - blend) * lowerMonomial \
+                           + blend * upperMonomial
+    complex realBridge = @bridgeStrength * blend * (1.0 - blend) \
+                         * conj(lowerMonomial)
+    z = analyticPart + realBridge + #pixel
+  else
+    ; This branch preserves the ordinary integer-power map directly.
+    z = lowerMonomial + #pixel
+  endif
+
+bailout:
+  |z| < @bailout
+
+default:
+  title = "Smooth Real-Power Mandelbrot"
+
+  float param power
+    caption = "Power p"
+    default = 2.0
+    min = 2.0
+    hint = "Interpolates smoothly between adjacent integer-power \
+            Mandelbrot maps. Integer values reproduce z^p + c exactly."
+  endparam
+
+  float param bridgeStrength
+    caption = "Non-analytic bridge"
+    default = 1.0
+    min = 0.0
+    max = 2.0
+    hint = "Strength of the conjugate term between integer powers. \
+            Zero gives a holomorphic polynomial blend; nonzero values \
+            give a smooth, non-analytic real map. This has no effect \
+            when p is an integer."
+  endparam
+
+  float param bailout
+    caption = "Bailout value"
+    default = 256.0
+    min = 4.0
+    hint = "Iteration continues while |z|, the squared modulus, is below \
+            this value."
+    exponential = true
+  endparam
+
+switch:
+  type = "SmoothRealPowerJulia"
+  seed = #pixel
+  power = power
+  bridgeStrength = bridgeStrength
+  bailout = bailout
+}
+
+
+SmoothRealPowerJulia {
+;
+; Julia-type companion to SmoothRealPowerMandelbrot.
+; It uses the same smooth real map F_p, but iterates F_p(z) + seed
+; from z = #pixel.
+;
+global:
+  int lowerPower = floor(@power)
+  float fraction = @power - lowerPower
+  float blend = 0.0
+
+  ; This normalized bump-function blend is flat at both endpoints.
+  if fraction > 0.0
+    float leftWeight = exp(-1.0 / fraction)
+    float rightWeight = exp(-1.0 / (1.0 - fraction))
+    blend = leftWeight / (leftWeight + rightWeight)
+  endif
+
+init:
+  z = #pixel
+
+loop:
+  complex lowerMonomial = z ^ lowerPower
+
+  if blend > 0.0
+    complex upperMonomial = lowerMonomial * z
+    complex analyticPart = (1.0 - blend) * lowerMonomial \
+                           + blend * upperMonomial
+    complex realBridge = @bridgeStrength * blend * (1.0 - blend) \
+                         * conj(lowerMonomial)
+    z = analyticPart + realBridge + @seed
+  else
+    ; This branch preserves the ordinary integer-power map directly.
+    z = lowerMonomial + @seed
+  endif
+
+bailout:
+  |z| < @bailout
+
+default:
+  title = "Smooth Real-Power Julia"
+
+  complex param seed
+    caption = "Julia seed"
+    default = (-0.8, 0.156)
+    hint = "Constant c added on every iteration. Switching from the \
+            Mandelbrot entry sets this to the point selected there."
+  endparam
+
+  float param power
+    caption = "Power p"
+    default = 2.0
+    min = 2.0
+    hint = "Interpolates smoothly between adjacent integer-power Julia \
+            maps. Integer values reproduce z^p + c exactly."
+  endparam
+
+  float param bridgeStrength
+    caption = "Non-analytic bridge"
+    default = 1.0
+    min = 0.0
+    max = 2.0
+    hint = "Strength of the conjugate term between integer powers. \
+            Zero gives a holomorphic polynomial blend; nonzero values \
+            give a smooth, non-analytic real map. This has no effect \
+            when p is an integer."
+  endparam
+
+  float param bailout
+    caption = "Bailout value"
+    default = 256.0
+    min = 4.0
+    hint = "Iteration continues while |z|, the squared modulus, is below \
+            this value."
+    exponential = true
+  endparam
+
+switch:
+  type = "SmoothRealPowerMandelbrot"
+  power = power
+  bridgeStrength = bridgeStrength
+  bailout = bailout
+}

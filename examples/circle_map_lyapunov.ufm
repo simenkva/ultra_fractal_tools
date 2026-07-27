@@ -1,0 +1,98 @@
+CircleMapLyapunov {
+;
+; Finite-time Lyapunov exponent for the standard sine-circle map
+;
+;   theta(n+1) = theta(n) + Omega
+;                - K/(2*pi) sin(2*pi*theta(n))  (mod 1)
+;
+; The parameter plane is read directly from the pixel:
+;
+;   Omega = real(#pixel)
+;   K     = imag(#pixel)
+;
+; The derivative is 1 - K cos(2*pi*theta), so after the requested
+; transient the formula accumulates
+;
+;   lambda_N = (1/N) sum log(abs(1 - K cos(2*pi*theta(n)))).
+;
+; The final state is z = theta + i*lambda_N. Use the companion
+; "Circle Map Lyapunov" direct coloring from circle_map_lyapunov.ucl
+; as the Inside coloring algorithm to display the signed exponent.
+;
+; References:
+;   Jensen, Bak, and Bohr, Phys. Rev. A 30, 1960 (1984).
+;   Bastos de Figueiredo and Malta, Int. J. Bifurcation Chaos 8,
+;   281-293 (1998).
+;
+init:
+  float omega = real(#pixel)
+  float coupling = imag(#pixel)
+  float phase = @initialPhase - floor(@initialPhase)
+  float lyapunovSum = 0.0
+  float lyapunov = 0.0
+  int iteration = 0
+  int sampleCount = 0
+  z = phase
+
+loop:
+  float angle = 2.0 * #pi * phase
+  float slopeMagnitude = abs(1.0 - coupling * cos(angle))
+
+  ; Ultra Fractal defines log(0) as zero. Clamp the magnitude so an
+  ; exactly critical iterate contributes a large negative value instead.
+  if slopeMagnitude < @derivativeFloor
+    slopeMagnitude = @derivativeFloor
+  endif
+
+  if iteration >= @transientIterations
+    lyapunovSum = lyapunovSum + log(slopeMagnitude)
+    sampleCount = sampleCount + 1
+    lyapunov = lyapunovSum / sampleCount
+  endif
+
+  phase = phase + omega - coupling / (2.0 * #pi) * sin(angle)
+  phase = phase - floor(phase)
+  z = phase + (0.0, 1.0) * lyapunov
+  iteration = iteration + 1
+
+bailout:
+  true
+
+default:
+  title = "Circle Map Lyapunov Parameter Plane"
+  center = (0.5, 1.5)
+  magn = 1.0
+  maxiter = 2000
+  periodicity = 0
+
+  float param initialPhase
+    caption = "Initial phase"
+    default = 0.3141592653589793
+    min = 0.0
+    max = 1.0
+    hint = "Starting value theta(0), reduced modulo one. The generic \
+            default avoids common symmetry-fixed orbits. For K > 1, \
+            coexistence of attractors can make the measured exponent \
+            depend on this value."
+  endparam
+
+  int param transientIterations
+    caption = "Discarded transient"
+    default = 500
+    min = 0
+    hint = "Number of initial iterations omitted from the Lyapunov \
+            average. Keep this below Maximum Iterations; the remaining \
+            iterations form the finite-time estimate."
+  endparam
+
+  float param derivativeFloor
+    caption = "Derivative floor"
+    default = 1.0e-30
+    min = 1.0e-300
+    max = 1.0e-3
+    exponential = true
+    hint = "Small positive replacement for an exactly zero derivative. \
+            Lower values more closely approximate the resulting \
+            negative-infinite logarithm."
+  endparam
+}

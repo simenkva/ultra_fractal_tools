@@ -1,0 +1,65 @@
+CircleMapLyapunovDirect(INSIDE) {
+;
+; Direct coloring for CircleMapLyapunov in circle_map_lyapunov.ufm.
+; The fractal formula stores its finite-time Lyapunov exponent in
+; imag(#z): negative is attracting, near zero is neutral or
+; quasiperiodic, and positive is locally chaotic.
+;
+final:
+  float exponent = imag(#z)
+  float adjustedMagnitude = abs(exponent) - @zeroTolerance
+
+  if adjustedMagnitude < 0.0
+    adjustedMagnitude = 0.0
+  endif
+
+  float strength = 1.0 - exp(-@contrast * adjustedMagnitude)
+
+  if exponent > @zeroTolerance
+    #color = blend(@neutralColor, @chaoticColor, strength)
+  elseif exponent < -@zeroTolerance
+    #color = blend(@neutralColor, @stableColor, strength)
+  else
+    #color = @neutralColor
+  endif
+
+default:
+  title = "Circle Map Lyapunov"
+
+  float param zeroTolerance
+    caption = "Zero tolerance"
+    default = 0.002
+    min = 0.0
+    max = 0.1
+    hint = "Finite-time exponents with absolute value at or below this \
+            threshold use the neutral color."
+  endparam
+
+  float param contrast
+    caption = "Exponent contrast"
+    default = 6.0
+    min = 0.01
+    max = 100.0
+    exponential = true
+    hint = "Controls how quickly color strength increases with the \
+            absolute Lyapunov exponent."
+  endparam
+
+  color param stableColor
+    caption = "Stable color"
+    default = rgb(0.05, 0.22, 0.95)
+    hint = "Color approached by negative Lyapunov exponents."
+  endparam
+
+  color param neutralColor
+    caption = "Neutral color"
+    default = rgb(0.92, 0.92, 0.92)
+    hint = "Color for exponents close to zero."
+  endparam
+
+  color param chaoticColor
+    caption = "Chaotic color"
+    default = rgb(0.95, 0.12, 0.04)
+    hint = "Color approached by positive Lyapunov exponents."
+  endparam
+}
