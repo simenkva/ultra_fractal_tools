@@ -9,7 +9,21 @@ It adds color, folding, an Outline, a few writing shortcuts, and checks for
 common structural mistakes. You still use Ultra Fractal to compile and run the
 formula.
 
+A Codex skill is also included.
+
 ![An Ultra Fractal formula shown with the VS Code Dark+ colors](images/highlighting.png)
+
+## AI-assisted development
+
+This project was developed with substantial assistance from OpenAI Codex,
+primarily using GPT-5.6 Sol. The maintainer directs development and decides
+what is released, but has not independently verified every implementation
+detail. Automated tests and release checks reduce risk but cannot guarantee
+correctness.
+
+The project is distributed under the [MIT License](LICENSE). As stated in the
+license, the software is provided “as is,” without warranty, and subject to
+the license’s limitation of liability.
 
 ## Start here
 
