@@ -98,7 +98,7 @@ $$
 \theta_{n+1}=\theta_n+\Omega-\frac{K}{2\pi}\sin(2\pi\theta_n)\pmod 1
 $$
 
-with the parameter-plane coordinates $\Omega=\mathrm{Re}(\#pixel)$ and $K=\mathrm{Im}(\#pixel)$. It calculates
+with the parameter-plane coordinate $\Omega$ taken from `real(#pixel)` and $K$ from `imag(#pixel)`. It calculates
 
 $$
 \lambda_N=\frac1N\sum_n\log\left|1-K\cos(2\pi\theta_n)\right|
@@ -157,7 +157,6 @@ Codex wrote one Markdown file that I was not entirely happy with. I wanted two f
 >
 
 The resulting files are [`smooth-real-power-mandelbrot-blog.md`](smooth-real-power-mandelbrot-blog.md) and [`circle-map-lyapunov-blog.md`](circle-map-lyapunov-blog.md). The images were created by me in Ultra Fractal using the Codex-generated formulas, and inserted by hand.
-
 
 
 
