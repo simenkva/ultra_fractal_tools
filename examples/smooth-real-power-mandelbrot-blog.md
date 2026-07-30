@@ -32,11 +32,10 @@ Thus $n$ is the integer below $p$, while $t$ runs from zero to one. The formula 
 $$
 s(t)=
 \frac{\exp(-1/t)}
-     {\exp(-1/t)+\exp[-1/(1-t)]},
-\qquad 0<t<1.
+     {\exp(-1/t)+\exp[-1/(1-t)]}.
 $$
 
-The endpoint values are $s(0)=0$ and $s(1)=1$. This is a *flat* step: all its derivatives settle to zero at either end. That matters because `floor(p)` changes abruptly at each integer. A plain linear blend would still hit the correct maps, but its dependence on $p$ would have a kink there.
+This expression applies for $t\in(0,1)$. The endpoint values are $s(0)=0$ and $s(1)=1$. This is a *flat* step: all its derivatives settle to zero at either end. That matters because `floor(p)` changes abruptly at each integer. A plain linear blend would still hit the correct maps, but its dependence on $p$ would have a kink there.
 
 The map used before adding $c$ is
 
