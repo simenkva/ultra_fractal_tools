@@ -24,8 +24,8 @@ $$
 The phase $\theta$ is reduced modulo one after every step. $\Omega$ is the bare rotation number, and $K$ controls the nonlinear sine term. In the UF parameter plane,
 
 $$
-\Omega=\operatorname{Re}(\#pixel),\qquad
-K=\operatorname{Im}(\#pixel).
+\Omega=\mathrm{Re}(\#pixel),\qquad
+K=\mathrm{Im}(\#pixel).
 $$
 
 Some books and papers put a plus sign in front of the sine term. A half-turn of the phase relates the two sign conventions, so this does not define a substantially different family.

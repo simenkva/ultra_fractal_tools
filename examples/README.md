@@ -98,7 +98,7 @@ $$
 \theta_{n+1}=\theta_n+\Omega-\frac{K}{2\pi}\sin(2\pi\theta_n)\pmod 1
 $$
 
-with the parameter-plane coordinates $\Omega=\operatorname{Re}(\#pixel)$ and $K=\operatorname{Im}(\#pixel)$. It calculates
+with the parameter-plane coordinates $\Omega=\mathrm{Re}(\#pixel)$ and $K=\mathrm{Im}(\#pixel)$. It calculates
 
 $$
 \lambda_N=\frac1N\sum_n\log\left|1-K\cos(2\pi\theta_n)\right|
