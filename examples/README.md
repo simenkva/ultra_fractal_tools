@@ -9,20 +9,20 @@ In this folder, the results of a simple example session in VSCode using the Deve
 
 ## Response:
 
-Created [[smooth_real_power_mandelbrot.ufm]]
+Created [`smooth_real_power_mandelbrot.ufm`](smooth_real_power_mandelbrot.ufm)
 
 It implements
 
-\[
+$$
 F_p(z)=(1-s)z^n+s z^{n+1}
 +a\,s(1-s)\overline{z^n},
 \qquad n=\lfloor p\rfloor,
-\]
+$$
 
-using a \(C^\infty\), endpoint-flat blend \(s\). Thus:
+using a $C^\infty$, endpoint-flat blend $s$. Thus:
 
-- Integer \(p\): exactly \(z\mapsto z^p+c\).
-- Noninteger \(p\): a smooth real map, non-holomorphic when “Non-analytic bridge” is nonzero.
+- Integer $p$: exactly $z\mapsto z^p+c$.
+- Noninteger $p$: a smooth real map, non-holomorphic when “Non-analytic bridge” is nonzero.
 - Setting the bridge to zero gives the purely holomorphic polynomial interpolation.
 - Image-wide interpolation values are calculated once in `global:`, following [UF6 global-section semantics](https://www.ultrafractal.com/help/writing/formulas/globalsections.html).
 
@@ -32,16 +32,16 @@ UF6 compilation: not tested
 Render check: not supplied  
 Evidence used: official, repository-verified, design inference  
 Remaining uncertainties: UF6 compiler acceptance and rendered behavior still require testing in Ultra Fractal 6.  
-Next test: reload the file in UF6; render at \(p=2\), \(2.5\), and \(3\), then animate through \(p=3\) to verify visual smoothness.
+Next test: reload the file in UF6; render at $p=2$, $2.5$, and $3$, then animate through $p=3$ to verify visual smoothness.
 
 
 
 
 ## Comment
 
-This resulted in the file [[smooth_real_power_mandelbrot.ufm]], containing a formula `SmoothRealPowerMandelbrot`. Inspection shows that the Ultra Fractal formula code is excellently written. Here is an example render, with the power $p=2.5$:
+This resulted in the file [`smooth_real_power_mandelbrot.ufm`](smooth_real_power_mandelbrot.ufm), containing a formula `SmoothRealPowerMandelbrot`. Inspection shows that the Ultra Fractal formula code is excellently written. Here is an example render, with the power $p=2.5$:
 
-![[smooth_real_power_mandelbrot.png]]
+![Smooth real-power Mandelbrot set at p = 2.5](smooth_real_power_mandelbrot.png)
 
 
 
@@ -55,7 +55,7 @@ This resulted in the file [[smooth_real_power_mandelbrot.ufm]], containing a for
 
 ## Response
 
-Updated [[smooth_real_power_mandelbrot.ufm]].
+Updated [`smooth_real_power_mandelbrot.ufm`](smooth_real_power_mandelbrot.ufm).
 
 Added:
 
@@ -75,11 +75,11 @@ Next test: reload the file, enter Switch Mode on the Mandelbrot entry, select a 
 ## Comment
 
 
-This resulted in the file [[smooth_real_power_mandelbrot.ufm]] being updated with an additional formula, `SmoothRealPowerJulia`. As I wanted, the formulas support switching.
+This resulted in the file [`smooth_real_power_mandelbrot.ufm`](smooth_real_power_mandelbrot.ufm) being updated with an additional formula, `SmoothRealPowerJulia`. As I wanted, the formulas support switching.
 
 Here is a Julia set corresponding to $c = (-0.3857142857, 0.9857142857)$, just on the border of the filled and unfilled part of the Mandelbrot set above:
 
-![[smooth_real_power_julia.png]]
+![Smooth real-power Julia set](smooth_real_power_julia.png)
 
 ## Prompt 3
 
@@ -89,27 +89,27 @@ Here is a Julia set corresponding to $c = (-0.3857142857, 0.9857142857)$, just o
 
 Implemented the circle-map Lyapunov parameter plane with companion signed coloring:
 
-- [[circle_map_lyapunov.ufm]]
-- [[circle_map_lyapunov.ucl]]
+- [`circle_map_lyapunov.ufm`](circle_map_lyapunov.ufm)
+- [`circle_map_lyapunov.ucl`](circle_map_lyapunov.ucl)
 
 The formula uses
 
-\[
+$$
 \theta_{n+1}=\theta_n+\Omega-\frac{K}{2\pi}\sin(2\pi\theta_n)\pmod 1
-\]
+$$
 
-with the parameter-plane coordinates \(\Omega=\operatorname{Re}(\#pixel)\) and \(K=\operatorname{Im}(\#pixel)\). It calculates
+with the parameter-plane coordinates $\Omega=\operatorname{Re}(\#pixel)$ and $K=\operatorname{Im}(\#pixel)$. It calculates
 
-\[
+$$
 \lambda_N=\frac1N\sum_n\log\left|1-K\cos(2\pi\theta_n)\right|
-\]
+$$
 
 after discarding a configurable transient.
 
 Research basis:
 
-- For \(K<1\), the map is monotone and invertible; \(K=1\) is critical; for \(K>1\), it becomes noninvertible and chaotic regions can occur.
-- Typical attracting periodic orbits have \(\lambda<0\), quasiperiodic motion has \(\lambda\approx0\), and chaotic trajectories have \(\lambda>0\).
+- For $K<1$, the map is monotone and invertible; $K=1$ is critical; for $K>1$, it becomes noninvertible and chaotic regions can occur.
+- Typical attracting periodic orbits have $\lambda<0$, quasiperiodic motion has $\lambda\approx0$, and chaotic trajectories have $\lambda>0$.
 - Multistability can make the result depend on the initial phase, so that is exposed as a parameter.
 
 These properties follow the classic circle-map analysis by [Jensen, Bak, and Bohr](https://doi.org/10.1103/PhysRevA.30.1960), the two-parameter Lyapunov diagrams of [Bastos de Figueiredo and Malta](https://doi.org/10.1142/S0218127498000176), and the Lyapunov formulation discussed by [Mugnaine et al.](https://doi.org/10.1103/PhysRevE.106.034203).
@@ -120,7 +120,7 @@ The coloring uses blue for negative exponents, light gray near zero, and red for
 |---|---:|---|
 | Initial phase | 0.314159… | Selects the sampled orbit or basin |
 | Discarded transient | 500 | Removes initial convergence |
-| Derivative floor | \(10^{-30}\) | Handles an exactly zero derivative |
+| Derivative floor | $10^{-30}$ | Handles an exactly zero derivative |
 | Zero tolerance | 0.002 | Neutral finite-time band |
 | Exponent contrast | 6 | Controls color saturation |
 
@@ -136,14 +136,14 @@ Evidence used: Primary circle-map papers, official UF6 formula/direct-coloring d
 
 Remaining uncertainties: Native UF6 compiler acceptance and final rendered appearance. Finite-time boundaries may also move when Maximum Iterations, transient length, or initial phase changes.
 
-Next test: Refresh formulas in UF6, select `CircleMapLyapunov`, set `CircleMapLyapunovDirect` as the Inside coloring, and ensure Maximum Iterations remains greater than the discarded transient. The numerical smoke tests gave \(0\), \(-0.693147\), and \(+0.365802\) for neutral, attracting, and chaotic examples respectively.
+Next test: Refresh formulas in UF6, select `CircleMapLyapunov`, set `CircleMapLyapunovDirect` as the Inside coloring, and ensure Maximum Iterations remains greater than the discarded transient. The numerical smoke tests gave $0$, $-0.693147$, and $+0.365802$ for neutral, attracting, and chaotic examples respectively.
 
 ## Comment
 
 
-This resulted in the files [[circle_map_lyapunov.ufm]] and [[circle_map_lyapunov.ucl]]. Below is a render using the formula `CircleMapLyapunov` and the coloring algorithm `CircleMapLyapunovDirect`.
+This resulted in the files [`circle_map_lyapunov.ufm`](circle_map_lyapunov.ufm) and [`circle_map_lyapunov.ucl`](circle_map_lyapunov.ucl). Below is a render using the formula `CircleMapLyapunov` and the coloring algorithm `CircleMapLyapunovDirect`.
 
-![[circle-map-lyapunov-plane.png]]
+![Circle-map Lyapunov parameter plane](circle-map-lyapunov-plane.png)
 
 
 ## Prompt 4
@@ -156,8 +156,7 @@ Codex wrote one Markdown file that I was not entirely happy with. I wanted two f
 >
 >
 
-The resulting files are [[smooth-real-power-mandelbrot-blog.md]] and [[circle-map-lyapunov-blog.md]]. The images were created by me in Ultra Fractal using the Codex-generated formulas, and inserted by hand.
-
+The resulting files are [`smooth-real-power-mandelbrot-blog.md`](smooth-real-power-mandelbrot-blog.md) and [`circle-map-lyapunov-blog.md`](circle-map-lyapunov-blog.md). The images were created by me in Ultra Fractal using the Codex-generated formulas, and inserted by hand.
 
 
 

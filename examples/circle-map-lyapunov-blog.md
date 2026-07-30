@@ -15,22 +15,22 @@ Separating those jobs is useful. The formula calculates a number; the coloring d
 
 The formula uses the sine-circle map
 
-\[
+$$
 \theta_{k+1}
 =\theta_k+\Omega-\frac{K}{2\pi}\sin(2\pi\theta_k)
 \pmod 1.
-\]
+$$
 
-The phase \(\theta\) is reduced modulo one after every step. \(\Omega\) is the bare rotation number, and \(K\) controls the nonlinear sine term. In the UF parameter plane,
+The phase $\theta$ is reduced modulo one after every step. $\Omega$ is the bare rotation number, and $K$ controls the nonlinear sine term. In the UF parameter plane,
 
-\[
+$$
 \Omega=\operatorname{Re}(\#pixel),\qquad
 K=\operatorname{Im}(\#pixel).
-\]
+$$
 
 Some books and papers put a plus sign in front of the sine term. A half-turn of the phase relates the two sign conventions, so this does not define a substantially different family.
 
-For \(0\leq K<1\), the map is invertible and orientation-preserving. At \(K=1\), its derivative can reach zero. For \(K>1\), the map folds and multistability or chaotic behavior becomes possible. This is why the default view extends through the region above \(K=1\).
+For $0\leq K<1$, the map is invertible and orientation-preserving. At $K=1$, its derivative can reach zero. For $K>1$, the map folds and multistability or chaotic behavior becomes possible. This is why the default view extends through the region above $K=1$.
 
 Circle maps are well known for mode locking. Over parameter intervals, the average rotation number stays fixed at a rational value. In a two-parameter view these locked regions form tongues. A Lyapunov plot does not label the rotation number, but it makes many of the stable regions conspicuous because an attracting orbit has a negative exponent.
 
@@ -38,24 +38,24 @@ Circle maps are well known for mode locking. Over parameter intervals, the avera
 
 Differentiating the map with respect to the phase gives
 
-\[
+$$
 f'(\theta)=1-K\cos(2\pi\theta).
-\]
+$$
 
 For one orbit, the finite-time Lyapunov estimate is
 
-\[
+$$
 \lambda_N=
 \frac{1}{N}
 \sum_{k=0}^{N-1}
 \log\left|1-K\cos(2\pi\theta_k)\right|.
-\]
+$$
 
-The word *finite-time* deserves to stay in the description. UF uses a finite maximum iteration count, so the image shows an estimate, not an infinite limiting value. Near \(\lambda=0\), more iterations or a longer discarded transient can alter the classification of individual pixels.
+The word *finite-time* deserves to stay in the description. UF uses a finite maximum iteration count, so the image shows an estimate, not an infinite limiting value. Near $\lambda=0$, more iterations or a longer discarded transient can alter the classification of individual pixels.
 
 The formula first runs a user-selected number of transient iterations without adding them to the sum. This gives the orbit time to approach its eventual behavior. After the transient, it accumulates the logarithms and divides by the number of samples collected so far.
 
-There is a small UF-specific trap here. UF6 defines `log(0)` as zero. Mathematically, the logarithm of an exactly zero derivative should tend to negative infinity. The formula therefore replaces a derivative magnitude below `Derivative floor` by that small positive floor before taking the logarithm. With the default \(10^{-30}\), a critical iterate contributes a large negative value instead of a misleading zero.
+There is a small UF-specific trap here. UF6 defines `log(0)` as zero. Mathematically, the logarithm of an exactly zero derivative should tend to negative infinity. The formula therefore replaces a derivative magnitude below `Derivative floor` by that small positive floor before taking the logarithm. With the default $10^{-30}$, a critical iterate contributes a large negative value instead of a misleading zero.
 
 Periodicity checking is disabled as well. A repeating orbit is precisely the sort of behavior the formula is meant to measure. If UF stopped it during the discarded transient, there might be no Lyapunov samples at all.
 
@@ -63,9 +63,9 @@ Periodicity checking is disabled as well. A repeating orbit is precisely the sor
 
 UF fractal formulas expose their final `z` value to coloring algorithms as `#z`. The circle-map formula uses that channel deliberately:
 
-\[
+$$
 z=\theta+i\lambda.
-\]
+$$
 
 The real part keeps the current phase. The imaginary part holds the running Lyapunov estimate. The companion coloring reads `imag(#z)` in its `final` section.
 
@@ -82,9 +82,9 @@ Color strength follows a smooth exponential response. `Exponent contrast` contro
 This coloring is not part of the mathematics. Blue and red can be replaced freely without changing the exponent. Even the neutral threshold is a display choice applied to a finite-time estimate.
 
 <!-- IMAGE NEEDED: Supply an unedited UF6 PNG. Record the view, magnification, maximum iterations, initial phase, transient, derivative floor, zero tolerance, contrast, and colors. -->
-![Circle-map Lyapunov parameter plane](images/circle-map-lyapunov-plane.png)
+![Circle-map Lyapunov parameter plane](circle-map-lyapunov-plane.png)
 
-*Suggested figure: the default \((\Omega,K)\) parameter plane, with blue for negative exponents, gray near zero, and red for positive exponents.*
+*Suggested figure: the default $(\Omega,K)$ parameter plane, with blue for negative exponents, gray near zero, and red for positive exponents.*
 
 ## Loading and using the pair in UF6
 
@@ -92,16 +92,16 @@ Keep the `.ufm` and `.ucl` files in formula folders known to Ultra Fractal, then
 
 Choose `Circle Map Lyapunov Parameter Plane` as the fractal formula. In the Inside tab, choose the direct coloring algorithm titled `Circle Map Lyapunov`. The formula defaults to 2,000 maximum iterations and discards the first 500. Maximum Iterations must be greater than `Discarded transient`; otherwise no samples are collected and the stored exponent remains zero.
 
-The horizontal coordinate is \(\Omega\), and the vertical coordinate is \(K\). A sensible first window covers roughly \(0\leq\Omega\leq1\) and \(0\leq K\leq3\). The formula's default center is \((0.5,1.5)\).
+The horizontal coordinate is $\Omega$, and the vertical coordinate is $K$. A sensible first window covers roughly $0\leq\Omega\leq1$ and $0\leq K\leq3$. The formula's default center is $(0.5,1.5)$.
 
 For a first exploration:
 
 1. Leave `Initial phase` at its generic default.
-2. Render with the supplied coloring and inspect the region around \(K=1\).
+2. Render with the supplied coloring and inspect the region around $K=1$.
 3. Increase Maximum Iterations before trusting very fine structures near the gray boundary.
-4. Change `Initial phase` and compare. Above \(K=1\), coexisting attractors can make the measured exponent seed-dependent.
+4. Change `Initial phase` and compare. Above $K=1$, coexisting attractors can make the measured exponent seed-dependent.
 
-The last point is easy to overlook. A Lyapunov parameter plane is not always a property of \((\Omega,K)\) alone. It can also describe the attractor reached from the chosen initial phase.
+The last point is easy to overlook. A Lyapunov parameter plane is not always a property of $(\Omega,K)$ alone. It can also describe the attractor reached from the chosen initial phase.
 
 ## A few numerical landmarks
 
@@ -109,9 +109,9 @@ Independent test calculations used the formula's default initial phase, a 500-st
 
 | Parameters | Expected behavior | Finite-time exponent |
 |---|---|---:|
-| \(K=0\) | Rigid rotation; derivative is one | \(0.000000000\) |
-| \(\Omega=0,\ K=0.5\) | Attracting fixed point | \(-0.693147181\) |
-| \(\Omega=0.5,\ K=2\) | Representative chaotic orbit | \(+0.365802300\) |
+| $K=0$ | Rigid rotation; derivative is one | $0.000000000$ |
+| $\Omega=0,\ K=0.5$ | Attracting fixed point | $-0.693147181$ |
+| $\Omega=0.5,\ K=2$ | Representative chaotic orbit | $+0.365802300$ |
 
 These are checks on the recurrence and its derivative, not universal labels for every nearby point. The chaotic example in particular depends on its orbit and numerical settings.
 
